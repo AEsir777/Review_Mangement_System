@@ -25,3 +25,10 @@ node index.js
         });
     res.send("success");
 ```
+
+
+## server-side: REST API
+/auth  
+    /login     
+    /signup  
+    /logout    
