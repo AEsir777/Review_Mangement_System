@@ -32,3 +32,6 @@ node index.js
     /login     
     /signup  
     /logout    
+/api/business
+            /:bid
+            /search
