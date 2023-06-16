@@ -1,0 +1,4 @@
+CREATE DATABASE cs348;
+CREATE TABLE test( a INT);
+
+INSERT INTO test (a) VALUES (1);
