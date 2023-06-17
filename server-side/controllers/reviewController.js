@@ -1,4 +1,5 @@
-// import reviewModel from '../models/userModel.js';
+import reviewModel from '../models/userModel.js';
 
 
-// export default reviewController;
+
+export default reviewController;
