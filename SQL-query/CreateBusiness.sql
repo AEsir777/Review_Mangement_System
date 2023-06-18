@@ -18,7 +18,7 @@ CREATE TABLE Category (
     FOREIGN KEY (bid) REFERENCES Business(bid)
 );
 
-CREATE TABLE reviewwith (
+CREATE TABLE ReviewWith (
     bid VARCHAR(36) NOT NULL,
     uid VARCHAR(36) NOT NULL,
 	rid VARCHAR(36) NOT NULL
