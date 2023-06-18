@@ -1,4 +1,4 @@
-import pool from "./db.js";
+import pool from "../config/db.js";
 
 class businessModel {
     static getAllReviewsByBid(bid) {
