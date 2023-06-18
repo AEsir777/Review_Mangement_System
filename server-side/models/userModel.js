@@ -1,4 +1,4 @@
-import pool from "./db.js";
+import pool from "../config/db.js";
 import bcrypt from 'bcrypt';
 import uuid4 from "uuid4";
 
@@ -33,9 +33,9 @@ class UserModel {
         });
     }
 
-    static getuid(uid) {
+    static getUserByUid(uid) {
         return new Promise((resolve, reject) => {
-            pool.query('SELECT * FROM users WHERE uid = ?', [uid], (err, results) => {
+            pool.query('SELECT * FROM UserAuth WHERE uid = ?', [uid], (err, results) => {
                 if (err) {
                     return reject(err);
                 }

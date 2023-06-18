@@ -23,6 +23,11 @@ cd server-side
 nodemon(or node) index.js
 ```
 
+POST ```/api/auth/signup```  **not create session cookie yet**
+POST ```/api/auth/login```   **create session cookie**
+DELETE ```/api/auth/logout``` **destroy session cookie** 
+
+
 GET ```/api/review/:rid```  
 PUT ```/api/review/:rid```  
 DELETE ```/api/review/:rid```  
