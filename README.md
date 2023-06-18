@@ -10,28 +10,20 @@ set up ```.env``` file
 node index.js
 ```
 
-## create and load your sample database to the platform
+## START front end
 ```
-    con.query("DROP TABLE IF EXISTS t;");
-    con.query("CREATE TABLE t (a INT);");
-    fs.createReadStream('test.csv')
-        .pipe(csv())
-        .on('data', (data) => {
-            const query = 'INSERT INTO t (a) VALUES(?)';
-            con.query(query, data['Num'], (error, results, fields) => {
-                if (error) throw error;
-                console.log('Row inserted:', results.insertId);
-            });
-        });
-    res.send("success");
+cd client-side
+npm run dev
 ```
 
 
 ## server-side: REST API
-/auth  
-    /login     
-    /signup  
-    /logout    
-/api/business
-            /:bid
-            /search
+```
+cd server-side
+nodemon(or node) index.js
+```
+
+GET ```/api/review/:rid```  
+PUT ```/api/review/:rid```  
+DELETE ```/api/review/:rid```  
+POST ```/api/review/:rid/cool```  
