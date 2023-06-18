@@ -1,31 +1,32 @@
 # Hotel_Review_Management_System
 ## Database Drive Application
-Node.JS
+Node.JS  
+server side: express  
+client side: next.js  
 
+Install npm packages in both client/serverside
 ```
 npm install
 ```
-set up ```.env``` file
-```
-node index.js
-```
+set up ```.env``` file to store mySQL password
 
-## START front end
+
+## START front end on localhost:8000
 ```
 cd client-side
 npm run dev
 ```
 
 
-## server-side: REST API
+## server-side: REST API on localhost:3000
 ```
 cd server-side
 nodemon(or node) index.js
 ```
 
-POST ```/api/auth/signup```  **not create session cookie yet**
-POST ```/api/auth/login```   **create session cookie**
-DELETE ```/api/auth/logout``` **destroy session cookie** 
+POST ```/api/auth/signup```  **not create session cookie yet**  
+POST ```/api/auth/login```   **create session cookie**  
+DELETE ```/api/auth/logout``` **destroy session cookie**   
 
 
 GET ```/api/review/:rid```  
