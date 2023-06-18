@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  hotelreviewmanagementsystem:
+    image: hotelreviewmanagementsystem
+    build:
+      context: server-side
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: cs348
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - 3307:3306  # why is 3306 taken??
+
+volumes:
+  mysql-data:
+    driver: local
