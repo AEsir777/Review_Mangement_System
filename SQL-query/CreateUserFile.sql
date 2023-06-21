@@ -1,0 +1,11 @@
+CREATE TABLE UserFile (
+	uid varchar(255),
+	name varchar(255),
+	PRIMARY KEY(uid, name),
+    FOREIGN KEY(uid) REFERENCES UserAuth(uid)
+);
+
+CREATE TRIGGER addUser
+AFTER INSERT ON UserAuth
+FOR EACH ROW
+	INSERT INTO UserFile(uid, name) VALUES(NEW.uid, NEW.email);
