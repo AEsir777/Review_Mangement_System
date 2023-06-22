@@ -13,22 +13,40 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE GetBusinessByBid(IN in_bid VARCHAR(36))
 BEGIN
-    SELECT * FROM Business WHERE bid = in_bid;
+    SELECT B.bid, B.longitude, B.latitude, B.hours, 
+                                B.name, L.city, L.state, B.address, B.postalCode,
+                                B.stars, B.reviewCount, B.isOpen, C.cate 
+                        FROM business AS B
+                        INNER JOIN location AS L ON L.lid = B.lid
+                        INNER JOIN category AS C ON C.bid = B.bid
+                        WHERE B.bid = in_bid;
 END //
 DELIMITER ;
+
+
+
 
 /* CALL GetBusinessByBid('123e4567-e89b-12d3-a456-426614174000'); */
 
 DELIMITER //
-CREATE PROCEDURE SearchBusinessBy(IN in_category VARCHAR(255), IN in_name VARCHAR(255), IN in_state VARCHAR(255), IN in_city VARCHAR(255))
+CREATE PROCEDURE `SearchBusinessBy`(IN in_category VARCHAR(255), IN in_name VARCHAR(255), IN in_state VARCHAR(255), IN in_city VARCHAR(255))
 BEGIN
-    SET @catcategory = CONCAT('%', in_category, '%');
+    DECLARE catcategory VARCHAR(255);
+    
+    IF in_category IS NULL THEN
+        SET catcategory = NULL;
+    ELSE
+        SET catcategory = CONCAT('%', in_category, '%');
+    END IF;
     
     SELECT *
-    FROM Business
-    INNER JOIN Location ON Location.lid = Business.lid
-    INNER JOIN Category ON Category.bid = Business.bid
-    WHERE name = in_name AND state = in_state AND city = in_city AND cate LIKE @catcategory;
+    FROM business
+    INNER JOIN location ON location.lid = business.lid
+    INNER JOIN category ON category.bid = business.bid
+    WHERE (name = in_name OR in_name IS NULL)
+        AND (state = in_state OR in_state IS NULL)
+        AND (city = in_city OR in_city IS NULL)
+        AND (cate LIKE catcategory OR catcategory IS NULL);
 END //
 DELIMITER ;
 

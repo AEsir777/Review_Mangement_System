@@ -2,10 +2,11 @@ import businessModel from '../models/businessModel.js';
 
 class businessController {
     static renderBusinessHomePage(req, res, next) {
-        console.log('success3');
+        console.log('get_all_reviews success');
         businessModel.getAllReviewsByBid(req.params.bid).then(reviews => {
             res.json({
-                reviews: reviews,
+                business: req.business,
+                reviews: reviews
                 // address .... //
             });
         })
@@ -28,10 +29,8 @@ class businessController {
     static getBusinessByBid(req, res, next) {
         console.log("getBusinessByBid");
         businessModel.getBusinessByBid(req.params.bid).then(result => {
-            res.json({
-                result
-                // address .... //
-            });
+            req.business = result;
+            next();
         })
         .catch(err => {
             console.log(err);  
