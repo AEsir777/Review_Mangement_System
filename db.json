@@ -1,0 +1,47 @@
+{
+    "business": [
+      {
+        "bid": "1",
+        "name": "Test Business 1",
+        "image": "https://example.com/images/business1.jpg",
+        "address": "123 Test Street, Test City, Test State, 12345",
+        "phone": "123-456-7890",
+        "email": "test1@example.com",
+        "website": "https://example.com/test1",
+        "reviews": [
+          {
+            "reviewerName": "John Doe",
+            "rating": 4,
+            "text": "Great place. Had a lot of fun."
+          },
+          {
+            "reviewerName": "Jane Doe",
+            "rating": 5,
+            "text": "Amazing service. Will come again."
+          }
+        ]
+      },
+      {
+        "bid": "2",
+        "name": "Test Business 2",
+        "image": "https://example.com/images/business2.jpg",
+        "address": "456 Test Avenue, Test City, Test State, 67890",
+        "phone": "098-765-4321",
+        "email": "test2@example.com",
+        "website": "https://example.com/test2",
+        "reviews": [
+          {
+            "reviewerName": "Alice Smith",
+            "rating": 5,
+            "text": "Best experience ever. Highly recommended."
+          },
+          {
+            "reviewerName": "Bob Johnson",
+            "rating": 4,
+            "text": "Good food, nice atmosphere."
+          }
+        ]
+      }
+    ]
+  }
+  

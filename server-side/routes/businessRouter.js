@@ -15,7 +15,7 @@ businessRouter.use(isAuthenticated);
 businessRouter.get('/search', businessController.searchBusiness);
 
 // get all reviews, addresses ... for one business
-businessRouter.get('/:bid', businessController.renderBusinessHomePage);
+businessRouter.get('/:bid', businessController.getBusinessByBid);
 
 // leave review
 businessRouter.post('/:bid', businessController.leaveReview);
