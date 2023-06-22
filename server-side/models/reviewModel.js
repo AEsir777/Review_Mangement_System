@@ -50,9 +50,12 @@ class reviewModel {
     static coolByRid(rid, uid) {
         return new Promise((resolve, reject) => {
             pool.query(`
-                Update Review
+                UPDATE Review
                 SET cool = cool + 1
-                WHERE rid = ?`, [rid], (err, results) => {
+                WHERE rid = ?;
+                INSERT INTO CoolHistory (uid, rid) VALUES 
+                (?, ?);
+                `, [rid, uid, rid], (err, results) => {
                 if (err) {
                     return reject(err);
                 }
