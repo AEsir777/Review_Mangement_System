@@ -1,3 +1,4 @@
+import styles from '../styles/login.module.css';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
@@ -32,19 +33,33 @@ export default function Login() {
     };
 
     return (
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Email:</label>
-                    <input type="email" value={email} onChange={handleEmailChange} required />
+        <div className={styles.container}>
+             <div className={styles.formContainer}>
+            <h1 className={styles.title}>Login</h1> <br />
+            <form onSubmit={handleSubmit} className={styles.form}>
+                <div className={styles.inputGroup}>
+                    <label className={styles.label}>Email:</label>
+                    <input 
+                        type="email" 
+                        value={email} 
+                        onChange={handleEmailChange} 
+                        required
+                        className={styles.input} 
+                    />
                 </div>
-                <div>
-                    <label>Password:</label>
-                    <input type="password" value={password} onChange={handlePasswordChange} required />
+                <div className={styles.inputGroup}> 
+                    <label className={styles.label}>Password:</label>
+                    <input 
+                        type="password" 
+                        value={password} 
+                        onChange={handlePasswordChange} 
+                        required 
+                        className={styles.input} 
+                    />
                 </div>
-                <button type="submit">Login</button>
+                <button type="submit" className={styles.button}>Login</button>
             </form>
+            </div>
         </div>
     );
 };
