@@ -1,10 +1,6 @@
 DELIMITER //
 CREATE PROCEDURE CoolByRid(IN in_rid VARCHAR(36), IN in_uid VARCHAR(36))
 BEGIN
-    UPDATE Review
-    SET cool = cool + 1
-    WHERE rid = in_rid;
-
     INSERT INTO CoolHistory (uid, rid) 
     VALUES (in_uid, in_rid);
 END //

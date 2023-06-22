@@ -19,3 +19,6 @@ INSERT INTO coolHistory VALUES
 ('U18', 'R18'),
 ('U19', 'R19'),
 ('U20', 'R20');
+('U18', 'R1'),
+('U19', 'R3'),
+('U20', 'R4');
