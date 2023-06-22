@@ -1,5 +1,5 @@
 CREATE TABLE Location (
     lid INT PRIMARY KEY,
-    city VARCHAR(255),
-	state VARCHAR(255)
+    city VARCHAR(255) NOT NULL,
+	state VARCHAR(255) NOT NULL
 );

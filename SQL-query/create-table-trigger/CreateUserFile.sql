@@ -1,9 +1,9 @@
 CREATE TABLE UserFile (
 	uid varchar(36),
-	name varchar(255),
-    createTime TIMESTAMP,
-    cools INT,
-    reviewCount INT,
+	name varchar(255) NOT NULL,
+    createTime TIMESTAMP NOT NULL,
+    cools INT NOT NULL,
+    reviewCount INT NOT NULL,
 	PRIMARY KEY(uid, name),
     FOREIGN KEY(uid) REFERENCES UserAuth(uid) ON DELETE CASCADE
 );
