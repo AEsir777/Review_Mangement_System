@@ -11,6 +11,10 @@ npm install
 set up ```.env``` file to store mySQL password
 
 ## START database from localhost:3306
+```
+cd server-side
+node initialize-datbase.js
+```
 
 
 
