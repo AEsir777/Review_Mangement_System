@@ -19,7 +19,7 @@ CREATE TRIGGER updateStar1
 AFTER DELETE ON Review
 FOR EACH ROW
     UPDATE Business
-    SET reviewCount = reviewCount + 1,
+    SET reviewCount = reviewCount - 1,
 		stars = (SELECT AVG(r.stars) FROM Review as r
 				 JOIN ReviewWith as rw
                  ON r.rid = rw.rid
