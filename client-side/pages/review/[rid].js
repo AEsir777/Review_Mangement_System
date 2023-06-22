@@ -4,6 +4,7 @@ import axios from 'axios';
 import Rating from '@mui/material/Rating';
 import styles from '../../styles/review.module.css';
 
+// TODO: cool is broken
 
 export default function review() {
     const router = useRouter();
@@ -11,6 +12,7 @@ export default function review() {
     const [review, setReview] = useState(null);
     const [text, setText] = useState('');
     const [stars, setStars] = useState(0);
+    const [cool, setCool] = useState(0);
 
     useEffect(() => {
         const fetchReview = async () => {
@@ -19,6 +21,7 @@ export default function review() {
                 setReview(response.data.review);
                 setText(response.data.review.text);
                 setStars(response.data.review.stars);
+                setCool(response.data.review.cool);
             } catch (error) {
                 console.error(error);
             }
@@ -67,7 +70,7 @@ export default function review() {
 
         try {
             const response = await axios.post(`http://localhost:3000/api/review/${rid}/cool`, { withCredentials: true });
-            router.reload();
+            setCool(cool + 1);
         } catch (error) {
             console.error(error);
         }
@@ -80,7 +83,8 @@ export default function review() {
                 <div>
                     <h2 className={styles.title}>{review.text}</h2>
                     <div className={styles.stars}>
-                    <Rating name="read-only" value={review.stars} readOnly />
+                    <Rating name="read-only" value={review.stars} readOnly /> <br />
+                    <button className={styles.coolButton} onClick={handleCool}>Cool: {cool}</button>
                     </div>
                     <div className={styles.edit}>
                         <form onSubmit={handleSubmit}>
@@ -97,9 +101,8 @@ export default function review() {
                                 />
                             </div>
                             <button type="submit">Update</button>
+                            <button type="button" className={styles.delete} onClick={handleDelete}>Delete</button>
                         </form>
-                        <button type="submit" onClick={handleDelete}>delete</button>
-                        <button type="submit" onClick={handleCool}>Cool: {review.cool} +</button>
                     </div>
                 </div>
             ) : (
