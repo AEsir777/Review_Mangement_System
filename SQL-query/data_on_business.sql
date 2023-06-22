@@ -6,7 +6,7 @@ INSERT INTO Business VALUES
 ('B5', -73.989, 40.748, '9AM-7PM', 5, 'Company Five', '654 Cedar St', '10005', 1, 25, 0),
 ('B6', NULL, NULL, '9AM-5PM', 6, 'Company Six', NULL, '10006', 5, 30, 1),
 ('B7', -73.955, 40.717, NULL, 7, 'Company Seven', '987 Maple St', '10007', 4, 35, 0),
-('B8', -73.987, 40.757, '8AM-5PM', NULL, 'Company Eight', '123 Cherry St', '10008', 3, 40, 1),
+('B8', -73.987, 40.757, '8AM-5PM', 8, 'Company Eight', '123 Cherry St', '10008', 3, 40, 1),
 ('B9', -74.005, 40.712, '9AM-6PM', 9, NULL, '456 Oak St', '10009', 2, 45, 0),
 ('B10', -73.973, 40.763, '8AM-4PM', 10, 'Company Ten', NULL, '10010', 1, 50, 1),
 ('B11', -73.982, 40.744, '10AM-8PM', 11, 'Company Eleven', '321 Willow St', '10011', 5, 55, 0),
