@@ -66,6 +66,25 @@ class reviewModel {
             });
         });
     }
+
+
+    // TODO: fixxxx
+    static isCool(rid, uid) {
+        return new Promise((resolve, reject) => {
+            pool.query(`
+                SELECT * FROM CoolHistory 
+                WHERE uid = ? AND rid = ?;
+                `, [rid, uid, rid], (err, results) => {
+                if (err) {
+                    return reject(err);
+                }
+                if (results.length === 0) {
+                    return resolve(true);
+                }
+                resolve(false);
+            });
+        });
+    }
 }
 
 export default reviewModel;
