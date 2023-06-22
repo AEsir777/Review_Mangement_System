@@ -25,7 +25,7 @@ CREATE TABLE ReviewWith (
 );
 
 CREATE TABLE Location (
-    lid VARCHAR(36) PRIMARY KEY,
+    lid INT PRIMARY KEY,
     city VARCHAR(255),
 	state VARCHAR(255)
 );
