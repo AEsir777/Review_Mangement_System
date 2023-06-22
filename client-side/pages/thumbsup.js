@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
-import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 
 const ThumbsUp = () => {
   const [isLiked, setIsLiked] = useState(false);
@@ -17,10 +17,9 @@ const ThumbsUp = () => {
 
   return (
     <div>
-      <IconButton color={isLiked ? 'primary' : 'default'} onClick={handleLike}>
-        <ThumbUpAltIcon />
-      </IconButton>
-      <span>{likeCount}</span>
+      <Button variant="outlined" startIcon={<ThumbUpIcon />}>
+        800
+      </Button>
     </div>
   );
 };
