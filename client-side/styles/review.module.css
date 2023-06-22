@@ -1,0 +1,70 @@
+.reviewBody {
+    position: relative; 
+}
+
+.coolButton {
+    right: 0;
+    bottom: 0;
+    background-color: #0070f3;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.coolButton:hover {
+    background-color: #0051bb;
+}
+
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.title {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.stars {
+    margin-bottom: 30px;
+}
+
+.edit {
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+    margin-top: 30px;
+}
+
+.edit input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.edit button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    background-color: #0070f3;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;  /* Make buttons inline */
+}
+
+.edit button:hover {
+    background-color: #0051bb;
+}
+
+.edit .delete {
+    background-color: #ff0000;  /* Red background */
+}
+
+.edit .delete:hover {
+    background-color: #cc0000;  /* Darker red on hover */
+}
