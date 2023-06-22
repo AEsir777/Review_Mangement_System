@@ -10,6 +10,13 @@ npm install
 ```
 set up ```.env``` file to store mySQL password
 
+## START database from localhost:3306
+```
+cd server-side
+node initialize-datbase.js
+```
+
+
 
 ## START front end on localhost:8000
 ```
@@ -33,3 +40,9 @@ GET ```/api/review/:rid```
 PUT ```/api/review/:rid```  
 DELETE ```/api/review/:rid```  
 POST ```/api/review/:rid/cool```  
+
+## feature it currently support
+- authentication
+- search business by name, category
+- write, update, delete review
+- thumbs up for others comment

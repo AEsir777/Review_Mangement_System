@@ -1,5 +1,34 @@
+
 DELIMITER //
-CREATE PROCEDURE GetReviewsByBid(IN in_bid VARCHAR(36))
+CREATE PROCEDURE LeaveReview(IN in_bid VARCHAR(36), IN in_uid VARCHAR(36), IN in_text VARCHAR(255))
+BEGIN
+    -- Generate unique 22-bit ASCII-based rid
+    DECLARE rid VARCHAR(22);
+    DECLARE characters VARCHAR(64);
+    DECLARE i INT;
+    
+    SET characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-';
+    SET rid = '';
+    SET i = 0;
+    
+    WHILE i < 22 DO
+        SET rid = CONCAT(rid, SUBSTRING(characters, FLOOR(RAND() * 64) + 1, 1));
+        SET i = i + 1;
+    END WHILE;
+    
+    -- Insert into Review table
+    INSERT INTO Review (rid, date, text, stars, cool)
+    VALUES (rid, NOW(), in_text, 0, 0);
+    
+    -- Insert into ReviewWith table
+    INSERT INTO ReviewWith (bid, uid, rid)
+    VALUES (in_bid, in_uid, rid);
+    
+    SELECT rid;
+END //
+DELIMITER ;
+
+CREATE PROCEDURE GetReviewByBid(IN in_bid VARCHAR(36))
 BEGIN
     SELECT text
     FROM 
