@@ -66,21 +66,28 @@ class businessModel {
     }
 
     static searchBusinessBy(category, name, state, city) {
-        let catcategory = '%' + category + '%';
+        let catcategory = null;
+        if (category != null) {
+            catcategory = '%' + category + '%';
+        }
         return new Promise((resolve, reject) => {
             pool.query(
             `SELECT *
             FROM business
             INNER JOIN location ON location.lid = business.lid
             INNER JOIN category ON category.bid = business.bid
-            WHERE name = ? AND state = ? AND city = ? AND cate LIKE ?`, [name,state,city,catcategory], (err, results) => {
+            WHERE (name = ? OR ? IS NULL)
+                AND (state = ? OR ? IS NULL)
+                AND (city = ? OR ? IS NULL)
+                AND (cate LIKE ? OR ? IS NULL)`, [name,name,state,state,city,city,catcategory,catcategory], (err, results) => {
                 if (err) {
                     return reject(err);
                 }
                 if (results.length === 0) {
+                    console.log("search result: null");
                     return resolve(null);
                 }
-                const business = results[0];
+                const business = results;
                 resolve(business);
             });
         });

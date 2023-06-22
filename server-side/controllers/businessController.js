@@ -26,7 +26,8 @@ class businessController {
     }
 
     static getBusinessByBid(req, res, next) {
-        businessModel.getBusinessByBid(req.body.bid).then(result => {
+        console.log("getBusinessByBid");
+        businessModel.getBusinessByBid(req.params.bid).then(result => {
             res.json({
                 result
                 // address .... //
@@ -40,10 +41,11 @@ class businessController {
 
 
     static searchBusiness(req, res, next) {
-        businessModel.searchBusinessBy(req.body.category,
-                                        req.body.name,
-                                        req.body.state,
-                                        req.body.city).then(result => {
+        console.log("searchBusiness");
+        businessModel.searchBusinessBy(req.body.category ?? null,
+                                        req.body.name ?? null,
+                                        req.body.state ?? null,
+                                        req.body.city ?? null).then(result => {
             res.send(result);
         })
         .catch(err => {
