@@ -18,12 +18,12 @@ CREATE TRIGGER addCools
 AFTER INSERT ON coolHistory
 FOR EACH ROW
     UPDATE UserFile
-    SET cool = cool + 1
-    WHERE review.rid = NEW.rid
+    SET cools = cools + 1
+    WHERE UserFile.uid = NEW.uid;
 
 CREATE TRIGGER subCools
 BEFORE DELETE ON coolHistory
 FOR EACH ROW
-    UPDATE review
-    SET cool = cool - 1
-    WHERE review.rid = OLD.rid
+    UPDATE UserFile
+    SET cools = cools - 1
+    WHERE UserFile.uid = OLD.uid;

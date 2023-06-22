@@ -19,3 +19,6 @@ INSERT INTO Review VALUES
 ('R18', '2023-01-18 05:00:00', 'The food was cold when served.', 2, 4),
 ('R19', '2023-01-19 06:00:00', 'The service was slow.', 2, 3),
 ('R20', '2023-01-20 07:00:00', 'The staff was rude.', 1, 1);
+('R21', '2023-01-18 05:00:00', 'Two reviews made by same user is okay.', 2, 4),
+('R22', '2023-01-19 06:00:00', NULL, 2, 4),
+('R20', '2023-01-20 07:00:00', 'taqiuqiuqlegeigaodianfen.', 1, 1);

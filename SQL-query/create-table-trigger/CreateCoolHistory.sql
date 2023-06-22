@@ -3,5 +3,5 @@ CREATE TABLE coolHistory (
     rid varchar(36),
     PRIMARY KEY(uid, rid),
     FOREIGN KEY(uid) REFERENCES UserAuth(uid),
-    FOREIGN KEY(rid) REFERENCES Review(uid)
+    FOREIGN KEY(rid) REFERENCES Review(rid)
 );

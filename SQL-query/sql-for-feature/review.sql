@@ -16,13 +16,13 @@ BEGIN
         SET i = i + 1;
     END WHILE;
     
-    -- Insert into Review table
-    INSERT INTO Review (rid, date, text, stars, cool)
-    VALUES (rid, NOW(), in_text, 0, 0);
-    
     -- Insert into ReviewWith table
     INSERT INTO ReviewWith (bid, uid, rid)
     VALUES (in_bid, in_uid, rid);
+
+    -- Insert into Review table
+    INSERT INTO Review (rid, date, text, stars, cool)
+    VALUES (rid, NOW(), in_text, 0, 0);
     
     SELECT rid;
 END //
