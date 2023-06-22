@@ -3,7 +3,7 @@ import axios from 'axios';
 import styles from '../../styles/Business.module.css';
 import Navbar from '../../components/Navbar';
 
-const BusinessPage = ({ business }) => {
+const BusinessPage = ({ business, allreviews }) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -14,17 +14,24 @@ const BusinessPage = ({ business }) => {
       <Navbar> </Navbar>
       <main className={styles.main}>
         <h1 className={styles.title}>{business.name}</h1>
-        <p className={styles.description}>{business.description}</p>
-        <p className={styles.info}>{business.address}</p>
-        <p className={styles.info}>{business.phone}</p>
+        <p className={styles.description}>{business.cate}</p>
+        <p className={styles.info}>{business.city}, {business.state}, {business.address}</p>
+        <p className={styles.info}>Postal: {business.postalCode}</p>
+        <p className={styles.info}>Open Hours: {business.hours}</p>
+        <p className={styles.info}>Stars: {"★".repeat(business.stars)}</p>
+        {/* <p className={styles.info}>{business.reviewCount}</p> */}
         
         <div className={styles.reviews}>
-          {business.reviews.map((review, index) => (
+          {allreviews.map((review, index) => (
             <div key={index} className={styles.review}>
-              <h3>{review.reviewerName}</h3>
-              <p>{"★".repeat(review.rating)}</p>
-              <p>{review.text}</p>
-              <button className={styles.button}> Cool</button>
+              {/* <h3>{review.reviewerName}</h3> */}
+              {typeof review.text === 'string' && review.text.trim() !== "" && (
+                <div>
+                    <p>{review.text}</p>
+                    <button className={styles.button}> Cool</button>
+                </div>
+              )}
+              
             </div>
           ))}
         </div>
@@ -35,12 +42,14 @@ const BusinessPage = ({ business }) => {
 
 export async function getServerSideProps(context) {
   const { bid } = context.params;
-  const res = await axios.get(`http://localhost:3000/business/`);
-  const business = res.data[0];
+  const res = await axios.get(`http://localhost:3000/api/business/${bid}`);
+  const business = res.data.business;
+  const allreviews = res.data.reviews;
 
   return {
-    props: { business },
+    props: { business, allreviews},
   };
 }
+
 
 export default BusinessPage;

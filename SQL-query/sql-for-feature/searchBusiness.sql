@@ -13,9 +13,18 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE GetBusinessByBid(IN in_bid VARCHAR(36))
 BEGIN
-    SELECT * FROM Business WHERE bid = in_bid;
+    SELECT B.bid, B.longitude, B.latitude, B.hours, 
+                                B.name, L.city, L.state, B.address, B.postalCode,
+                                B.stars, B.reviewCount, B.isOpen, C.cate 
+                        FROM business AS B
+                        INNER JOIN location AS L ON L.lid = B.lid
+                        INNER JOIN category AS C ON C.bid = B.bid
+                        WHERE B.bid = in_bid;
 END //
 DELIMITER ;
+
+
+
 
 /* CALL GetBusinessByBid('123e4567-e89b-12d3-a456-426614174000'); */
 

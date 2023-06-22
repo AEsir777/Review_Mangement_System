@@ -52,7 +52,13 @@ class businessModel {
 
     static getBusinessByBid(bid) {
         return new Promise((resolve, reject) => {
-            pool.query('SELECT * FROM business WHERE bid = ?', [bid], (err, results) => {
+            pool.query(`SELECT B.bid, B.longitude, B.latitude, B.hours, 
+                                B.name, L.city, L.state, B.address, B.postalCode,
+                                B.stars, B.reviewCount, B.isOpen, C.cate 
+                        FROM business AS B
+                        INNER JOIN location AS L ON L.lid = B.lid
+                        INNER JOIN category AS C ON C.bid = B.bid
+                        WHERE B.bid = ?`, [bid], (err, results) => {
                 if (err) {
                     return reject(err);
                 }
