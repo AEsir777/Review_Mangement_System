@@ -3,7 +3,7 @@ CREATE TABLE Business (
     longitude DOUBLE,
     latitude DOUBLE,
     hours VARCHAR(255),
-    lid INT,
+    lid INT NOT NULL,
     name VARCHAR(255),
     address VARCHAR(255),
     postalCode VARCHAR(255),
