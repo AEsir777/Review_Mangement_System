@@ -11,6 +11,7 @@ CALL GetUserByUid('U300');
 
 
 /****** searchBusiness ******/
+/*** Test insert ******/
 -- Insert a new business record
 CALL InsertIntoBusiness('123e4567-e89b-12d3-a456-426614174000', -73.987, 40.757, '8AM-5PM', 1, 'Company One', '123 Main St', '10001', 5, 10, 1);
 
@@ -19,11 +20,14 @@ CALL GetBusinessByBid('123e4567-e89b-12d3-a456-426614174000');
 
 -- Retrieve a business record by bid
 CALL GetBusinessByBid('B2');
+CALL GetBusinessByBid(null);
 
 -- Search for businesses by category, name, state, and city
 CALL SearchBusinessBy('Food', 'Company Four', 'TX', 'Houston');
--- Search for businesses by category and state
 CALL SearchBusinessBy('Retail', 'Company Two', 'NY', 'New York');
+CALL SearchBusinessBy(null, null, 'NY', 'New York');
+CALL SearchBusinessBy(null, null, null, null);
+
 
 
 /****** review ******/
