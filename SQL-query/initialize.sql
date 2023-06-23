@@ -355,7 +355,7 @@ INSERT INTO Friend VALUES
 
 /* function main part is implemented in javascript */
 DELIMITER //
-CREATE PROCEDURE InsertIntoUserAuth(IN in_uid VARCHAR(36), IN in_email VARCHAR(255), IN in_pwd VARCHAR(255), out)
+CREATE PROCEDURE InsertIntoUserAuth(IN in_uid VARCHAR(36), IN in_email VARCHAR(255), IN in_pwd VARCHAR(255))
 BEGIN
     INSERT INTO UserAuth (uid, email, pwd) VALUES (in_uid, in_email, in_pwd);
 END //
