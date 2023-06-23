@@ -11,7 +11,7 @@ CREATE TABLE UserFile (
 CREATE TRIGGER addUser
 AFTER INSERT ON UserAuth
 FOR EACH ROW
-	INSERT INTO UserFile(uid, name, createTime, cools) 
+	INSERT INTO UserFile(uid, name, createTime, reviewCount, cools) 
     VALUES(NEW.uid, NEW.email, NOW(), 0, 0);
 
 CREATE TRIGGER addCools
