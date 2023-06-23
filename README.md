@@ -23,7 +23,13 @@ node initialize-datbase.js
 cd client-side
 npm run dev
 ```
-
+```
+/login
+/signup
+/logout
+/business/:bid
+/review/:rid
+```
 
 ## server-side: REST API on localhost:3000
 ```
@@ -35,6 +41,11 @@ POST ```/api/auth/signup```  **not create session cookie yet**
 POST ```/api/auth/login```   **create session cookie**  
 DELETE ```/api/auth/logout``` **destroy session cookie**   
 
+GET ```/api/business/search```  
+GET ```/api/business/:bid```  
+POST ```/api/business/:bid```  
+POST ```/api/business/search```  
+
 
 GET ```/api/review/:rid```  
 PUT ```/api/review/:rid```  
@@ -43,6 +54,6 @@ POST ```/api/review/:rid/cool```
 
 ## feature it currently support
 - authentication
-- search business by name, category
+- search business by name, category, city, state or combinations
 - write, update, delete review
 - thumbs up for others comment
