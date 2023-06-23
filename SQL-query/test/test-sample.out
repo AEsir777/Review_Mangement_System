@@ -1,11 +1,25 @@
+/**** authentication ******/
+/*** Test insert (mostly already tested when inserting into) ******/
 // CALL InsertIntoUserAuth('123e4567-e89b-12d3-a456-426614174000', 'test@example.com', 'password'); */
 1 row(s) affected
 
 // CALL GetUserByUid('123e4567-e89b-12d3-a456-426614174000');
 123e4567-e89b-12d3-a456-426614174000	test@example.com	password
 
+// CALL GetUserByUid('U1');
+U1	user1@example.com	HASHED_PASSWORD_1
+
+// CALL GetUserByUid('U9');
+U9	user9@example.com	HASHED_PASSWORD_9
+
 // CALL GetUserByUid('U10');
 U10	user10@example.com	HASHED_PASSWORD_10
+
+// CALL GetUserByUid('U300');
+null
+
+
+
 
 // CALL InsertIntoBusiness('123e4567-e89b-12d3-a456-426614174000', -73.987, 40.757, '8AM-5PM', 1, 'Company One', '123 Main St', '10001', 5, 10, 1);
 1 rows(s) affected
@@ -21,11 +35,35 @@ B2	-74.005	40.712	9AM-6PM	2	Company Two	456 Elm St	10002	4	20	1
 // CALL SearchBusinessBy('Retail', 'Company Two', 'NY', 'New York');
 null
 
+
+
+/****** review ******/
 // CALL LeaveReview('B2', 'U1', 'This is a great business.');
-1 rows(s) affected
+9LBkzSDXtbD8j9K6GvYufQ  // insertion id
 
 // CALL LeaveReview('B5', 'U9', 'This is a great business x2.');
-1 rows(s) affected
+2crGb2_UqWx0zhMblnX7j9
+
+// CALL LeaveReview('B9', 'U1', null);
+mrm_Ea4LRxD_shkQlKDwqD
+
+/* fail cases - should not be able to add */
+// CALL LeaveReview('B5', 'U200', 'This is a great business x3.');
+Error Code: 1452. Cannot add or update a child row: a foreign key constraint fails (`cs348`.`reviewwith`, CONSTRAINT `reviewwith_ibfk_2` FOREIGN KEY (`uid`) REFERENCES `userfile` (`uid`))
+
+// CALL LeaveReview(null, 'U1', 'This is a great business x3.');
+Error Code: 1048. Column 'bid' cannot be null
+
+/* get review - start with RID */
+// CALL GetReviewByRid('9LBkzSDXtbD8j9K6GvYufQ')
+9LBkzSDXtbD8j9K6GvYufQ	2023-06-22 20:45:19	This is a great business.	0	0
+
+// CALL GetReviewByRid('R5')
+2023-01-05 16:00:00	Really enjoy the food here.	5	10
+
+// CALL GetReviewByRid('R023')
+null
+
 
 // CALL GetReviewByBid('B2')
 'R3', '2023-01-03 14:00:00', 'The product broke after a few days.', 1, 1
@@ -38,12 +76,10 @@ null
 // CALL GetReviewByBid('B7')
 null
 
-
-// CALL GetReviewByRid('R5')
-'R5', '2023-01-05 16:00:00', 'Really enjoy the food here.', 5, 9
-
-// CALL GetReviewByRid('R023')
+// CALL GetReviewByRid(null)
 null
+
+
 
 
 // CALL UpdateReviewTextByRid(1, "3", 1);

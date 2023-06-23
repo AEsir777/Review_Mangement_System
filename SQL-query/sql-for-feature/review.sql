@@ -1,4 +1,4 @@
-
+/* tested features - convereted javascript code to sql  */
 DELIMITER //
 CREATE PROCEDURE LeaveReview(IN in_bid VARCHAR(36), IN in_uid VARCHAR(36), IN in_text VARCHAR(255))
 BEGIN
