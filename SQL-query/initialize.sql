@@ -215,7 +215,7 @@ INSERT INTO UserAuth VALUES
 
 /* conflit with trigger */
 
-INSERT INTO UserFile VALUES
+/* INSERT INTO UserFile VALUES
 ('U1', 'User One', '2023-01-02 13:00:00', 10, 20),
 ('U2', 'User Two', '2023-01-02 13:00:00', 43, 25),
 ('U3', 'User Three', '2023-01-03 14:00:00', 20, 43),
@@ -235,7 +235,7 @@ INSERT INTO UserFile VALUES
 ('U17', 'User Seventeen', '2023-01-17 04:00:00', 90, 100),
 ('U18', 'User Eighteen', '2023-01-18 05:00:00', 95, 105),
 ('U19', 'User Nineteen', '2023-01-19 06:00:00', 100, 110),
-('U20', 'User Twenty', '2023-01-20 07:00:00', 105, 115);
+('U20', 'User Twenty', '2023-01-20 07:00:00', 105, 115); */
 
 INSERT INTO Review VALUES
 ('R1', '2023-01-01 12:00:00', 'Great service and friendly staff.', 5, 10),

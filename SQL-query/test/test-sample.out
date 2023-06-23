@@ -64,37 +64,57 @@ Error Code: 1048. Column 'bid' cannot be null
 // CALL GetReviewByRid('R023')
 null
 
-
-// CALL GetReviewByBid('B2')
-'R3', '2023-01-03 14:00:00', 'The product broke after a few days.', 1, 1
-'R4', '2023-01-04 15:00:00', 'The service was terrible.', 2, 0
-'R5', '2023-01-05 16:00:00', 'Really enjoy the food here.', 5, 9
-'R15', '2023-01-15 02:00:00', 'The food was not fresh.', 2, 3
-'R16', '2023-01-16 03:00:00', 'The place is not clean.', 1, 2
-'R16', '2023-06-22 01:03:22', 'This is a great business.', NULL, NULL
-
-// CALL GetReviewByBid('B7')
-null
-
 // CALL GetReviewByRid(null)
 null
 
 
 
+/* get review - bid */
+// CALL GetReviewByBid('B2')
+The product broke after a few days.
+The service was terrible.
+Really enjoy the food here.
+The food was not fresh.
+The place is not clean.
+This is a great business.
 
-// CALL UpdateReviewTextByRid(1, "3", 1);
-1 row(s) affected
+// CALL GetReviewByBid('B9')
+text
+null
+
+// CALL GetReviewByBid('B7')
+null
+
+// CALL GetReviewByBid('B100')
+null
+
+// CALL GetReviewByBid(null)
+null
+
+
+// CALL UpdateReviewTextByRid('R1', "update", 1);
+R1	2023-01-01 12:00:00	update	1	12
 
 // CALL UpdateReviewTextByRid('R900', "3", 1);
-0 row(s) affected
+null
 
 
+// CALL UpdateReviewTextByRid('R1', "update", null);
+Error Code: 1048. Column 'stars' cannot be null
+
+
+
+
+/****** cool ******/
 // CALL CoolByRid('R9', 'U8');
-1 row(s) affected
+'U8'	'R9'
 
-// CALL CoolByRid('U1', 'U9');
-1 row(s) affected
+// CALL CoolByRid('R9', 'U1');
+'U1'	'R9'
 
+
+
+/* test if a review is already cooled  */
 // CALL IsCool('R9', 'U8');
 'R9', 'U8'
 

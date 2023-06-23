@@ -43,17 +43,25 @@ CALL GetReviewByRid('R5')
 CALL GetReviewByRid('R023')
 CALL GetReviewByRid(null)
 
+
+/* get review - bid */
+CALL GetReviewByBid('B2')
+CALL GetReviewByBid('B9')
 CALL GetReviewByBid('B7')
+CALL GetReviewByBid('B100')
+CALL GetReviewByBid(null)
 
-
-CALL UpdateReviewTextByRid(1, "3", 1);
+/* update review */
+CALL UpdateReviewTextByRid('R1', "update", 1);
 CALL UpdateReviewTextByRid('R900', "3", 1);
+CALL UpdateReviewTextByRid('R1', "update", null);
 
 
-// cool
+/****** cool ******/
 CALL CoolByRid('R9', 'U8');
-CALL CoolByRid('U1', 'U9');
+CALL CoolByRid('U1', 'R9');
 
+/* test if a review is already cooled  */
 CALL IsCool('R9', 'U8');
 CALL IsCool('R1', 'U1');
 CALL IsCool('R032', 'U432');
