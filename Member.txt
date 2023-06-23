@@ -1,1 +1,5 @@
 Name          Duty
+Kebing Liu    Write Authentication, Cool, update review and test cases
+Henry Tian    Write search business, leave review
+Zhongyi Guo   Write database schema, assumption and ER diagram
+Steven Ji     Produce sample and production dataset, and translate relatoin model

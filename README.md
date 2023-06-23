@@ -15,8 +15,8 @@ set up ```.env``` file to store mySQL password
 cd server-side
 node initialize-datbase.js
 ```
-
-
+which runs all sql script in 
+[intialize.sql](SQL-query/initialize.sql)
 
 ## START front end on localhost:8000
 ```
