@@ -351,3 +351,162 @@ INSERT INTO Friend VALUES
 ('U6', 'U8'),
 ('U7', 'U8'),
 ('U8', 'U7');
+
+
+/* function main part is implemented in javascript */
+DELIMITER //
+CREATE PROCEDURE InsertIntoUserAuth(IN in_uid VARCHAR(36), IN in_email VARCHAR(255), IN in_pwd VARCHAR(255), out)
+BEGIN
+    INSERT INTO UserAuth (uid, email, pwd) VALUES (in_uid, in_email, in_pwd);
+END //
+DELIMITER ;
+
+
+DELIMITER //
+CREATE PROCEDURE GetUserByUid(IN in_uid VARCHAR(36))
+BEGIN
+    SELECT * FROM UserAuth WHERE uid = in_uid;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE CoolByRid(IN in_rid VARCHAR(36), IN in_uid VARCHAR(36))
+BEGIN
+    INSERT INTO CoolHistory (uid, rid) 
+    VALUES (in_uid, in_rid);
+END //
+DELIMITER ;
+
+
+/* CALL CoolByRid('123e4567-e89b-12d3-a456-426614174000', '456e789b-12d3-a123-4566-789b12d3a456'); */
+
+DELIMITER //
+CREATE PROCEDURE IsCool(IN in_rid VARCHAR(36), IN in_uid VARCHAR(36))
+BEGIN
+    SELECT * FROM CoolHistory
+    WHERE uid = in_uid AND rid = in_rid;
+END //
+DELIMITER ;
+
+
+/* CALL IsCool('123e4567-e89b-12d3-a456-426614174000', '456e789b-12d3-a123-4566-789b12d3a456'); */
+
+/* tested features - convereted javascript code to sql  */
+DELIMITER //
+CREATE PROCEDURE LeaveReview(IN in_bid VARCHAR(36), IN in_uid VARCHAR(36), IN in_text VARCHAR(255))
+BEGIN
+    -- Generate unique 22-bit ASCII-based rid
+    DECLARE rid VARCHAR(22);
+    DECLARE characters VARCHAR(64);
+    DECLARE i INT;
+    
+    SET characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-';
+    SET rid = '';
+    SET i = 0;
+    
+    WHILE i < 22 DO
+        SET rid = CONCAT(rid, SUBSTRING(characters, FLOOR(RAND() * 64) + 1, 1));
+        SET i = i + 1;
+    END WHILE;
+    
+    -- Insert into ReviewWith table
+    INSERT INTO ReviewWith (bid, uid, rid)
+    VALUES (in_bid, in_uid, rid);
+
+    -- Insert into Review table
+    INSERT INTO Review (rid, date, text, stars, cool)
+    VALUES (rid, NOW(), in_text, 0, 0);
+    
+    SELECT rid;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE GetReviewByBid(IN in_bid VARCHAR(36))
+BEGIN
+    SELECT text
+    FROM 
+    (SELECT rid
+    FROM reviewwith
+    WHERE bid LIKE in_bid) AS r1
+    INNER JOIN review
+    ON review.rid = r1.rid;
+END //
+DELIMITER ;
+
+/* CALL GetReviewsByBusinessId('123e4567-e89b-12d3-a456-426614174000'); */
+
+DELIMITER //
+CREATE PROCEDURE GetReviewByRid(IN in_rid VARCHAR(36))
+BEGIN
+    SELECT * FROM Review WHERE rid = in_rid;
+END //
+DELIMITER ;
+
+/* CALL GetReviewByRid('123e4567-e89b-12d3-a456-426614174000'); */
+
+
+DELIMITER //
+CREATE PROCEDURE UpdateReviewTextByRid(IN in_rid VARCHAR(36), IN in_text VARCHAR(255), IN in_stars INT)
+BEGIN
+    UPDATE Review 
+    SET text = in_text, stars = in_stars 
+    WHERE rid = in_rid;
+END //
+DELIMITER ;
+
+/* CALL UpdateReviewTextByRid('123e4567-e89b-12d3-a456-426614174000', 'New text', 5); */
+
+/* Test the part not associated with js */
+
+DELIMITER //
+CREATE PROCEDURE InsertIntoBusiness(IN in_bid VARCHAR(36), IN in_longitude DOUBLE, IN in_latitude DOUBLE, 
+IN in_hours VARCHAR(255), IN in_lid INT, IN in_name VARCHAR(255), IN in_address VARCHAR(255), 
+IN in_postalCode VARCHAR(255), IN in_stars INT, IN in_reviewCount INT, IN in_isOpen INT)
+BEGIN
+    INSERT INTO Business (bid, longitude, latitude, hours, lid, name, address, postalCode, stars, reviewCount, isOpen)
+    VALUES (in_bid, in_longitude, in_latitude, in_hours, in_lid, in_name, in_address, in_postalCode, in_stars, in_reviewCount, in_isOpen);
+END //
+DELIMITER ;
+
+/* CALL InsertIntoBusiness('123e4567-e89b-12d3-a456-426614174000', 12.34, 56.78, '9am-5pm', 1, 'Business Name', '123 Main St', '12345', 5, 100, 1); */
+
+DELIMITER //
+CREATE PROCEDURE GetBusinessByBid(IN in_bid VARCHAR(36))
+BEGIN
+    SELECT B.bid, B.longitude, B.latitude, B.hours, 
+                                B.name, L.city, L.state, B.address, B.postalCode,
+                                B.stars, B.reviewCount, B.isOpen, C.cate 
+                        FROM business AS B
+                        INNER JOIN location AS L ON L.lid = B.lid
+                        INNER JOIN category AS C ON C.bid = B.bid
+                        WHERE B.bid = in_bid;
+END //
+DELIMITER ;
+
+
+
+
+/* CALL GetBusinessByBid('123e4567-e89b-12d3-a456-426614174000'); */
+
+DELIMITER //
+CREATE PROCEDURE `SearchBusinessBy`(IN in_category VARCHAR(255), IN in_name VARCHAR(255), IN in_state VARCHAR(255), IN in_city VARCHAR(255))
+BEGIN
+    DECLARE catcategory VARCHAR(255);
+    
+    IF in_category IS NULL THEN
+        SET catcategory = NULL;
+    ELSE
+        SET catcategory = CONCAT('%', in_category, '%');
+    END IF;
+    
+    SELECT *
+    FROM business
+    INNER JOIN location ON location.lid = business.lid
+    INNER JOIN category ON category.bid = business.bid
+    WHERE (name = in_name OR in_name IS NULL)
+        AND (state = in_state OR in_state IS NULL)
+        AND (city = in_city OR in_city IS NULL)
+        AND (cate LIKE catcategory OR catcategory IS NULL);
+END //
+DELIMITER ;
