@@ -26,6 +26,7 @@ CALL GetBusinessByBid(null);
 CALL SearchBusinessBy('Food', 'Company Four', 'TX', 'Houston');
 CALL SearchBusinessBy('Retail', 'Company Two', 'NY', 'New York');
 CALL SearchBusinessBy(null, null, 'NY', 'New York');
+CALL SearchBusinessBy(null, null, null, 'New York');
 CALL SearchBusinessBy(null, null, null, null);
 
 
