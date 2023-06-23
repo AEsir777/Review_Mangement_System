@@ -1,22 +1,31 @@
 /**** authentication ******/
 /*** Test insert (mostly already tested when inserting into) ******/
 // CALL InsertIntoUserAuth('123e4567-e89b-12d3-a456-426614174000', 'test@example.com', 'password'); */
-1 row(s) affected
+1 row(s) affected   
+// expected output: succesfully inserted into the row
+// Follow up sql: SELECT * FROM UserAuth Where uid = '123e4567-e89b-12d3-a456-426614174000';
+123e4567-e89b-12d3-a456-426614174000	test@example.com	password
+// expected output: 123e4567-e89b-12d3-a456-426614174000	test@example.com	password
 
 // CALL GetUserByUid('123e4567-e89b-12d3-a456-426614174000');
 123e4567-e89b-12d3-a456-426614174000	test@example.com	password
+// expected output: 123e4567-e89b-12d3-a456-426614174000	test@example.com	password
 
 // CALL GetUserByUid('U1');
 U1	user1@example.com	HASHED_PASSWORD_1
+// expected output: U1	user1@example.com	HASHED_PASSWORD_1
 
 // CALL GetUserByUid('U9');
 U9	user9@example.com	HASHED_PASSWORD_9
+// expected output: U9	user9@example.com	HASHED_PASSWORD_9
 
 // CALL GetUserByUid('U10');
 U10	user10@example.com	HASHED_PASSWORD_10
+// expected output: U10	user10@example.com	HASHED_PASSWORD_10
 
 // CALL GetUserByUid('U300');
 null
+expected output: not found 
 
 
 
@@ -24,30 +33,62 @@ null
 /*** Test insert ******/
 -- Insert a new business record
 // CALL InsertIntoBusiness('123e4567-e89b-12d3-a456-426614174000', -73.987, 40.757, '8AM-5PM', 1, 'Company One', '123 Main St', '10001', 5, 10, 1);
+1 row(s) affected   
+// expected output: succesfully inserted into the row
+// Follow up sql: SELECT * FROM Business Where bid = '123e4567-e89b-12d3-a456-426614174000';
+123e4567-e89b-12d3-a456-426614174000	-73.987	40.757	8AM-5PM	1	Company One	123 Main St	10001
+// expected output: 123e4567-e89b-12d3-a456-426614174000	-73.987	40.757	8AM-5PM	1	Company One	123 Main St	10001
 123e4567-e89b-12d3-a456-426614174000	-73.987	40.757	8AM-5PM	1	Company One	123 Main St	10001
 
 
 -- Verify the insertion by retrieving the business record
 // CALL GetBusinessByBid('123e4567-e89b-12d3-a456-426614174000');
 123e4567-e89b-12d3-a456-426614174000	-73.987	40.757	8AM-5PM	1	Company One	123 Main St	10001
+// expcted output: 123e4567-e89b-12d3-a456-426614174000	-73.987	40.757	8AM-5PM	1	Company One	123 Main St	10001
 
 // CALL GetBusinessByBid('B2');
 B2	-74.005	40.712	9AM-6PM	2	Company Two	456 Elm St	10002	4	20	1
+// expected output: B2	-74.005	40.712	9AM-6PM	2	Company Two	456 Elm St	10002	4	20	1
 
 // CALL GetBusinessByBid(null);
 null
+// expected output: not found
 
 -- Search for businesses by category, name, state, and city
 // CALL SearchBusinessBy('Food', 'Company Four', 'TX', 'Houston');
 -73.982	40.744	10AM-8PM	4	Company Four	321 Oak St	10004	2	30	1
+// expected output: -73.982	40.744	10AM-8PM	4	Company Four	321 Oak St	10004	2	30	1
 
 // CALL SearchBusinessBy('Retail', 'Company Two', 'NY', 'New York');
 null
+// expected output: not found
 
 // CALL SearchBusinessBy(null, null, 'NY', 'New York');
 B1	-73.987	40.757	8AM-5PM	1	Company One	123 Main St	10001	5	10	1	1	New York	NY	B1	Retail
+// expected output: B1	-73.987	40.757	8AM-5PM	1	Company One	123 Main St	10001	5	10	1	1	New York	NY	B1	Retail
 
 // CALL SearchBusinessBy(null, null, null, null);
+B1	-73.987	40.757	8AM-5PM	1	Company One	123 Main St	10001	5	10	1	1	New York	NY	B1	Retail
+B10	-73.973	40.763	8AM-4PM	10	Company Ten	450 Oak St	10010	1	50	1	10	San Jose	CA	B10	Financial Services; Hospitality; Manufacturing; Automotive; Education; Fashion
+B11	-73.982	40.744	10AM-8PM	11	Company Eleven	321 Willow St	10011	5	55	0	11	Austin	TX	B11	Automobile
+B12	-73.989	40.748	9AM-7PM	12	Company Twelve	654 Pine St	CK2F9J	4	60	1	12	Miami	FL	B12	Telecommunications
+B13	-73.987	40.757	8AM-5PM	13	Company Thirteen	123 Apple St	10013	0	65	0	13	Columbus	PK	B13	Construction
+B14	-74.005	40.712	9AM-6PM	14	Company Fourteen	456 Elm St	10014	2	0	1	14	Fort Worth	TX	B14	Manufacturing
+B15	-73.973	40.763	8AM-4PM	15	Company Fifteen	789 Peach St	10015		75	0	15	Indianapolis	IN	B15	Transportation
+B16	-73.982	40.744	10AM-8PM	16	Company Sixteen	321 Cherry St	10016	5	80	1	16	Charlotte	NC	B16	Wholesale
+B17	-73.989	40.748	9AM-7PM	17	Company Seventeen	654 Pear St	10017	4	85	0	17	Seattle	WA	B17	Agriculture
+B18	-73.987	40.757	8AM-5PM	18	Company Eighteen	123 Apple St	10018	3	90	1	18	Denver	CO	B18	Pharmaceuticals
+B19	-74.005	40.712	9AM-6PM	19	Company Nineteen	456 Elm St	10019	2	95	0	19	El Paso	TX	B19	Energy
+B2	-74.005	40.712	9AM-6PM	2	Company Two	456 Elm St	10002	4	20	1	2	Los Angeles	CA	B2	Technology
+B20	-73.973	40.763	8AM-4PM	20	Company Twenty	789 Pine St	10020	1	100	1	20	Detroit	MI	B20	Mining
+B3	-73.973	40.763	8AM-4PM	3	Company Three	789 Pine St	10003	3	15	0	3	Chicago	IL	B3	Healthcare
+B4	-73.982	40.744	10AM-8PM	4	Company Four	321 Oak St	10004	2	30	1	4	Houston	TX	B4	Food
+B5	-73.989	40.748	9AM-7PM	5	Company Five	654 Cedar St	10005	1	25	0	5	Philadelphia	PA	B5	Automotive
+B6	-213.22	-3.234	9AM-5PM	6	Company Six	321 Banana St	10006	5	30	1	6	Phoenix	AZ	B6	Fashion
+B7	-73.955	40.717	10AM-9:30PM	7	Company Seven	987 Maple St	10007	4	35	0	7	San Antonio	TX	B7	Real Estate
+B8	-73.987	40.757	8AM-5PM	8	Company Eight	123 Cherry St	10008	3	40	1	8	San Diego	CA	B8	Education
+B9	-74.005	40.712	9AM-6PM	9	Company Nine	456 Oak St	10009	2	45	0	9	Dallas	TX	B9	Hospitality
+// expected output: all entires in database
 B1	-73.987	40.757	8AM-5PM	1	Company One	123 Main St	10001	5	10	1	1	New York	NY	B1	Retail
 B10	-73.973	40.763	8AM-4PM	10	Company Ten	450 Oak St	10010	1	50	1	10	San Jose	CA	B10	Financial Services; Hospitality; Manufacturing; Automotive; Education; Fashion
 B11	-73.982	40.744	10AM-8PM	11	Company Eleven	321 Willow St	10011	5	55	0	11	Austin	TX	B11	Automobile
@@ -71,33 +112,42 @@ B9	-74.005	40.712	9AM-6PM	9	Company Nine	456 Oak St	10009	2	45	0	9	Dallas	TX	B9	
 
 /****** review ******/
 // CALL LeaveReview('B2', 'U1', 'This is a great business.');
-9LBkzSDXtbD8j9K6GvYufQ  // insertion id
+9LBkzSDXtbD8j9K6GvYufQ 
+// expected output: randomly generated insertion id
 
 // CALL LeaveReview('B5', 'U9', 'This is a great business x2.');
 2crGb2_UqWx0zhMblnX7j9
+// expected output: randomly generated insertion id
 
 // CALL LeaveReview('B9', 'U1', null);
 mrm_Ea4LRxD_shkQlKDwqD
+// expected output: randomly generated insertion id
 
 /* fail cases - should not be able to add */
 // CALL LeaveReview('B5', 'U200', 'This is a great business x3.');
 Error Code: 1452. Cannot add or update a child row: a foreign key constraint fails (`cs348`.`reviewwith`, CONSTRAINT `reviewwith_ibfk_2` FOREIGN KEY (`uid`) REFERENCES `userfile` (`uid`))
+// expected output: error
 
 // CALL LeaveReview(null, 'U1', 'This is a great business x3.');
 Error Code: 1048. Column 'bid' cannot be null
+// expected output: error
 
 /* get review - start with RID */
 // CALL GetReviewByRid('9LBkzSDXtbD8j9K6GvYufQ')
 9LBkzSDXtbD8j9K6GvYufQ	2023-06-22 20:45:19	This is a great business.	0	0
+// expected output: 9LBkzSDXtbD8j9K6GvYufQ	2023-06-22 20:45:19	This is a great business.	0	0
 
 // CALL GetReviewByRid('R5')
 2023-01-05 16:00:00	Really enjoy the food here.	5	10
+// expected output: 2023-01-05 16:00:00	Really enjoy the food here.	5	10
 
 // CALL GetReviewByRid('R023')
 null
+// expected output: not found
 
 // CALL GetReviewByRid(null)
 null
+// expected output: not found
 
 
 
@@ -109,52 +159,75 @@ Really enjoy the food here.
 The food was not fresh.
 The place is not clean.
 This is a great business.
+// expected output: all reiviews for B2
+The product broke after a few days.
+The service was terrible.
+Really enjoy the food here.
+The food was not fresh.
+The place is not clean.
+This is a great business.
 
 // CALL GetReviewByBid('B9')
 text
 null
+// expected output: null
 
 // CALL GetReviewByBid('B7')
 null
+// expected output: not found
 
 // CALL GetReviewByBid('B100')
 null
+// expected output: not found
 
 // CALL GetReviewByBid(null)
 null
+// expected output: not found
 
 
 // CALL UpdateReviewTextByRid('R1', "update", 1);
 R1	2023-01-01 12:00:00	update	1	12
+// Follow up: SELECT * FROM Review WHERE rid = 'R1';
+// expected output: R1	2023-01-01 12:00:00	update	1	12
 
 // CALL UpdateReviewTextByRid('R900', "3", 1);
 null
+// expected output: null
 
 
 // CALL UpdateReviewTextByRid('R1', "update", null);
 Error Code: 1048. Column 'stars' cannot be null
-
+// expected output: ERROR
 
 
 
 /****** cool ******/
 // CALL CoolByRid('R9', 'U8');
-'U8'	'R9'
+'R9', 'U8'
+// Follow up: SELECT * FROM CoolHistory WHERE uid = 'U8' AND rid = 'r1';
+// expected output: 'R9', 'U8'
 
 // CALL CoolByRid('R9', 'U1');
-'U1'	'R9'
+'R9', 'U1'
+// Follow up: SELECT * FROM CoolHistory WHERE uid = 'U1' AND rid = 'R9';
+// expected output: 'R9', 'U1'
 
 
 
 /* test if a review is already cooled  */
 // CALL IsCool('R9', 'U8');
 'R9', 'U8'
+// expected output: 'R9'	'U8'
 
 // CALL IsCool('R1', 'U1');
 'R1', 'U1'
+// expected output: 'R1', 'U1'
 
 // CALL IsCool('R032', 'U432');
 null
+// expected output: not found
 
-
+// CALL IsCool(null, 'U3');
+null
+// expected output: not found
 

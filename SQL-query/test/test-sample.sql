@@ -70,8 +70,7 @@ CALL CoolByRid('U1', 'R9');
 CALL IsCool('R9', 'U8');
 CALL IsCool('R1', 'U1');
 CALL IsCool('R032', 'U432');
-
-
+CALL IsCool(null, 'U3');
 
 
 
