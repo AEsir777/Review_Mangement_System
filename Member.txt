@@ -1,5 +1,5 @@
 Name          Duty
 Kebing Liu    Write Authentication, Cool, update review and test cases
-Henry Tian    Write search business, leave review
+Henry Tian    Write searchbusiness, leavereview, and business_module(server/client-side)
 Zhongyi Guo   Write database schema, assumption and ER diagram
-Steven Ji     Produce sample and production dataset, and translate relatoin model
+Steven Ji     Produce sample and production dataset and translate relation model
