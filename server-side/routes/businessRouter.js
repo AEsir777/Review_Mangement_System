@@ -9,7 +9,7 @@ const isAuthenticated = (req, res, next) => {
     }
     return res.status(401).json({ message: 'Authentication required' });
 };
-businessRouter.use(isAuthenticated);
+// businessRouter.use(isAuthenticated);
 
 //search
 businessRouter.get('/search', businessController.searchBusiness);
@@ -33,6 +33,8 @@ businessRouter.get('/:bid',
 );
 
 // leave review
+businessRouter.post('/search', businessController.searchBusiness);
+
 businessRouter.post('/:bid', businessController.leaveReview);
 
 
