@@ -26,7 +26,7 @@ const Navbar = () => {
     const searchData = async (searchTerm) => {
         const response = await axios.post('http://localhost:3000/api/business/search', {
             name: searchTerm
-        });
+        }, { withCredentials: true });
         return response.data;
     }
     

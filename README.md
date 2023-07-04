@@ -57,3 +57,10 @@ POST ```/api/review/:rid/cool```
 - search business by name, category, city, state or combinations
 - write, update, delete review
 - thumbs up for others comment
+
+## History
+- [x] fix all errors in authentication and added features to check invalid auth - Kebing  
+- [x] fix authentication in business port - Kebing
+
+## TODO
+- [ ] fix reviews and cool - Kebing

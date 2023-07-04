@@ -17,7 +17,8 @@ export default function review() {
     useEffect(() => {
         const fetchReview = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/review/${rid}`, { withCredentials: true });
+                const response = await axios.get(`http://localhost:3000/api/review/${rid}`, 
+                    { withCredentials: true });
                 setReview(response.data.review);
                 setText(response.data.review.text);
                 setStars(response.data.review.stars);

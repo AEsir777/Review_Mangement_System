@@ -1,12 +1,14 @@
-import styles from '../styles/login.module.css';
+import styles from '../styles/Login.module.css';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import Link from 'next/link';
 
 export default function Signup() {
     const router = useRouter();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
@@ -28,14 +30,21 @@ export default function Signup() {
             // Handle response or redirect to another page
             router.push("/");
         } catch (error) {
-            console.error(error);
+            console.log("Test error handling:");
+            console.log(error.response);
+            if (error.response && error.response.status === 500) {
+                // Incorrect username or password
+                setErrorMessage(error.response.data.message);
+            } else {
+                console.error(error);
+            }
         }
     };
 
     return (
         <div className={styles.container}>
             <div className={styles.formContainer}>
-                <h1 className={styles.title}>Signup</h1>
+                <h1 className={styles.title}>Sign Up</h1>
                 <form onSubmit={handleSubmit} className={styles.form}>
                     <div className={styles.inputGroup}>
                         <label className={styles.label}>Email:</label>
@@ -59,6 +68,12 @@ export default function Signup() {
                     </div>
                     <button type="submit" className={styles.button}>Signup</button>
                 </form>
+                {errorMessage && (
+                    <p className={styles.error}>{errorMessage}</p>
+                )}
+                <p className={styles.formBottomText}>
+                    Already have an account? <Link href="/login">Log in here</Link>
+                </p>
             </div>
         </div>
     );

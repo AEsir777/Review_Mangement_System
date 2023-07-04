@@ -5,9 +5,11 @@ class AuthController {
     static signupUser(req, res, next) {
         console.log("signup");
         userModel.createUser(req.body.email, req.body.pwd).then((id) => {
-            res.json({ message: 'Signup successful' });
+            passport.authenticate("local")(req, res, function() {
+                res.json({ message: 'Signup successful' });
+            });
         }).catch((err) => {
-            res.status(500).json({ message: 'An error occurred' });
+            res.status(500).json({ message: 'Email already exists.' });
         });
     }
 
@@ -21,7 +23,7 @@ class AuthController {
             }
         
             if (!user) {
-              return res.status(401).json({ message: 'Authentication failed' });
+              return res.status(401).json({ message: 'Authentication failed: Wrong password or username. Please try again.' });
             }
         
             // Handle successful authentication
