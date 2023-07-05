@@ -41,10 +41,10 @@ class businessController {
 
     static searchBusiness(req, res, next) {
         console.log("searchBusiness");
-        businessModel.searchBusinessBy(req.body.category ?? null,
-                                        req.body.name ?? null,
-                                        req.body.state ?? null,
-                                        req.body.city ?? null).then(result => {
+        businessModel.searchBusinessBy(req.query.category ?? null,
+                                        req.query.name ?? null,
+                                        req.query.state ?? null,
+                                        req.query.city ?? null).then(result => {
             res.send(result);
         })
         .catch(err => {

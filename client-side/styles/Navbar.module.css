@@ -19,31 +19,71 @@
 
 .navlinks {
     display: flex;
-    gap: 3rem;
-    margin: 0;
-    padding: 0px 30px;
+    /* margin-left: auto; */
+    /* padding: 0px 40px; */
+    width: 50%;
+    /* justify-content: space-between; */
+
 }
 
-.link {
+.buslink {
+    display: flex;
     color: #fff;
     text-decoration: none;
-    margin: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    padding-right: 20px;
+}
+
+.profilelink {
+    display: flex;
+    color: #fff;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-decoration: none;
+    padding-right: 20px;
 }
 
 .search {
     display: flex;
     gap: 0.0rem;
+    width: 50%;
+    margin-left: 0%;
+    margin-right: 0%;
+    padding-right: 40px;
 }
 
-.searchInput {
+
+.searchInputState {
     padding: 0.5rem;
     border-radius: 25px 0px 0px 25px;
-    width: 100%;
+    width: 20%;
     border: none;
 }
 
-  .searchButton {
-    
+.searchInputCity {
+    padding: 0.5rem;
+    border-radius: 0px 0px 0px 0px;
+    width: 20%;
+    border: none;
+}
+
+.searchInputCategory {
+    padding: 0.5rem;
+    border-radius: 0px 0px 0px 0px;
+    width: 30%;
+    border: none;
+}
+
+.searchInputName {
+    padding: 0.5rem;
+    border-radius: 0px 0px 0px 0px;
+    width: 30%;
+    border: none;
+}
+
+.searchButton {
     background-color: white;
     border: none;
     color: #34cea9;
@@ -54,9 +94,9 @@
     font-size: 16px;
     border-radius: 0px 25px 25px 0px;
     transition: transform 0.3s;
-  }
+}
   
-  .searchButton:hover {
+.searchButton:hover {
     transform: scale(1.1);
-  }
+}
 

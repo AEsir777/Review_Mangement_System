@@ -33,7 +33,7 @@ businessRouter.get('/:bid',
 );
 
 // leave review
-businessRouter.post('/search', businessController.searchBusiness);
+// businessRouter.post('/search', businessController.searchBusiness);
 
 businessRouter.post('/:bid', businessController.leaveReview);
 
