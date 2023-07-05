@@ -64,6 +64,14 @@ POST ```/api/review/:rid/cool```
 ## History
 - [x] fix all errors in authentication and added features to check invalid auth - Kebing  
 - [x] fix authentication in business port - Kebing
+- [x] Build a search bar and implement the search query page function - Henry
 
 ## TODO
 - [ ] fix reviews and cool - Kebing
+- [ ] implement a designed search result page - Henry
+- [ ] implement scroll-down mechanism - Henry
+- [ ] link picture JSON to backend and frontend - Henry
+- [ ] Implement a main search page - Henry
+- [ ] Implement a profile page
+- [ ] implement cool-button functionality - Henry
+- [ ] Integrate leave-review functionality
