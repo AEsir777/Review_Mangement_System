@@ -31,7 +31,7 @@ export default function business() {
     
     <div className={styles.container}>
       {business ? (
-      <div>
+      <div className={styles.container2}>
       <Head>
         <title>{business.name}</title>
         <link rel="icon" href="/favicon.ico" />

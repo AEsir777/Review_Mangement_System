@@ -10,7 +10,7 @@ const isAuthenticated = (req, res, next) => {
     console.log(req.user + " is not authenticated.");
     return res.status(401).json({ message: 'Authentication required' });
 };
-businessRouter.use(isAuthenticated);
+// businessRouter.use(isAuthenticated);
 
 //search
 businessRouter.get('/search', businessController.searchBusiness);
