@@ -53,7 +53,17 @@ DELETE ```/api/review/:rid```
 POST ```/api/review/:rid/cool```  
 
 ## feature it currently support
-- authentication
+- authentication  
+  ![Screenshot 2023-07-03 212221](https://github.com/AEsir777/Review_Mangement_System/assets/77596290/f33d4520-eb99-484a-970b-8973a0ef9766)
+  ![Screenshot 2023-07-03 210629](https://github.com/AEsir777/Review_Mangement_System/assets/77596290/a4c74865-d7d4-4597-b4c6-3e3f15bbf43c)
+
 - search business by name, category, city, state or combinations
 - write, update, delete review
 - thumbs up for others comment
+
+## History
+- [x] fix all errors in authentication and added features to check invalid auth - Kebing  
+- [x] fix authentication in business port - Kebing
+
+## TODO
+- [ ] fix reviews and cool - Kebing

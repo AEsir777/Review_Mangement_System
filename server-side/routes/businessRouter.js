@@ -5,11 +5,12 @@ import businessController from '../controllers/businessController.js';
 
 const isAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
-      return next(); // User is authenticated, proceed to the next middleware/route handler
+        return next(); // User is authenticated, proceed to the next middleware/route handler
     }
+    console.log(req.user + " is not authenticated.");
     return res.status(401).json({ message: 'Authentication required' });
 };
-// businessRouter.use(isAuthenticated);
+businessRouter.use(isAuthenticated);
 
 //search
 businessRouter.get('/search', businessController.searchBusiness);

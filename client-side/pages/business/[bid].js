@@ -1,17 +1,44 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from '../../styles/Business.module.css';
 import Navbar from '../../components/Navbar';
 
-const BusinessPage = ({ business, allreviews }) => {
+export default function business() {
+  const router = useRouter();
+  const { bid } = router.query;
+  const [business, setBusiness] = useState(null);
+  const [allreviews, setAllreviews] = useState(null);
+
+  useEffect(() => {
+    const etServerSideProps = async () => {
+      try {
+        const res = await axios.get(`http://localhost:3000/api/business/${bid}`,
+          { withCredentials: true });
+        setBusiness(res.data.business);
+        console.log(business);
+        setAllreviews(res.data.reviews);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    etServerSideProps();
+  }, [bid]);
+
   return (
+    
     <div className={styles.container}>
+      {business ? (
+      <div>
       <Head>
         <title>{business.name}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Navbar> </Navbar>
+      
       <main className={styles.main}>
         <h1 className={styles.title}>{business.name}</h1>
         <p className={styles.description}>{business.cate}</p>
@@ -36,20 +63,11 @@ const BusinessPage = ({ business, allreviews }) => {
           ))}
         </div>
       </main>
+      </div>
+      ) : (
+      <p>Loading...</p>
+      )}
     </div>
   );
 };
 
-export async function getServerSideProps(context) {
-  const { bid } = context.params;
-  const res = await axios.get(`http://localhost:3000/api/business/${bid}`);
-  const business = res.data.business;
-  const allreviews = res.data.reviews;
-
-  return {
-    props: { business, allreviews},
-  };
-}
-
-
-export default BusinessPage;
