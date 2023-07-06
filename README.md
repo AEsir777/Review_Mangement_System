@@ -68,7 +68,7 @@ POST ```/api/review/:rid/cool```
 
 ## TODO
 - [ ] fix reviews and cool - Kebing
-- [ ] implement a designed search result page - Henry
+- [ ] implement a designed search result page - Henry (finished functionality)
 - [ ] implement scroll-down mechanism - Henry
 - [ ] link picture JSON to backend and frontend - Henry
 - [ ] Implement a main search page - Henry
