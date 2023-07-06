@@ -49,7 +49,7 @@ export default function business() {
         {/* <p className={styles.info}>{business.reviewCount}</p> */}
         
         <div className={styles.reviews}>
-          {allreviews.map((review, index) => (
+          {allreviews && allreviews.map((review, index) => (
             <div key={index} className={styles.review}>
               {/* <h3>{review.reviewerName}</h3> */}
               {typeof review.text === 'string' && review.text.trim() !== "" && (

@@ -21,7 +21,7 @@ const Navbar = () => {
             console.log(encodedState);
             console.log(encodedCity);
 
-            let url_base = `http://localhost:3000/api/business/search?`;
+            let url_base = `http://localhost:8000/business/search?`;
             let nameparam = encodedName ? `name=${encodedName}` : "";
             let categoryparam = encodedCategory ? `&category=${encodedCategory}` : "";
             let stateparam = encodedState ? `&state=${encodedState}` : "";
