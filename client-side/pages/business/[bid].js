@@ -12,7 +12,7 @@ export default function business() {
   const [allreviews, setAllreviews] = useState(null);
 
   useEffect(() => {
-    const etServerSideProps = async () => {
+    const getServerSideProps = async () => {
       try {
         const res = await axios.get(`http://localhost:3000/api/business/${bid}`,
           { withCredentials: true });
@@ -24,7 +24,7 @@ export default function business() {
       }
     };
 
-    etServerSideProps();
+    getServerSideProps();
   }, [bid]);
 
   return (
