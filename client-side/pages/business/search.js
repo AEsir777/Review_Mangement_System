@@ -122,22 +122,22 @@ export default function business() {
         <h1 className={styles.title}>{"Search Result"}</h1>
         
         {/* <p className={styles.info}>{business.reviewCount}</p> */}
+
+
         
         <div className={styles.reviews}>
           {business.map((single_business, index) => (
             <div key={index} className={styles.review}>
-              {/* <h3>{review.reviewerName}</h3> */}
               {typeof single_business.bid === 'string' && single_business.bid.trim() !== "" && (
-                <div>
-                    <p className={styles.info}>
-                        <Link href={`http://localhost:8000/business/${single_business.bid}`} className={styles.linkClass}>
-                                {single_business.name} {" "}
-                                {single_business.cate} {" "}
-                                Open Hours: {single_business.hours} {" "}
-                                Stars: {"★".repeat(single_business.stars)}
-                        </Link>
-                    </p>
-                </div>
+                <Link href={`http://localhost:8000/business/${single_business.bid}`} className={styles.linkClass}>
+                  <div className={styles.resultBox}>
+                    <h2>{single_business.name}</h2>
+                    <p>{single_business.cate} {" "}</p>
+                    <p>Open Hours: {single_business.hours} {" "}</p>
+                    <p>Stars: {"★".repeat(single_business.stars)}</p>
+                        
+                  </div>
+                </Link>
               )}
             </div>
           ))}
