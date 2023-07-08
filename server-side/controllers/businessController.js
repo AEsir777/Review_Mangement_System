@@ -44,6 +44,22 @@ class businessController {
         businessModel.searchBusinessBy(req.query.category ?? null,
                                         req.query.name ?? null,
                                         req.query.state ?? null,
+                                        req.query.city ?? null,
+                                        req.query.limit,
+                                        req.query.startat).then(result => {
+            res.send(result);
+        })
+        .catch(err => {
+            console.log(err);  
+            res.status(500).send('An error occurred.');
+        })
+    }
+
+    static searchBusinessTotalCount(req, res, next) {
+        console.log("searchBusinessTotalCount");
+        businessModel.searchBusinessTotalCountBy(req.query.category ?? null,
+                                        req.query.name ?? null,
+                                        req.query.state ?? null,
                                         req.query.city ?? null).then(result => {
             res.send(result);
         })

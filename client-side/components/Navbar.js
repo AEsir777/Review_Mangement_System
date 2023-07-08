@@ -16,10 +16,10 @@ const Navbar = () => {
             let encodedState = encodeURIComponent(state ? state.trim() : "");
             let encodedCity = encodeURIComponent(city ? city.trim() : "");
         
-            console.log(encodedName);
-            console.log(encodedCategory);
-            console.log(encodedState);
-            console.log(encodedCity);
+            // console.log(encodedName);
+            // console.log(encodedCategory);
+            // console.log(encodedState);
+            // console.log(encodedCity);
 
             let url_base = `http://localhost:8000/business/search?`;
             let nameparam = encodedName ? `name=${encodedName}` : "";
@@ -34,7 +34,7 @@ const Navbar = () => {
 
     return (
         <nav className={styles.navbar}>
-            <Link href="/" className={styles.logo}>YEAH</Link>
+            <Link href="/main" className={styles.logo}>YEAH</Link>
             <div className={styles.navlinks}>
                 <Link href="/business" className={styles.buslink}>Business</Link>
                 <Link href="/profile" className={styles.profilelink}>Profile</Link>

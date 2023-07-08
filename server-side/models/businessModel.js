@@ -71,7 +71,7 @@ class businessModel {
         });
     }
 
-    static searchBusinessBy(category, name, state, city) {
+    static searchBusinessBy(category, name, state, city, limit, startat) {
         let catcategory = null;
         if (category != null) {
             catcategory = '%' + category + '%';
@@ -85,14 +85,48 @@ class businessModel {
             WHERE (name = ? OR ? IS NULL)
                 AND (state = ? OR ? IS NULL)
                 AND (city = ? OR ? IS NULL)
-                AND (cate LIKE ? OR ? IS NULL)`, [name,name,state,state,city,city,catcategory,catcategory], (err, results) => {
+                AND (cate LIKE ? OR ? IS NULL)
+            LIMIT ? 
+            OFFSET ?`, [name,name,state,state,city,city,catcategory,catcategory,parseInt(limit),parseInt(startat)], (err, results) => {
                 if (err) {
+                    console.log("!!!!");
                     return reject(err);
                 }
                 if (results.length === 0) {
                     console.log("search result: null");
                     return resolve(null);
                 }
+                console.log("searchBusinessBy success");
+                const business = results;
+                resolve(business);
+            });
+        });
+    } 
+
+    static searchBusinessTotalCountBy(category, name, state, city) {
+        let catcategory = null;
+        if (category != null) {
+            catcategory = '%' + category + '%';
+        }
+        return new Promise((resolve, reject) => {
+            pool.query(
+            `SELECT COUNT(*) AS count
+            FROM business
+            INNER JOIN location ON location.lid = business.lid
+            INNER JOIN category ON category.bid = business.bid
+            WHERE (name = ? OR ? IS NULL)
+                AND (state = ? OR ? IS NULL)
+                AND (city = ? OR ? IS NULL)
+                AND (cate LIKE ? OR ? IS NULL)`, [name,name,state,state,city,city,catcategory,catcategory], (err, results) => {
+                if (err) {
+                    console.log("????");
+                    return reject(err);
+                }
+                if (results.length === 0) {
+                    console.log("search result: null");
+                    return resolve(null);
+                }
+                console.log("searchBusinessTotalCountBy success");
                 const business = results;
                 resolve(business);
             });
