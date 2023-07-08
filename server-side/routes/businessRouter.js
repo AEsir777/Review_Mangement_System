@@ -15,6 +15,8 @@ const isAuthenticated = (req, res, next) => {
 //search
 businessRouter.get('/search', businessController.searchBusiness);
 
+businessRouter.get('/searchCount', businessController.searchBusinessTotalCount);
+
 // get all reviews, addresses ... for one business
 businessRouter.get('/:bid', 
     async (req, res, next) => {
