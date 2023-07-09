@@ -72,8 +72,29 @@ export default function Business() {
                     <Navbar> </Navbar>
 
                     <main className={styles.main}>
-                        <div className={styles.gridContainer}>
-                            <div className={styles.leftGrid}>
+
+                        {photo ? (
+                            <div className={styles.gridContainer}>
+                                <div className={styles.leftGrid}>
+                                    <h1 className={styles.title}>{business.name}</h1>
+                                    <p className={styles.description}>{business.cate}</p>
+                                    <p className={styles.info}>{business.city}, {business.state}, {business.address}</p>
+                                    <p className={styles.info}>Postal: {business.postalCode}</p>
+                                    <p className={styles.info}>Open Hours: {business.hours}</p>
+                                    <div className={styles.rating}>
+                                        <Rating value={business.stars} readOnly precision={0.1} />
+                                    </div>
+                                    {/* <p className={styles.info}>{business.reviewCount}</p> */}
+                                </div>
+
+                                <div className={styles.rightGrid}>
+                                    <img className={styles.picture}
+                                        src={"/photoes/" + photo.pid + ".jpg"}
+                                        alt={photo.caption} />
+                                </div>
+                            </div>
+                        ) : (
+                            <div>
                                 <h1 className={styles.title}>{business.name}</h1>
                                 <p className={styles.description}>{business.cate}</p>
                                 <p className={styles.info}>{business.city}, {business.state}, {business.address}</p>
@@ -84,14 +105,7 @@ export default function Business() {
                                 </div>
                                 {/* <p className={styles.info}>{business.reviewCount}</p> */}
                             </div>
-
-                            <div className={styles.rightGrid}>
-                                {/*https://github.com/AEsir777/Review_Mangement_System/blob/business/Photoes/-Zw9JqGQRYzkPrV_QUzMvw.jpg*/}
-                                <img className={styles.picture} 
-                                    src={"/photoes/" + photo.pid + ".jpg"} 
-                                    alt={photo.caption} />
-                            </div>
-                        </div>
+                        )}                      
 
                         <div className={styles.addReview}>
                             <h2 className={styles.addReviewTitle}>Add a Review</h2>
