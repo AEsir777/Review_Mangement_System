@@ -28,7 +28,7 @@ export default function Login() {
             }, { withCredentials: true });
 
             // Handle response or redirect to another page
-            router.push("/business/B1");
+            router.push("/main");
         } catch (error) {
             console.log("Test error handling:");
             if (error.response && error.response.status === 401) {

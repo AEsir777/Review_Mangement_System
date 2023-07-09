@@ -74,3 +74,9 @@ SELECT rid
                 FROM reviewwith
                 WHERE bid LIKE ?
 
+START TRANSACTION;
+            DELETE FROM ReviewWith WHERE rid = ?;
+            DELETE FROM CoolHistory WHERE rid = ?;
+            DELETE FROM Review WHERE rid = ?;
+            COMMIT;
+

@@ -40,15 +40,55 @@ class reviewModel {
 
     static deleteReviewByRid(rid) {
         return new Promise((resolve, reject) => {
-            pool.query('DELETE FROM Review WHERE rid = ?', [rid], (err, results) => {
+            pool.getConnection((err, connection) => {
                 if (err) {
-                    return reject(err);
+                  console.error('Error connecting to database:', err);
+                  resolve(null);
                 }
-                if (results.length === 0) {
-                    return resolve(null);
-                }
-                resolve(results);
-            });
+              
+                connection.beginTransaction((err) => {
+                  if (err) {
+                    console.error('Error starting transaction:', err);
+                    connection.release();
+                    resolve(null);
+                  }
+              
+                  connection.query('DELETE FROM ReviewWith WHERE rid = ?', rid, (err) => {
+                    if (err) {
+                      console.error('Error executing DELETE statement for ReviewWith:', err);
+                      connection.rollback(() => connection.release());
+                      resolve(null);
+                    }
+              
+                    connection.query('DELETE FROM CoolHistory WHERE rid = ?', rid, (err) => {
+                      if (err) {
+                        console.error('Error executing DELETE statement for CoolHistory:', err);
+                        connection.rollback(() => connection.release());
+                        resolve(null);
+                      }
+              
+                      connection.query('DELETE FROM Review WHERE rid = ?', rid, (err) => {
+                        if (err) {
+                          console.error('Error executing DELETE statement for Review:', err);
+                          connection.rollback(() => connection.release());
+                          resolve(null);
+                        }
+              
+                        connection.commit((err) => {
+                          if (err) {
+                            console.error('Error committing transaction:', err);
+                            connection.rollback(() => connection.release());
+                            resolve(null);
+                          }
+              
+                          resolve('SQL statements executed successfully.');
+                          connection.release(); // Release the connection back to the pool
+                        });
+                      });
+                    });
+                  });
+                });
+              });
         });
     }
 
