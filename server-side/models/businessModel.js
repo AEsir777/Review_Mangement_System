@@ -20,8 +20,26 @@ class businessModel {
         });
     }
 
+    static getPhotoByBid(bid) {
+        let catbid = '%' + bid + '%';
+        return new Promise((resolve, reject) => {
+            pool.query(
+                `SELECT pid, caption, label
+                FROM Photo
+                WHERE bid LIKE ?`, [catbid], (err, results) => {
+                    if (err) {
+                        return reject(err);
+                    }
+                    if (results.length === 0) {
+                        return resolve(null);
+                    }
+                    resolve(results[0]);
+                });
+        });
+    }
+
     // create new Review entry in review table
-    static leaveReview(bid, uid, text) {
+    static leaveReview(uid, bid, text, stars) {
         //generate unique 22bit ASCII-based rid
         var rid = '';
         var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-';
@@ -31,12 +49,12 @@ class businessModel {
         //Insert to database
         return new Promise((resolve, reject) => {
             //insert into Review table
-            pool.query('INSERT INTO review (rid, date, text, stars, cool) VALUES (?, NOW(), ?, 0, 0)', [rid,text], (err, results) => {
+            pool.query('INSERT INTO review (rid, date, text, stars, cool) VALUES (?, NOW(), ?, ?, 0)', [rid, text, stars], (err, results) => {
                 if (err) {
                     return reject(err);
                 }
                 //insert into reviewwith table (didn't deal with rollback scenario)
-                pool.query('INSERT INTO reviewwith (bid, uid, rid) VALUES (?, ?, ?)', [bid,uid,rid], (err, results) => {
+                pool.query('INSERT INTO reviewwith (bid, uid, rid) VALUES (?, ?, ?)', [bid, uid, rid], (err, results) => {
                     if (err) {
                         return reject(err);
                     }
@@ -44,7 +62,6 @@ class businessModel {
                 });
             });
         });
-
     }
 
     static getBusinessByBid(bid) {

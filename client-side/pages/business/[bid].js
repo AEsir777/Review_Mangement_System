@@ -14,8 +14,10 @@ export default function Business() {
     const [business, setBusiness] = useState(null);
     const [allreviews, setAllreviews] = useState(null);
     const [labels, setLabels] = useState(["terrible", "bad", "so so", "good", "excellent"]);
-    const [newText, setNewText] = useState(null);
-    
+    const [newText, setNewText] = useState("");
+    const [newStars, setNewStars] = useState(3);
+    const [photo, setPhoto] = useState(null);
+
 
     useEffect(() => {
         const fetchBusiness = async () => {
@@ -23,8 +25,8 @@ export default function Business() {
                 if (router.isReady) {
                     const res = await axios.get(`http://localhost:3000/api/business/${bid}`);
                     setBusiness(res.data.business);
-                    console.log(res.data.business.stars);
                     setAllreviews(res.data.reviews);
+                    setPhoto(res.data.photo);
                 }
             } catch (error) {
                 console.error(error);
@@ -33,6 +35,29 @@ export default function Business() {
 
         fetchBusiness();
     }, [bid]);
+
+    const handleTextChange = (e) => {
+        setNewText(e.target.value);
+    };
+
+    const handleStarsChange = (e) => {
+        setNewStars(e.target.value);
+    };
+
+    const handleAddReview = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await axios.post(`http://localhost:3000/api/business/${bid}`, {
+                text: newText,
+                stars: newStars
+            });
+
+            router.reload();
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
 
@@ -47,31 +72,46 @@ export default function Business() {
                     <Navbar> </Navbar>
 
                     <main className={styles.main}>
-                        <h1 className={styles.title}>{business.name}</h1>
-                        <p className={styles.description}>{business.cate}</p>
-                        <p className={styles.info}>{business.city}, {business.state}, {business.address}</p>
-                        <p className={styles.info}>Postal: {business.postalCode}</p>
-                        <p className={styles.info}>Open Hours: {business.hours}</p>
-                        <div className={styles.rating}>
-                            <Rating value={business.stars} readOnly precision={0.1} />
+                        <div className={styles.gridContainer}>
+                            <div className={styles.leftGrid}>
+                                <h1 className={styles.title}>{business.name}</h1>
+                                <p className={styles.description}>{business.cate}</p>
+                                <p className={styles.info}>{business.city}, {business.state}, {business.address}</p>
+                                <p className={styles.info}>Postal: {business.postalCode}</p>
+                                <p className={styles.info}>Open Hours: {business.hours}</p>
+                                <div className={styles.rating}>
+                                    <Rating value={business.stars} readOnly precision={0.1} />
+                                </div>
+                                {/* <p className={styles.info}>{business.reviewCount}</p> */}
+                            </div>
+
+                            <div className={styles.rightGrid}>
+                                {/*https://github.com/AEsir777/Review_Mangement_System/blob/business/Photoes/-Zw9JqGQRYzkPrV_QUzMvw.jpg*/}
+                                <img className={styles.picture} 
+                                    src={"/photoes/" + photo.pid + ".jpg"} 
+                                    alt={photo.caption} />
+                            </div>
                         </div>
-                        {/* <p className={styles.info}>{business.reviewCount}</p> */}
 
                         <div className={styles.addReview}>
                             <h2 className={styles.addReviewTitle}>Add a Review</h2>
                             <textarea
                                 className={styles.reviewTextarea}
+                                value={newText}
                                 placeholder="Enter your review..."
+                                onChange={handleTextChange}
                             />
                             <Rating
                                 className={styles.reviewRating}
                                 name="review-rating"
                                 defaultValue={3}
+                                number={newStars}
+                                onChange={handleStarsChange}
                                 precision={1}
                             /> 
                             <button
                                 className={styles.reviewButton}
-                                onClick={() => handleAddReview()}
+                                onClick={handleAddReview}
                             >
                                 Add
                             </button>

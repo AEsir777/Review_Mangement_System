@@ -1,1 +1,0 @@
-connect to CS348;

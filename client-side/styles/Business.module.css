@@ -157,3 +157,27 @@
   .reviewButton:hover {
     background-color: rgb(1, 150, 80);
   }
+
+  .gridContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .leftGrid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .rightGrid {
+    display: flex;
+    align-items: center;
+  }
+  
+  .picture {
+    margin: 3rem;
+    margin-top: 4rem;
+    max-width: 100%;
+    height: auto;
+  }

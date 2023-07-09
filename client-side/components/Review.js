@@ -26,8 +26,7 @@ export default function Review(props) {
                 setDate(date.toLocaleString());
                 setText(response.data.review.text);
                 setStars(response.data.review.stars);
-                // TO DO test this
-                setWrittenByMe(true);
+                setWrittenByMe(response.data.writtenByMe);
             } catch (error) {
                 console.error(error);
             }
