@@ -70,3 +70,7 @@ SELECT rid, date, text, stars, cool, name, uid FROM Review
                 NATURAL JOIN UserFile
                 where rid = ?
 
+SELECT rid
+                FROM reviewwith
+                WHERE bid LIKE ?
+
