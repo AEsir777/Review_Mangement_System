@@ -176,6 +176,8 @@
   }
   
   .picture {
+    margin: 3rem;
+    margin-top: 4rem;
     max-width: 100%;
     height: auto;
   }

@@ -86,7 +86,10 @@ export default function Business() {
                             </div>
 
                             <div className={styles.rightGrid}>
-                                <img className={styles.picture} src={photo.pid + ".jpg"} alt={photo.caption} />
+                                {/*https://github.com/AEsir777/Review_Mangement_System/blob/business/Photoes/-Zw9JqGQRYzkPrV_QUzMvw.jpg*/}
+                                <img className={styles.picture} 
+                                    src={"/photoes/" + photo.pid + ".jpg"} 
+                                    alt={photo.caption} />
                             </div>
                         </div>
 
