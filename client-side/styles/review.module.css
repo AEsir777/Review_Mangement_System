@@ -68,3 +68,13 @@
 .edit .delete:hover {
     background-color: #cc0000;  /* Darker red on hover */
 }
+
+.field {
+    margin: 2px;
+    margin-bottom: 12px;
+}
+
+.underline {
+    text-decoration: underline;
+    color: blue;
+}
