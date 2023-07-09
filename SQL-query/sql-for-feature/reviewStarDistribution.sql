@@ -3,14 +3,15 @@ DELIMITER //
 
 CREATE PROCEDURE getStarDistribution(IN in_bid VARCHAR(36))
 BEGIN
-    SELECT SUM(CASE WHEN star = 5 THEN 1 ELSE 0 END) AS 5_star,
-     SUM(CASE WHEN star = 4 THEN 1 ELSE 0 END) AS 4_star, 
-     SUM(CASE WHEN star = 3 THEN 1 ELSE 0 END) AS 3_star, 
-     SUM(CASE WHEN star = 2 THEN 1 ELSE 0 END) AS 2_star,
-     SUM(CASE WHEN star = 1 THEN 1 ELSE 0 END) AS 1_star,
-     SUM(CASE WHEN star = 0 THEN 1 ELSE 0 END) AS 0_star,
-    FROM Business
-    WHERE bid = in_bid;
+    SELECT SUM(CASE WHEN stars = 5 THEN 1 ELSE 0 END) AS 5_star,
+     SUM(CASE WHEN stars = 4 THEN 1 ELSE 0 END) AS 4_star, 
+     SUM(CASE WHEN stars = 3 THEN 1 ELSE 0 END) AS 3_star, 
+     SUM(CASE WHEN stars = 2 THEN 1 ELSE 0 END) AS 2_star,
+     SUM(CASE WHEN stars = 1 THEN 1 ELSE 0 END) AS 1_star,
+     SUM(CASE WHEN stars = 0 THEN 1 ELSE 0 END) AS 0_star
+    FROM (SELECT stars, bid FROM ReviewWith as rw JOIN Review as r
+		WHERE r.rid = rw.rid) as t1
+    WHERE t1.bid = in_bid;
 END //
 
 DELIMITER ;
