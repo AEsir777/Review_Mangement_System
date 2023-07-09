@@ -10,7 +10,7 @@ const isAuthenticated = (req, res, next) => {
     console.log(req.user + " is not authenticated.");
     return res.status(401).json({ message: 'Authentication required' });
 };
-// reviewRouter.use(isAuthenticated); 
+reviewRouter.use(isAuthenticated); 
 
 // get the review
 reviewRouter.route('/:rid').get(reviewController.renderReview)  // get the review body

@@ -54,6 +54,10 @@ DELIMITER ;
 
 /*  CALL SearchBusinessBy('category', 'Business Name', 'State', 'City'); */
 
+-- TODO: test these
+SELECT pid, caption, label
+                FROM Photo
+                WHERE bid LIKE ?
 
 
 
