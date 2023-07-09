@@ -15,27 +15,17 @@ const isAuthenticated = (req, res, next) => {
 //search
 businessRouter.get('/search', businessController.searchBusiness);
 
-// get all reviews, addresses ... for one business
-businessRouter.get('/:bid', 
-    async (req, res, next) => {
-      try {
-          await businessController.getBusinessByBid(req, res, next);
-      } catch(err) {
-          next(err);
-      }
-  }, 
-  async (req, res, next) => {
-      try {
-          await businessController.renderBusinessHomePage(req, res, next);
-      } catch(err) {
-          next(err);
-      }
-  }
-);
+businessRouter.get('/searchCount', businessController.searchBusinessTotalCount);
 
-// leave review
+// get all reviews, addresses ... for one business
+businessRouter.get('/:bid', businessController.getBusinessByBid,
+    businessController.renderPhoto,
+    businessController.renderBusinessHomePage);
+
+
 // businessRouter.post('/search', businessController.searchBusiness);
 
+// leave review
 businessRouter.post('/:bid', businessController.leaveReview);
 
 

@@ -28,7 +28,7 @@ export default function Signup() {
             }, { withCredentials: true });
 
             // Handle response or redirect to another page
-            router.push("/");
+            router.push("/main");
         } catch (error) {
             console.log("Test error handling:");
             console.log(error.response);

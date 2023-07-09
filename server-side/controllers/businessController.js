@@ -6,7 +6,8 @@ class businessController {
         businessModel.getAllReviewsByBid(req.params.bid).then(reviews => {
             res.json({
                 business: req.business,
-                reviews: reviews
+                reviews: reviews,
+                photo: req.photo
                 // address .... //
             });
         })
@@ -16,8 +17,20 @@ class businessController {
         });
     }
 
+    static renderPhoto(req, res, next) {
+        console.log("getPhotoByBid");
+        businessModel.getPhotoByBid(req.params.bid).then(result => {
+            req.photo = result;
+            next();
+        })
+        .catch(err => {
+            console.log(err);  
+            res.status(500).send('An error occurred.');
+        })
+    }
+
     static leaveReview(req, res, next) {
-        businessModel.leaveReview(req.params.bid,req.body.uid,req.body.review).then(result => {
+        businessModel.leaveReview(req.user.uid, req.params.bid, req.body.text, req.body.stars).then(result => {
             res.send({message: 'Review added successfully'});
         })
         .catch(err => {
@@ -35,13 +48,29 @@ class businessController {
         .catch(err => {
             console.log(err);  
             res.status(500).send('An error occurred.');
-        })
+        });
     }
 
 
     static searchBusiness(req, res, next) {
         console.log("searchBusiness");
         businessModel.searchBusinessBy(req.query.category ?? null,
+                                        req.query.name ?? null,
+                                        req.query.state ?? null,
+                                        req.query.city ?? null,
+                                        req.query.limit,
+                                        req.query.startat).then(result => {
+            res.send(result);
+        })
+        .catch(err => {
+            console.log(err);  
+            res.status(500).send('An error occurred.');
+        })
+    }
+
+    static searchBusinessTotalCount(req, res, next) {
+        console.log("searchBusinessTotalCount");
+        businessModel.searchBusinessTotalCountBy(req.query.category ?? null,
                                         req.query.name ?? null,
                                         req.query.state ?? null,
                                         req.query.city ?? null).then(result => {

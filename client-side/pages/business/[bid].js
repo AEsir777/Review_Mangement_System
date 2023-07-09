@@ -4,70 +4,146 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from '../../styles/Business.module.css';
 import Navbar from '../../components/Navbar';
+import Review from '../../components/Review';
+import Rating from '@mui/material/Rating';
 
-export default function business() {
-  const router = useRouter();
-  const { bid } = router.query;
-  const [business, setBusiness] = useState(null);
-  const [allreviews, setAllreviews] = useState(null);
+export default function Business() {
+    axios.defaults.withCredentials = true;
+    const router = useRouter();
+    const { bid } = router.query;
+    const [business, setBusiness] = useState(null);
+    const [allreviews, setAllreviews] = useState(null);
+    const [labels, setLabels] = useState(["terrible", "bad", "so so", "good", "excellent"]);
+    const [newText, setNewText] = useState("");
+    const [newStars, setNewStars] = useState(3);
+    const [photo, setPhoto] = useState(null);
 
-  useEffect(() => {
-    const etServerSideProps = async () => {
-      try {
-        const res = await axios.get(`http://localhost:3000/api/business/${bid}`,
-          { withCredentials: true });
-        setBusiness(res.data.business);
-        console.log(business);
-        setAllreviews(res.data.reviews);
-      } catch (error) {
-        console.error(error);
-      }
+
+    useEffect(() => {
+        const fetchBusiness = async () => {
+            try {
+                if (router.isReady) {
+                    const res = await axios.get(`http://localhost:3000/api/business/${bid}`);
+                    setBusiness(res.data.business);
+                    setAllreviews(res.data.reviews);
+                    setPhoto(res.data.photo);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchBusiness();
+    }, [bid]);
+
+    const handleTextChange = (e) => {
+        setNewText(e.target.value);
     };
 
-    etServerSideProps();
-  }, [bid]);
+    const handleStarsChange = (e) => {
+        setNewStars(e.target.value);
+    };
 
-  return (
-    
-    <div className={styles.container}>
-      {business ? (
-      <div className={styles.container2}>
-      <Head>
-        <title>{business.name}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    const handleAddReview = async (e) => {
+        e.preventDefault();
 
-      <Navbar> </Navbar>
-      
-      <main className={styles.main}>
-        <h1 className={styles.title}>{business.name}</h1>
-        <p className={styles.description}>{business.cate}</p>
-        <p className={styles.info}>{business.city}, {business.state}, {business.address}</p>
-        <p className={styles.info}>Postal: {business.postalCode}</p>
-        <p className={styles.info}>Open Hours: {business.hours}</p>
-        <p className={styles.info}>Stars: {"★".repeat(business.stars)}</p>
-        {/* <p className={styles.info}>{business.reviewCount}</p> */}
-        
-        <div className={styles.reviews}>
-          {allreviews && allreviews.map((review, index) => (
-            <div key={index} className={styles.review}>
-              {/* <h3>{review.reviewerName}</h3> */}
-              {typeof review.text === 'string' && review.text.trim() !== "" && (
-                <div>
-                    <p>{review.text}</p>
-                    <button className={styles.button}> Cool</button>
+        try {
+            const response = await axios.post(`http://localhost:3000/api/business/${bid}`, {
+                text: newText,
+                stars: newStars
+            });
+
+            router.reload();
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    return (
+
+        <div className={styles.container}>
+            {business ? (
+                <div className={styles.container2}>
+                    <Head>
+                        <title>{business.name}</title>
+                        <link rel="icon" href="/favicon.ico" />
+                    </Head>
+
+                    <Navbar> </Navbar>
+
+                    <main className={styles.main}>
+
+                        {photo ? (
+                            <div className={styles.gridContainer}>
+                                <div className={styles.leftGrid}>
+                                    <h1 className={styles.title}>{business.name}</h1>
+                                    <p className={styles.description}>{business.cate}</p>
+                                    <p className={styles.info}>{business.city}, {business.state}, {business.address}</p>
+                                    <p className={styles.info}>Postal: {business.postalCode}</p>
+                                    <p className={styles.info}>Open Hours: {business.hours}</p>
+                                    <div className={styles.rating}>
+                                        <Rating value={business.stars} readOnly precision={0.1} />
+                                    </div>
+                                    {/* <p className={styles.info}>{business.reviewCount}</p> */}
+                                </div>
+
+                                <div className={styles.rightGrid}>
+                                    <img className={styles.picture}
+                                        src={"/photoes/" + photo.pid + ".jpg"}
+                                        alt={photo.caption} />
+                                </div>
+                            </div>
+                        ) : (
+                            <div>
+                                <h1 className={styles.title}>{business.name}</h1>
+                                <p className={styles.description}>{business.cate}</p>
+                                <p className={styles.info}>{business.city}, {business.state}, {business.address}</p>
+                                <p className={styles.info}>Postal: {business.postalCode}</p>
+                                <p className={styles.info}>Open Hours: {business.hours}</p>
+                                <div className={styles.rating}>
+                                    <Rating value={business.stars} readOnly precision={0.1} />
+                                </div>
+                                {/* <p className={styles.info}>{business.reviewCount}</p> */}
+                            </div>
+                        )}                      
+
+                        <div className={styles.addReview}>
+                            <h2 className={styles.addReviewTitle}>Add a Review</h2>
+                            <textarea
+                                className={styles.reviewTextarea}
+                                value={newText}
+                                placeholder="Enter your review..."
+                                onChange={handleTextChange}
+                            />
+                            <Rating
+                                className={styles.reviewRating}
+                                name="review-rating"
+                                defaultValue={3}
+                                number={newStars}
+                                onChange={handleStarsChange}
+                                precision={1}
+                            /> 
+                            <button
+                                className={styles.reviewButton}
+                                onClick={handleAddReview}
+                            >
+                                Add
+                            </button>
+                        </div>
+
+                        <div className={styles.reviews}>
+                            {allreviews && allreviews.map((review, index) => (
+                                <div key={index} className={styles.review}>
+                                    <Review rid={review.rid} canEdit={false}> </Review>
+                                </div>
+                            ))}
+                        </div>
+                    </main>
                 </div>
-              )}
-              
-            </div>
-          ))}
+            ) : (
+                <p>Loading...</p>
+            )}
         </div>
-      </main>
-      </div>
-      ) : (
-      <p>Loading...</p>
-      )}
-    </div>
-  );
+    );
 };
 

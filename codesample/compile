@@ -1,2 +1,0 @@
-javac solutions/MaintainDB.java -d .
-javac solutions/QueryDB.java -d . 

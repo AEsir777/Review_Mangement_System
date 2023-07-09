@@ -4,11 +4,15 @@ class reviewController {
     static renderReview(req, res, next) {
         console.log("rendering review");
         reviewModel.getReviewByRid(req.params.rid).then(review => {
-            res.json({
-                review: review,
+            reviewModel.isCooled(req.params.rid, req.user.uid).then(isCooled => {
+                console.log("iscooled: ", isCooled);
+                res.json({
+                    isCooled: isCooled,
+                    review: review,
+                    writtenByMe: (req.user.uid === review.uid)
+                });
             });
-        })
-        .catch(err => {
+        }).catch(err => {
             console.log(err);  
             res.status(500).send('An error occurred.');
         });
@@ -37,9 +41,9 @@ class reviewController {
     }
     
     static coolReview(req, res, next) {
-        console.log("cool clicked");
-        reviewModel.coolByRid(req.params.rid).then(result => {
-            res.send(result)
+        console.log(req.user.uid, "clicked cool");
+        reviewModel.coolByRid(req.params.rid, req.user.uid).then(result => {
+            res.send(result);
         })
         .catch(err => {
             console.log(err);  

@@ -29,6 +29,7 @@ npm run dev
 /logout
 /business/:bid
 /review/:rid
+/main
 ```
 
 ## server-side: REST API on localhost:3000
@@ -52,6 +53,22 @@ PUT ```/api/review/:rid```
 DELETE ```/api/review/:rid```  
 POST ```/api/review/:rid/cool```  
 
+## History
+- [x] fix all errors in authentication and added features to check invalid auth - Kebing  
+- [x] fix authentication in business port - Kebing
+- [x] Build a search bar and implement the search query page function - Henry
+- [x] implement cool-button functionality - Kebing
+- [x] implement a designed search result page - Henry (/main)
+- [x] implement scroll-down mechanism - Henry
+- [x] Implement a main search page - Henry
+- [x] fix reviews and cool - Kebing
+- [x] Integrate leave-review functionality - Kebing
+- [x] Add photo for Business - Kebing
+
+## TODO
+- [ ] link picture JSON to backend and frontend - Henry
+- [ ] Implement a profile page
+
 ## feature it currently support
 - authentication  
   ![Screenshot 2023-07-03 212221](https://github.com/AEsir777/Review_Mangement_System/assets/77596290/f33d4520-eb99-484a-970b-8973a0ef9766)
@@ -59,19 +76,13 @@ POST ```/api/review/:rid/cool```
 
 - search business by name, category, city, state or combinations
 - write, update, delete review
+![image](https://github.com/AEsir777/Review_Mangement_System/assets/77596290/53a2974e-3084-4024-a9c1-d7e945761418)
+![image](https://github.com/AEsir777/Review_Mangement_System/assets/77596290/2cb47e8e-f15a-4c55-9317-1edd9767ef9d)
+![image](https://github.com/AEsir777/Review_Mangement_System/assets/77596290/70ffe1c2-4e02-4912-b72a-72c71452e587)
+
 - thumbs up for others comment
+![image](https://github.com/AEsir777/Review_Mangement_System/assets/77596290/815c484e-184c-4902-bd1e-179de1696bda)
 
-## History
-- [x] fix all errors in authentication and added features to check invalid auth - Kebing  
-- [x] fix authentication in business port - Kebing
-- [x] Build a search bar and implement the search query page function - Henry
-- [x] implement cool-button functionality - Kebing
 
-## TODO
-- [ ] fix reviews and cool - Kebing
-- [ ] implement a designed search result page - Henry (finished functionality)
-- [ ] implement scroll-down mechanism - Henry
-- [ ] link picture JSON to backend and frontend - Henry
-- [ ] Implement a main search page - Henry
-- [ ] Implement a profile page
-- [ ] Integrate leave-review functionality
+
+

@@ -68,3 +68,30 @@
 .edit .delete:hover {
     background-color: #cc0000;  /* Darker red on hover */
 }
+
+.field {
+    margin: 2px;
+    margin-bottom: 12px;
+}
+
+.underline {
+    text-decoration: underline;
+    color: blue;
+}
+
+.buttonCheckDetails {
+    float: right;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #34cea9;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.buttonCheckDetails:hover {
+    background-color: rgb(1, 150, 80);
+  }
+
+  

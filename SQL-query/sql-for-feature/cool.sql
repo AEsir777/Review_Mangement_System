@@ -19,3 +19,6 @@ DELIMITER ;
 
 
 /* CALL IsCool('123e4567-e89b-12d3-a456-426614174000', '456e789b-12d3-a123-4566-789b12d3a456'); */
+
+-- TODO: NOT TESTED
+DELETE FROM CoolHistory where rid = ? AND uid = ?;

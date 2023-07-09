@@ -18,7 +18,7 @@ reviewRouter.route('/:rid').get(reviewController.renderReview)  // get the revie
     .delete(reviewController.deleteReview);                     // delete the whole review
 
 // cool the review
-reviewRouter.post('/:rid/cool', reviewController.coolReview);
+reviewRouter.route('/:rid/cool').post(reviewController.coolReview);
 
 
 export default reviewRouter;

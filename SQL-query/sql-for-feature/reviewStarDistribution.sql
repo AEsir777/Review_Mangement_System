@@ -1,0 +1,2 @@
+--- return the number of reviews for a bid in different stars group
+---- e.g   star 1: 20 reviews   star 2: xx reviews then return review #

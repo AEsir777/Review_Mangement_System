@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import CoolButton from '../components/CoolButton';
 
 export default function test() {
     const [a, setA] = useState(null);
 
-    useEffect(() => {
+/*     useEffect(() => {
         const fetchReview = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/api/auth/test`, { withCredentials: true });
@@ -16,18 +17,11 @@ export default function test() {
 
         fetchReview();
     }, []);
-
+ */
 
     return (
         <div>
-            <p> Hello cs348 </p>
-        {a ? (
-            <div>
-               {a}
-            </div>
-        ) : (
-            <p>Loading...</p>
-        )}
+            <CoolButton  ></CoolButton>
         </div>
     );
 }

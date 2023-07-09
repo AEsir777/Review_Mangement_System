@@ -5,12 +5,9 @@ class businessModel {
         let catbid = '%' + bid + '%';
         return new Promise((resolve, reject) => {
             pool.query(
-                `SELECT text
-                FROM 
-                (SELECT rid
+                `SELECT rid
                 FROM reviewwith
-                WHERE bid LIKE ?) r1, review
-                WHERE review.rid = r1.rid`, [catbid], (err, results) => {
+                WHERE bid LIKE ?`, [catbid], (err, results) => {
                     if (err) {
                         return reject(err);
                     }
@@ -23,8 +20,26 @@ class businessModel {
         });
     }
 
+    static getPhotoByBid(bid) {
+        let catbid = '%' + bid + '%';
+        return new Promise((resolve, reject) => {
+            pool.query(
+                `SELECT pid, caption, label
+                FROM Photo
+                WHERE bid LIKE ?`, [catbid], (err, results) => {
+                    if (err) {
+                        return reject(err);
+                    }
+                    if (results.length === 0) {
+                        return resolve(null);
+                    }
+                    resolve(results[0]);
+                });
+        });
+    }
+
     // create new Review entry in review table
-    static leaveReview(bid, uid, text) {
+    static leaveReview(uid, bid, text, stars) {
         //generate unique 22bit ASCII-based rid
         var rid = '';
         var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-';
@@ -34,12 +49,12 @@ class businessModel {
         //Insert to database
         return new Promise((resolve, reject) => {
             //insert into Review table
-            pool.query('INSERT INTO review (rid, date, text, stars, cool) VALUES (?, NOW(), ?, 0, 0)', [rid,text], (err, results) => {
+            pool.query('INSERT INTO review (rid, date, text, stars, cool) VALUES (?, NOW(), ?, ?, 0)', [rid, text, stars], (err, results) => {
                 if (err) {
                     return reject(err);
                 }
                 //insert into reviewwith table (didn't deal with rollback scenario)
-                pool.query('INSERT INTO reviewwith (bid, uid, rid) VALUES (?, ?, ?)', [bid,uid,rid], (err, results) => {
+                pool.query('INSERT INTO reviewwith (bid, uid, rid) VALUES (?, ?, ?)', [bid, uid, rid], (err, results) => {
                     if (err) {
                         return reject(err);
                     }
@@ -47,7 +62,6 @@ class businessModel {
                 });
             });
         });
-
     }
 
     static getBusinessByBid(bid) {
@@ -71,7 +85,7 @@ class businessModel {
         });
     }
 
-    static searchBusinessBy(category, name, state, city) {
+    static searchBusinessBy(category, name, state, city, limit, startat) {
         let catcategory = null;
         if (category != null) {
             catcategory = '%' + category + '%';
@@ -85,14 +99,48 @@ class businessModel {
             WHERE (name = ? OR ? IS NULL)
                 AND (state = ? OR ? IS NULL)
                 AND (city = ? OR ? IS NULL)
-                AND (cate LIKE ? OR ? IS NULL)`, [name,name,state,state,city,city,catcategory,catcategory], (err, results) => {
+                AND (cate LIKE ? OR ? IS NULL)
+            LIMIT ? 
+            OFFSET ?`, [name,name,state,state,city,city,catcategory,catcategory,parseInt(limit),parseInt(startat)], (err, results) => {
                 if (err) {
+                    console.log("!!!!");
                     return reject(err);
                 }
                 if (results.length === 0) {
                     console.log("search result: null");
                     return resolve(null);
                 }
+                console.log("searchBusinessBy success");
+                const business = results;
+                resolve(business);
+            });
+        });
+    } 
+
+    static searchBusinessTotalCountBy(category, name, state, city) {
+        let catcategory = null;
+        if (category != null) {
+            catcategory = '%' + category + '%';
+        }
+        return new Promise((resolve, reject) => {
+            pool.query(
+            `SELECT COUNT(*) AS count
+            FROM business
+            INNER JOIN location ON location.lid = business.lid
+            INNER JOIN category ON category.bid = business.bid
+            WHERE (name = ? OR ? IS NULL)
+                AND (state = ? OR ? IS NULL)
+                AND (city = ? OR ? IS NULL)
+                AND (cate LIKE ? OR ? IS NULL)`, [name,name,state,state,city,city,catcategory,catcategory], (err, results) => {
+                if (err) {
+                    console.log("????");
+                    return reject(err);
+                }
+                if (results.length === 0) {
+                    console.log("search result: null");
+                    return resolve(null);
+                }
+                console.log("searchBusinessTotalCountBy success");
                 const business = results;
                 resolve(business);
             });
