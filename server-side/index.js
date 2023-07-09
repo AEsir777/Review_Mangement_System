@@ -62,7 +62,7 @@ sessionStore.onReady().then(() => {
 
 
 // test connection of the pool
-pool.query(
+/* pool.query(
     'SELECT * FROM review',
     function(err, results, fields) {
         if (err) {
@@ -70,7 +70,7 @@ pool.query(
         }
         console.log(results);
     }
-);
+); */
 
 // add routes
 app.use('/api/auth', authRouter);

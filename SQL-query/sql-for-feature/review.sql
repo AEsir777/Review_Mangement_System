@@ -64,4 +64,9 @@ DELIMITER ;
 
 /* CALL UpdateReviewTextByRid('123e4567-e89b-12d3-a456-426614174000', 'New text', 5); */
 
+--- TODO: test 
+SELECT rid, date, text, stars, cool, name, uid FROM Review 
+                NATURAL JOIN ReviewWith
+                NATURAL JOIN UserFile
+                where rid = ?
 

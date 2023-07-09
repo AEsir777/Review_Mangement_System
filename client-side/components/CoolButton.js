@@ -21,11 +21,11 @@ const CoolButton = (props) => {
   return (
     <div>
       {isCooled ? (
-        <Button onClick={handleClick} startIcon={<ThumbUpIcon />}>
+        <Button onClick={handleClick} variant="outlined" startIcon={<ThumbUpIcon />}>
           {coolCount}
         </Button>
       ) : (
-        <Button onClick={handleClick} variant="outlined" startIcon={<ThumbUpIcon />}>
+        <Button onClick={handleClick} startIcon={<ThumbUpIcon />}>
           {coolCount}
         </Button>
       )}

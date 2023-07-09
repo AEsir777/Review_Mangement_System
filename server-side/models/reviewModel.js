@@ -3,7 +3,12 @@ import pool from "../config/db.js";
 class reviewModel {
     static getReviewByRid(rid) {
         return new Promise((resolve, reject) => {
-            pool.query('SELECT * FROM Review WHERE rid = ?', [rid], (err, results) => {
+            pool.query(
+                `SELECT rid, bid, date, text, stars, cool, name, uid FROM Review 
+                NATURAL JOIN ReviewWith
+                NATURAL JOIN UserFile
+                where rid = ?;`
+                , [rid], (err, results) => {
                 if (err) {
                     return reject(err);
                 }
@@ -47,41 +52,41 @@ class reviewModel {
         });
     }
 
-    static coolByRid(rid, uid) {
+    static isCooled(rid, uid) {
         return new Promise((resolve, reject) => {
             pool.query(`
-                UPDATE Review
-                SET cool = cool + 1
-                WHERE rid = ?;
-                INSERT INTO CoolHistory (uid, rid) VALUES 
-                (?, ?);
-                `, [rid, uid, rid], (err, results) => {
+                    SELECT * FROM CoolHistory 
+                    WHERE rid = ? AND uid = ?;
+                    `, [rid, uid], (err, results) => {
                 if (err) {
                     return reject(err);
                 }
                 if (results.length === 0) {
-                    return resolve(null);
+                    return resolve(false);
                 }
-                resolve(results);
+                resolve(true);
             });
         });
     }
 
+    static async coolByRid(rid, uid) {
+        return this.isCooled(rid, uid).then(isCooled => {
+            let sql = `INSERT INTO CoolHistory (uid, rid) VALUES (?, ?);`;
+            
+            if ( isCooled ) {
+                sql = `DELETE FROM CoolHistory where uid = ? AND rid = ?;`
+            }
 
-    // TODO: fixxxx
-    static isCool(rid, uid) {
-        return new Promise((resolve, reject) => {
-            pool.query(`
-                SELECT * FROM CoolHistory 
-                WHERE uid = ? AND rid = ?;
-                `, [rid, uid, rid], (err, results) => {
-                if (err) {
-                    return reject(err);
-                }
-                if (results.length === 0) {
-                    return resolve(true);
-                }
-                resolve(false);
+            return new Promise((resolve, reject) => {
+                pool.query(sql, [uid, rid], (err, results) => {
+                    if (err) {
+                        return reject(err);
+                    }
+                    if (results.length === 0) {
+                        return resolve(null);
+                    }
+                    resolve(results);
+                });
             });
         });
     }
