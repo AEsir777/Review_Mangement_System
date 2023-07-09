@@ -5,12 +5,9 @@ class businessModel {
         let catbid = '%' + bid + '%';
         return new Promise((resolve, reject) => {
             pool.query(
-                `SELECT text
-                FROM 
-                (SELECT rid
+                `SELECT rid
                 FROM reviewwith
-                WHERE bid LIKE ?) r1, review
-                WHERE review.rid = r1.rid`, [catbid], (err, results) => {
+                WHERE bid LIKE ?`, [catbid], (err, results) => {
                     if (err) {
                         return reject(err);
                     }
