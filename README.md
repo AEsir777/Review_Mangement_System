@@ -68,10 +68,11 @@ POST ```/api/review/:rid/cool```
 ## TODO
 - [ ] link picture JSON to backend and frontend - Henry
 - [ ] Implement a profile page
-- [ ] friend list (?
+- [ ] friend list on the profile page (?
 - [ ] add friend function (?
-- [ ] implement signup INSERT Userfile SQL query
-
+- [ ] star distribution
+- [ ] filter on own reviews
+- [ ] Integrate recommendation model to backend
 ## feature it currently support
 - authentication  
   ![Screenshot 2023-07-03 212221](https://github.com/AEsir777/Review_Mangement_System/assets/77596290/f33d4520-eb99-484a-970b-8973a0ef9766)
