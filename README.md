@@ -68,6 +68,8 @@ POST ```/api/review/:rid/cool```
 ## TODO
 - [ ] link picture JSON to backend and frontend - Henry
 - [ ] Implement a profile page
+- [ ] friend list (?
+- [ ] add friend function (?
 
 ## feature it currently support
 - authentication  
