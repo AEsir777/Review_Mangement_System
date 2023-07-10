@@ -66,10 +66,10 @@ POST ```/api/review/:rid/cool```
 - [x] Add photo for Business - Kebing
 
 ## TODO
-- [ ] link picture JSON to backend and frontend - Henry
+- [ ] Add photo for Search result page - Henry
 - [ ] Implement a profile page
-- [ ] friend list on the profile page (?
-- [ ] add friend function (?
+- [ ] friend list on the profile page
+- [ ] add friend function 
 - [ ] star distribution
 - [ ] filter on own reviews
 - [ ] Integrate recommendation model to backend
