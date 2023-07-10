@@ -73,6 +73,7 @@ POST ```/api/review/:rid/cool```
 - [ ] star distribution
 - [ ] filter on own reviews
 - [ ] Integrate recommendation model to backend
+- [ ] pagination for reviews
 ## feature it currently support
 - authentication  
   ![Screenshot 2023-07-03 212221](https://github.com/AEsir777/Review_Mangement_System/assets/77596290/f33d4520-eb99-484a-970b-8973a0ef9766)
