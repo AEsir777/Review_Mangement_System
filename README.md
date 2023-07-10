@@ -70,6 +70,7 @@ POST ```/api/review/:rid/cool```
 - [ ] Implement a profile page
 - [ ] friend list (?
 - [ ] add friend function (?
+- [ ] implement signup INSERT Userfile SQL query
 
 ## feature it currently support
 - authentication  
