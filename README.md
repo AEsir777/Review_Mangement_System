@@ -59,7 +59,7 @@ POST ```/api/review/:rid/cool```
 - [x] Build a search bar and implement the search query page function - Henry
 - [x] implement cool-button functionality - Kebing
 - [x] implement a designed search result page - Henry (/main)
-- [x] implement scroll-down mechanism - Henry
+- [x] implement scroll-down mechanism (pagination) - Henry
 - [x] Implement a main search page - Henry
 - [x] fix reviews and cool - Kebing
 - [x] Integrate leave-review functionality - Kebing
