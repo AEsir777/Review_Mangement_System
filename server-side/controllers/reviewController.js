@@ -9,7 +9,8 @@ class reviewController {
                 res.json({
                     isCooled: isCooled,
                     review: review,
-                    writtenByMe: (req.user.uid === review.uid)
+                    writtenByMe: (req.user.uid === review.uid),
+                    selfuid: req.user.uid
                 });
             });
         }).catch(err => {
@@ -44,6 +45,16 @@ class reviewController {
         console.log(req.user.uid, "clicked cool");
         reviewModel.coolByRid(req.params.rid, req.user.uid).then(result => {
             res.send(result);
+        })
+        .catch(err => {
+            console.log(err);  
+            res.status(500).send('An error occurred.');
+        });
+    }
+
+    static getbidByrid(req, res, next) {
+        reviewModel.getbidByrid(req.params.rid).then(result => {
+            res.send(result[0]);
         })
         .catch(err => {
             console.log(err);  

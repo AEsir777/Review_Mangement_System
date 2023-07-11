@@ -184,3 +184,19 @@
     max-width: 100%;
     height: auto;
   }
+
+  .searchButtonProfile {
+    margin-top: 11px;
+    background-color: #d6f5ed;
+    border: 1px solid #d6f5ed;
+    border-radius: 8px;
+    color: #0f3d32;
+    padding: 15px 40px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.searchButtonProfile:hover {
+  transform: scale(1.1);
+}

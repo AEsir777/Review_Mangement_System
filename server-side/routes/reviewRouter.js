@@ -17,6 +17,8 @@ reviewRouter.route('/:rid').get(reviewController.renderReview)  // get the revie
     .put(reviewController.updateReview)                         // modify the review content
     .delete(reviewController.deleteReview);                     // delete the whole review
 
+
+reviewRouter.route('/bid/:rid').get(reviewController.getbidByrid);
 // cool the review
 reviewRouter.route('/:rid/cool').post(reviewController.coolReview);
 
