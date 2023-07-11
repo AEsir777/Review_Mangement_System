@@ -82,10 +82,6 @@ export default function Business() {
                   <p className={styles.info}>{business.city}, {business.state}, {business.address}</p>
                   <p className={styles.info}>Postal: {business.postalCode}</p>
                   <p className={styles.info}>Open Hours: {business.hours}</p>
-                  <div className={styles.rating}>
-                    <Rating value={business.stars} readOnly precision={0.1} />
-                    
-                  </div>
                 </div>
 
                 <div className={styles.rightGrid}>
@@ -101,35 +97,38 @@ export default function Business() {
                 <p className={styles.info}>{business.city}, {business.state}, {business.address}</p>
                 <p className={styles.info}>Postal: {business.postalCode}</p>
                 <p className={styles.info}>Open Hours: {business.hours}</p>
-                <div className={styles.rating}>
-                  <Rating value={business.stars} readOnly precision={0.1} />
-                </div>
                 {/* <p className={styles.info}>{business.reviewCount}</p> */}
               </div>
             )}
-            <StarDistribution bid={bid}></StarDistribution>
-            <div className={styles.addReview}>
-              <h2 className={styles.addReviewTitle}>Add a Review</h2>
-              <textarea
-                className={styles.reviewTextarea}
-                value={newText}
-                placeholder="Enter your review..."
-                onChange={handleTextChange}
-              />
-              <Rating
-                className={styles.reviewRating}
-                name="review-rating"
-                defaultValue={3}
-                number={newStars}
-                onChange={handleStarsChange}
-                precision={1}
-              />
-              <button
-                className={styles.reviewButton}
-                onClick={handleAddReview}
-              >
-                Add
-              </button>
+            <div className={styles.gridContainer}>
+              <div className={styles.leftGrid}>
+              <StarDistribution bid={bid} avg={business.stars}></StarDistribution>
+              </div>
+              <div className={styles.rightGrid}>
+                <div className={styles.addReview}>
+                  <h2 className={styles.addReviewTitle}>Add a Review</h2>
+                  <textarea
+                    className={styles.reviewTextarea}
+                    value={newText}
+                    placeholder="Enter your review..."
+                    onChange={handleTextChange}
+                  />
+                  <Rating
+                    className={styles.reviewRating}
+                    name="review-rating"
+                    defaultValue={3}
+                    number={newStars}
+                    onChange={handleStarsChange}
+                    precision={1}
+                  />
+                  <button
+                    className={styles.reviewButton}
+                    onClick={handleAddReview}
+                  >
+                    Add
+                  </button>
+                </div>
+              </div>
             </div>
 
             <div className={styles.reviews}>

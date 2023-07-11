@@ -2,7 +2,7 @@ import pool from './config/db.js';
 import fs from 'fs';
 import path from 'path';
 
-const initialize_sql = path.join('..', 'SQL-query', 'initialize.sql');
+const initialize_sql = path.join('..', 'SQL-query', 'sample-datasets', 'initialize-test.sql');
 
 async function executeQuery(query) {
     pool.query(query, (err, result) => {

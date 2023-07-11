@@ -3,14 +3,27 @@
 }
   
 .star {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background-color: #ddd;
+    display: block;
     margin-right: 5px;
 }
-  
-.starFilled {
-    height: 100%;
-    background-color: #ffcc00;
+
+
+.bar {
+    display: inline-block;
+    transition: 'none';
+    margin-left: 12px;
+    margin-right: 12px;
+    height: 20px;
+} 
+
+.text {
+    color: #007185;
+    box-sizing: border-box;
+    font-size: 14px;
 }
+
+.total {
+    color: #565959;
+    font-size: 14px;
+}
+
