@@ -1,0 +1,38 @@
+/**** add friend ******/
+/*** Test insert and isFriend ******/
+// -- check
+CALL CheckFriendship('U3', 'U8');
+NULL NULL
+// expected output: no relationship
+
+// CALL InsertFriend('U3', 'U8');
+1 row(s) affected   
+// expected output: succesfully inserted into the row
+
+// -- check
+// CALL CheckFriendship('U3', 'U8');
+U3	U8
+// expected output: U3	U8
+
+-- check: exist before
+// CALL CheckFriendship('U1', 'U2');
+U2	U1
+U1	U2
+// expected output: U2	U1
+//                  U1	U2
+
+-- check: exist before
+// CALL CheckFriendship('U7', 'U8');
+U7	U8
+U8	U7
+// expected output: U7	U8
+//                  U8	U7
+
+-- check: insert fail
+// CALL InsertFriend('U1', 'U2');
+Error Code: 1062. Duplicate entry 'U1-U2' for key 'friend.PRIMARY'
+// expected output: fail
+
+// CALL InsertFriend('U1', 'U200');
+Error Code: 1452. Cannot add or update a child row: a foreign key constraint fails (`cs348`.`friend`, CONSTRAINT `friend_ibfk_2` FOREIGN KEY (`uid2`) REFERENCES `userfile` (`uid`) ON DELETE CASCADE)
+// expected output: fail

@@ -16,13 +16,14 @@ BEGIN
         SET i = i + 1;
     END WHILE;
     
-    -- Insert into ReviewWith table
-    INSERT INTO ReviewWith (bid, uid, rid)
-    VALUES (in_bid, in_uid, rid);
-
     -- Insert into Review table
     INSERT INTO Review (rid, date, text, stars, cool)
     VALUES (rid, NOW(), in_text, 0, 0);
+    
+    -- Insert into ReviewWith table
+    INSERT INTO ReviewWith (bid, uid, rid)
+    VALUES (in_bid, in_uid, rid);
+    
     
     SELECT rid;
 END //
@@ -64,19 +65,38 @@ DELIMITER ;
 
 /* CALL UpdateReviewTextByRid('123e4567-e89b-12d3-a456-426614174000', 'New text', 5); */
 
---- TODO: test 
-SELECT rid, date, text, stars, cool, name, uid FROM Review 
-                NATURAL JOIN ReviewWith
-                NATURAL JOIN UserFile
-                where rid = ?
+-- TODO: test 
+DELIMITER //
 
-SELECT rid
-                FROM reviewwith
-                WHERE bid LIKE ?
+CREATE PROCEDURE GetReviewDetails(IN in_rid VARCHAR(36))
+BEGIN
+    SELECT rid, date, text, stars, cool, name, uid
+    FROM Review 
+    NATURAL JOIN ReviewWith
+    NATURAL JOIN UserFile
+    WHERE rid = in_rid;
+END //
 
-START TRANSACTION;
-            DELETE FROM ReviewWith WHERE rid = ?;
-            DELETE FROM CoolHistory WHERE rid = ?;
-            DELETE FROM Review WHERE rid = ?;
-            COMMIT;
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE getRidByBid(IN in_bid VARCHAR(36))
+BEGIN
+    SELECT rid
+    FROM ReviewWith
+    WHERE bid LIKE in_bid;
+END //
+
+DELIMITER ;
+
+
+DELIMITER //
+CREATE PROCEDURE DeleteReview(IN in_rid VARCHAR(36))
+BEGIN
+    DELETE FROM ReviewWith WHERE rid = in_rid;
+    DELETE FROM CoolHistory WHERE rid = in_rid;
+    DELETE FROM Review WHERE rid = in_rid;
+END //
+DELIMITER ;
 
