@@ -65,5 +65,16 @@ END //
 DELIMITER ;
 
 
+ALTER TABLE Business
+ADD INDEX idx_bid (bid),
+ADD INDEX idx_lid (lid);
 
+ALTER TABLE Location
+ADD INDEX idx_location_lid (lid);
+
+ALTER TABLE Category
+ADD INDEX idx_category_bid (bid);
+
+ALTER TABLE Photo
+ADD INDEX idx_photo_bid (bid);
 
