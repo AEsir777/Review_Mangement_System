@@ -100,6 +100,9 @@ BEGIN
 END //
 DELIMITER ;
 
+
+
+/* For Production Dataset */
 ALTER TABLE Review
 ADD INDEX idx_rid (rid);
 
