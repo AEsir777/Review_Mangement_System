@@ -18,6 +18,6 @@ BEGIN
 END //
 DELIMITER ;
 
-/* For Production Dataset*/
+/* For Production Dataset */
 ALTER TABLE Friend
 ADD INDEX idx_uids (uid1, uid2);
