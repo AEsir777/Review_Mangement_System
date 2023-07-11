@@ -101,7 +101,7 @@ export default function Business() {
               </div>
             )}
             <div className={styles.gridContainer}>
-              <div className={styles.leftGrid}>
+              <div className={`{styles.leftGrid} {styles.dist}`}>
               <StarDistribution bid={bid} avg={business.stars}></StarDistribution>
               </div>
               <div className={styles.rightGrid}>
