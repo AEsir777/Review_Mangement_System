@@ -1,7 +1,7 @@
 CREATE TABLE Review (
     rid VARCHAR(36) PRIMARY KEY,
-    date TIMESTAMP NOT NULL,
-	text VARCHAR(255),
+    date DATE NOT NULL,
+	text LONGTEXT,
     stars INT NOT NULL,
     cool INT NOT NULL
 );
