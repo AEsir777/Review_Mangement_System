@@ -1,0 +1,41 @@
+/* test star distribution */
+// CALL getStarDistribution('B1');
+1	2	1	0	0	0
+// expected output: 1	2	1	0	0	0
+
+// CALL getStarDistribution('B2');
+# 5_star, 4_star, 3_star, 2_star, 1_star, 0_star
+'1', '0', '0', '2', '2', '0'
+// expected output: 
+// # 5_star, 4_star, 3_star, 2_star, 1_star, 0_star
+//   '1', '0', '0', '2', '2', '0'
+
+// CALL CALL getStarDistribution('B3');
+# 5_star, 4_star, 3_star, 2_star, 1_star, 0_star
+1, 1, 1, 2, 0, 0
+// expcted output:
+// # 5_star, 4_star, 3_star, 2_star, 1_star, 0_star
+//   1, 1, 1, 2, 0, 0
+
+/* update review */
+// CALL UpdateReviewTextByRid('R1', "update", 1);
+1 row(s) affected
+
+/* test if stars gets updated in Business*/
+// CALL getStarDistribution('B1');
+# 5_star, 4_star, 3_star, 2_star, 1_star, 0_star
+0, 2, 1, 0, 1, 0
+// expected output:
+// # 5_star, 4_star, 3_star, 2_star, 1_star, 0_star
+// 0, 2, 1, 0, 1, 0
+
+/* not exist */
+// CALL getStarDistribution('B100');
+# 5_star, 4_star, 3_star, 2_star, 1_star, 0_star
+, , , , , 
+// expected output: all null
+
+// CALL getStarDistribution(null);
+# 5_star, 4_star, 3_star, 2_star, 1_star, 0_star
+, , , , , 
+// expected output: all null

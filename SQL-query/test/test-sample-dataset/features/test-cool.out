@@ -1,0 +1,29 @@
+/****** cool ******/
+// CALL CoolByRid('R9', 'U8');
+'R9', 'U8'
+// Follow up: SELECT * FROM CoolHistory WHERE uid = 'U8' AND rid = 'r1';
+// expected output: 'R9', 'U8'
+
+// CALL CoolByRid('R9', 'U1');
+'R9', 'U1'
+// Follow up: SELECT * FROM CoolHistory WHERE uid = 'U1' AND rid = 'R9';
+// expected output: 'R9', 'U1'
+
+
+
+/* test if a review is already cooled  */
+// CALL IsCool('R9', 'U8');
+'R9', 'U8'
+// expected output: 'R9'	'U8'
+
+// CALL IsCool('R1', 'U1');
+'R1', 'U1'
+// expected output: 'R1', 'U1'
+
+// CALL IsCool('R032', 'U432');
+null
+// expected output: not found
+
+// CALL IsCool(null, 'U3');
+null
+// expected output: not found

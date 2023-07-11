@@ -374,3 +374,12 @@ INSERT INTO Friend VALUES
 ('U7', 'U8'),
 ('U8', 'U7');
 
+
+INSERT INTO Photo VALUES
+('zsvj7vloL4L5jhYyPIuVwg', 'B1', 'Nice rock artwork everywhere and craploads of taps.', 'inside'),
+('Kw4cqVChYxm4mSxAimHiNA', 'B2', 'Inside seating', 'inside'),
+('ZFnOsg5eUciav5ltpxbxPA', 'B3', 'Look at the size of this sandwich !', 'food'),
+('_1fqxF5C0e5YHk5-CRc8cg', 'B4', null, 'inside'),
+('jbiMLg7IZkq_l_k3nIMH0A','B5','Outside','inside');
+
+

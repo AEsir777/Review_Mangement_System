@@ -1,3 +1,44 @@
+/**** add friend ******/
+/*** Test insert and isFriend ******/
+// -- check
+CALL CheckFriendship('U3', 'U8');
+NULL NULL
+// expected output: no relationship
+
+// CALL InsertFriend('U3', 'U8');
+1 row(s) affected   
+// expected output: succesfully inserted into the row
+
+// -- check
+// CALL CheckFriendship('U3', 'U8');
+U3	U8
+// expected output: U3	U8
+
+-- check: exist before
+// CALL CheckFriendship('U1', 'U2');
+U2	U1
+U1	U2
+// expected output: U2	U1
+//                  U1	U2
+
+-- check: exist before
+// CALL CheckFriendship('U7', 'U8');
+U7	U8
+U8	U7
+// expected output: U7	U8
+//                  U8	U7
+
+-- check: insert fail
+// CALL InsertFriend('U1', 'U2');
+Error Code: 1062. Duplicate entry 'U1-U2' for key 'friend.PRIMARY'
+// expected output: fail
+
+// CALL InsertFriend('U1', 'U200');
+Error Code: 1452. Cannot add or update a child row: a foreign key constraint fails (`cs348`.`friend`, CONSTRAINT `friend_ibfk_2` FOREIGN KEY (`uid2`) REFERENCES `userfile` (`uid`) ON DELETE CASCADE)
+// expected output: fail
+
+
+
 /**** authentication ******/
 /*** Test insert (mostly already tested when inserting into) ******/
 // CALL InsertIntoUserAuth('123e4567-e89b-12d3-a456-426614174000', 'test@example.com', 'password'); */
@@ -26,6 +67,13 @@ U10	user10@example.com	HASHED_PASSWORD_10
 // CALL GetUserByUid('U300');
 null
 expected output: not found 
+
+
+
+
+
+
+
 
 
 
@@ -110,44 +158,73 @@ B7	-73.955	40.717	10AM-9:30PM	7	Company Seven	987 Maple St	10007	4	35	0	7	San An
 B8	-73.987	40.757	8AM-5PM	8	Company Eight	123 Cherry St	10008	3	40	1	8	San Diego	CA	B8	Education
 B9	-74.005	40.712	9AM-6PM	9	Company Nine	456 Oak St	10009	2	45	0	9	Dallas	TX	B9	Hospitality
 
-/****** review ******/
-// CALL LeaveReview('B2', 'U1', 'This is a great business.');
-9LBkzSDXtbD8j9K6GvYufQ 
-// expected output: randomly generated insertion id
 
-// CALL LeaveReview('B5', 'U9', 'This is a great business x2.');
-2crGb2_UqWx0zhMblnX7j9
-// expected output: randomly generated insertion id
+/* photos */
+// CALL GetPhotoDetails ('B1');
+# pid, caption, label
+zsvj7vloL4L5jhYyPIuVwg, Nice rock artwork everywhere and craploads of taps., inside
+// expected output:
+// # pid, caption, label
+// zsvj7vloL4L5jhYyPIuVwg, Nice rock artwork everywhere and craploads of taps., inside
 
-// CALL LeaveReview('B9', 'U1', null);
-mrm_Ea4LRxD_shkQlKDwqD
-// expected output: randomly generated insertion id
+// CALL GetPhotoDetails ('B3');
+# pid, caption, label
+ZFnOsg5eUciav5ltpxbxPA, Look at the size of this sandwich !, food
+// expected output:
+// # pid, caption, label
+// ZFnOsg5eUciav5ltpxbxPA, Look at the size of this sandwich !, food
 
-/* fail cases - should not be able to add */
-// CALL LeaveReview('B5', 'U200', 'This is a great business x3.');
-Error Code: 1452. Cannot add or update a child row: a foreign key constraint fails (`cs348`.`reviewwith`, CONSTRAINT `reviewwith_ibfk_2` FOREIGN KEY (`uid`) REFERENCES `userfile` (`uid`))
-// expected output: error
+// CALL GetPhotoDetails (null);
+null
+expected: null;
 
-// CALL LeaveReview(null, 'U1', 'This is a great business x3.');
-Error Code: 1048. Column 'bid' cannot be null
-// expected output: error
+// CALL GetPhotoDetails (B4);
+# pid, caption, label
+_1fqxF5C0e5YHk5-CRc8cg, , inside
+// expected output:
+// # pid, caption, label
+// _1fqxF5C0e5YHk5-CRc8cg, , inside
 
-/* get review - start with RID */
-// CALL GetReviewByRid('9LBkzSDXtbD8j9K6GvYufQ')
-9LBkzSDXtbD8j9K6GvYufQ	2023-06-22 20:45:19	This is a great business.	0	0
-// expected output: 9LBkzSDXtbD8j9K6GvYufQ	2023-06-22 20:45:19	This is a great business.	0	0
 
-// CALL GetReviewByRid('R5')
-2023-01-05 16:00:00	Really enjoy the food here.	5	10
-// expected output: 2023-01-05 16:00:00	Really enjoy the food here.	5	10
 
-// CALL GetReviewByRid('R023')
+
+
+
+/****** cool ******/
+// CALL CoolByRid('R9', 'U8');
+'R9', 'U8'
+// Follow up: SELECT * FROM CoolHistory WHERE uid = 'U8' AND rid = 'r1';
+// expected output: 'R9', 'U8'
+
+// CALL CoolByRid('R9', 'U1');
+'R9', 'U1'
+// Follow up: SELECT * FROM CoolHistory WHERE uid = 'U1' AND rid = 'R9';
+// expected output: 'R9', 'U1'
+
+
+
+/* test if a review is already cooled  */
+// CALL IsCool('R9', 'U8');
+'R9', 'U8'
+// expected output: 'R9'	'U8'
+
+// CALL IsCool('R1', 'U1');
+'R1', 'U1'
+// expected output: 'R1', 'U1'
+
+// CALL IsCool('R032', 'U432');
 null
 // expected output: not found
 
-// CALL GetReviewByRid(null)
+// CALL IsCool(null, 'U3');
 null
 // expected output: not found
+
+
+
+
+
+
 
 
 
@@ -185,8 +262,8 @@ null
 // expected output: not found
 
 
-// CALL UpdateReviewTextByRid('R1', "update", 1);
-R1	2023-01-01 12:00:00	update	1	12
+// CALL UpdateReviewTextByRid('R1', "update1", 1);
+R1	2023-01-01 12:00:00	update1	1	12
 // Follow up: SELECT * FROM Review WHERE rid = 'R1';
 // expected output: R1	2023-01-01 12:00:00	update	1	12
 
@@ -199,35 +276,140 @@ null
 Error Code: 1048. Column 'stars' cannot be null
 // expected output: ERROR
 
+/* render review */
+// CALL GetReviewDetails('R1');
+# rid, date, text, stars, cool, name, uid
+R1, 2023-01-01 12:00:00, update1, 1, 12, User One, U1
+// expected output:
+// # rid, date, text, stars, cool, name, uid
+// R1, 2023-01-01 12:00:00, update1, 1, 12, User One, U1
 
+// CALL GetReviewDetails('R3');
+# rid, date, text, stars, cool, name, uid
+R3, 2023-01-03 14:00:00, The product broke after a few days., 1, 3, User Three, U3
+// expected output:
+// # rid, date, text, stars, cool, name, uid
+// R3, 2023-01-03 14:00:00, The product broke after a few days., 1, 3, User Three, U3
 
-/****** cool ******/
-// CALL CoolByRid('R9', 'U8');
-'R9', 'U8'
-// Follow up: SELECT * FROM CoolHistory WHERE uid = 'U8' AND rid = 'r1';
-// expected output: 'R9', 'U8'
-
-// CALL CoolByRid('R9', 'U1');
-'R9', 'U1'
-// Follow up: SELECT * FROM CoolHistory WHERE uid = 'U1' AND rid = 'R9';
-// expected output: 'R9', 'U1'
-
-
-
-/* test if a review is already cooled  */
-// CALL IsCool('R9', 'U8');
-'R9', 'U8'
-// expected output: 'R9'	'U8'
-
-// CALL IsCool('R1', 'U1');
-'R1', 'U1'
-// expected output: 'R1', 'U1'
-
-// CALL IsCool('R032', 'U432');
+/* not exist case */
+// CALL GetReviewDetails('R300');
 null
-// expected output: not found
+// expected output: null
 
-// CALL IsCool(null, 'U3');
+// CALL GetReviewDetails(null);
 null
-// expected output: not found
+// expected output: null
+
+/* getRidByBid */
+// Call GetRidByBid ('B1');
+# rid
+R1
+R2
+R13
+R14
+// expected output:
+// # rid
+// R1
+// R2
+// R13
+// R14
+
+// Call GetRidByBid ('B3');
+# rid
+R6
+R7
+R8
+R17
+R18
+// expected output:
+// # rid
+// R6
+// R7
+// R8
+// R17
+// R18
+
+/* DELETE review */
+/* not exist case */
+// CALL DeleteReview ('R@');
+0 row(s) affected
+// expected output: nothing is deleted 
+
+// CALL DeleteReview (null);
+0 row(s) affected
+// expected output: nothing is deleted 
+
+// CALL LeaveReview('B2', 'U9', 'This is a great business.');
+gs8qfbqDSPXFWdTGo2XSUv
+// expected output: some rid
+
+// CALL GetReviewDetails('gs8qfbqDSPXFWdTGo2XSUv');
+# rid, date, text, stars, cool, name, uid
+gs8qfbqDSPXFWdTGo2XSUv, 2023-07-11 09:40:42, This is a great business., 0, 0, User Nine, U9
+// expected output: one row of info
+
+// CALL DeleteReview('gs8qfbqDSPXFWdTGo2XSUv');
+// CALL GetReviewDetails('gs8qfbqDSPXFWdTGo2XSUv');
+null
+// expected output: null
+
+
+
+
+/* test star distribution */
+// CALL getStarDistribution('B1');
+1	2	1	0	0	0
+// expected output: 1	2	1	0	0	0
+
+// CALL getStarDistribution('B2');
+# 5_star, 4_star, 3_star, 2_star, 1_star, 0_star
+'1', '0', '0', '2', '2', '0'
+// expected output: 
+// # 5_star, 4_star, 3_star, 2_star, 1_star, 0_star
+//   '1', '0', '0', '2', '2', '0'
+
+// CALL CALL getStarDistribution('B3');
+# 5_star, 4_star, 3_star, 2_star, 1_star, 0_star
+1, 1, 1, 2, 0, 0
+// expcted output:
+// # 5_star, 4_star, 3_star, 2_star, 1_star, 0_star
+//   1, 1, 1, 2, 0, 0
+
+/* update review */
+// CALL UpdateReviewTextByRid('R1', "update", 1);
+1 row(s) affected
+
+/* test if stars gets updated in Business*/
+// CALL getStarDistribution('B1');
+# 5_star, 4_star, 3_star, 2_star, 1_star, 0_star
+0, 2, 1, 0, 1, 0
+// expected output:
+// # 5_star, 4_star, 3_star, 2_star, 1_star, 0_star
+// 0, 2, 1, 0, 1, 0
+
+/* not exist */
+// CALL getStarDistribution('B100');
+# 5_star, 4_star, 3_star, 2_star, 1_star, 0_star
+, , , , , 
+// expected output: all null
+
+// CALL getStarDistribution(null);
+# 5_star, 4_star, 3_star, 2_star, 1_star, 0_star
+, , , , , 
+// expected output: all null
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

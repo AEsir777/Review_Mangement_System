@@ -1,0 +1,124 @@
+/* get review - bid */
+// CALL GetReviewByBid('B2')
+The product broke after a few days.
+The service was terrible.
+Really enjoy the food here.
+The food was not fresh.
+The place is not clean.
+This is a great business.
+// expected output: all reiviews for B2
+The product broke after a few days.
+The service was terrible.
+Really enjoy the food here.
+The food was not fresh.
+The place is not clean.
+This is a great business.
+
+// CALL GetReviewByBid('B9')
+text
+null
+// expected output: null
+
+// CALL GetReviewByBid('B7')
+null
+// expected output: not found
+
+// CALL GetReviewByBid('B100')
+null
+// expected output: not found
+
+// CALL GetReviewByBid(null)
+null
+// expected output: not found
+
+
+// CALL UpdateReviewTextByRid('R1', "update1", 1);
+R1	2023-01-01 12:00:00	update1	1	12
+// Follow up: SELECT * FROM Review WHERE rid = 'R1';
+// expected output: R1	2023-01-01 12:00:00	update	1	12
+
+// CALL UpdateReviewTextByRid('R900', "3", 1);
+null
+// expected output: null
+
+
+// CALL UpdateReviewTextByRid('R1', "update", null);
+Error Code: 1048. Column 'stars' cannot be null
+// expected output: ERROR
+
+/* render review */
+// CALL GetReviewDetails('R1');
+# rid, date, text, stars, cool, name, uid
+R1, 2023-01-01 12:00:00, update1, 1, 12, User One, U1
+// expected output:
+// # rid, date, text, stars, cool, name, uid
+// R1, 2023-01-01 12:00:00, update1, 1, 12, User One, U1
+
+// CALL GetReviewDetails('R3');
+# rid, date, text, stars, cool, name, uid
+R3, 2023-01-03 14:00:00, The product broke after a few days., 1, 3, User Three, U3
+// expected output:
+// # rid, date, text, stars, cool, name, uid
+// R3, 2023-01-03 14:00:00, The product broke after a few days., 1, 3, User Three, U3
+
+/* not exist case */
+// CALL GetReviewDetails('R300');
+null
+// expected output: null
+
+// CALL GetReviewDetails(null);
+null
+// expected output: null
+
+/* getRidByBid */
+// Call GetRidByBid ('B1');
+# rid
+R1
+R2
+R13
+R14
+// expected output:
+// # rid
+// R1
+// R2
+// R13
+// R14
+
+// Call GetRidByBid ('B3');
+# rid
+R6
+R7
+R8
+R17
+R18
+// expected output:
+// # rid
+// R6
+// R7
+// R8
+// R17
+// R18
+
+/* DELETE review */
+/* not exist case */
+// CALL DeleteReview ('R@');
+0 row(s) affected
+// expected output: nothing is deleted 
+
+// CALL DeleteReview (null);
+0 row(s) affected
+// expected output: nothing is deleted 
+
+// CALL LeaveReview('B2', 'U9', 'This is a great business.');
+gs8qfbqDSPXFWdTGo2XSUv
+// expected output: some rid
+
+// CALL GetReviewDetails('gs8qfbqDSPXFWdTGo2XSUv');
+# rid, date, text, stars, cool, name, uid
+gs8qfbqDSPXFWdTGo2XSUv, 2023-07-11 09:40:42, This is a great business., 0, 0, User Nine, U9
+// expected output: one row of info
+
+// CALL DeleteReview('gs8qfbqDSPXFWdTGo2XSUv');
+// CALL GetReviewDetails('gs8qfbqDSPXFWdTGo2XSUv');
+null
+// expected output: null

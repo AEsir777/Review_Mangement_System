@@ -1,0 +1,107 @@
+/****** searchBusiness ******/
+/*** Test insert ******/
+-- Insert a new business record
+// CALL InsertIntoBusiness('123e4567-e89b-12d3-a456-426614174000', -73.987, 40.757, '8AM-5PM', 1, 'Company One', '123 Main St', '10001', 5, 10, 1);
+1 row(s) affected   
+// expected output: succesfully inserted into the row
+// Follow up sql: SELECT * FROM Business Where bid = '123e4567-e89b-12d3-a456-426614174000';
+123e4567-e89b-12d3-a456-426614174000	-73.987	40.757	8AM-5PM	1	Company One	123 Main St	10001
+// expected output: 123e4567-e89b-12d3-a456-426614174000	-73.987	40.757	8AM-5PM	1	Company One	123 Main St	10001
+123e4567-e89b-12d3-a456-426614174000	-73.987	40.757	8AM-5PM	1	Company One	123 Main St	10001
+
+
+-- Verify the insertion by retrieving the business record
+// CALL GetBusinessByBid('123e4567-e89b-12d3-a456-426614174000');
+123e4567-e89b-12d3-a456-426614174000	-73.987	40.757	8AM-5PM	1	Company One	123 Main St	10001
+// expcted output: 123e4567-e89b-12d3-a456-426614174000	-73.987	40.757	8AM-5PM	1	Company One	123 Main St	10001
+
+// CALL GetBusinessByBid('B2');
+B2	-74.005	40.712	9AM-6PM	2	Company Two	456 Elm St	10002	4	20	1
+// expected output: B2	-74.005	40.712	9AM-6PM	2	Company Two	456 Elm St	10002	4	20	1
+
+// CALL GetBusinessByBid(null);
+null
+// expected output: not found
+
+-- Search for businesses by category, name, state, and city
+// CALL SearchBusinessBy('Food', 'Company Four', 'TX', 'Houston');
+-73.982	40.744	10AM-8PM	4	Company Four	321 Oak St	10004	2	30	1
+// expected output: -73.982	40.744	10AM-8PM	4	Company Four	321 Oak St	10004	2	30	1
+
+// CALL SearchBusinessBy('Retail', 'Company Two', 'NY', 'New York');
+null
+// expected output: not found
+
+// CALL SearchBusinessBy(null, null, 'NY', 'New York');
+B1	-73.987	40.757	8AM-5PM	1	Company One	123 Main St	10001	5	10	1	1	New York	NY	B1	Retail
+// expected output: B1	-73.987	40.757	8AM-5PM	1	Company One	123 Main St	10001	5	10	1	1	New York	NY	B1	Retail
+
+// CALL SearchBusinessBy(null, null, null, null);
+B1	-73.987	40.757	8AM-5PM	1	Company One	123 Main St	10001	5	10	1	1	New York	NY	B1	Retail
+B10	-73.973	40.763	8AM-4PM	10	Company Ten	450 Oak St	10010	1	50	1	10	San Jose	CA	B10	Financial Services; Hospitality; Manufacturing; Automotive; Education; Fashion
+B11	-73.982	40.744	10AM-8PM	11	Company Eleven	321 Willow St	10011	5	55	0	11	Austin	TX	B11	Automobile
+B12	-73.989	40.748	9AM-7PM	12	Company Twelve	654 Pine St	CK2F9J	4	60	1	12	Miami	FL	B12	Telecommunications
+B13	-73.987	40.757	8AM-5PM	13	Company Thirteen	123 Apple St	10013	0	65	0	13	Columbus	PK	B13	Construction
+B14	-74.005	40.712	9AM-6PM	14	Company Fourteen	456 Elm St	10014	2	0	1	14	Fort Worth	TX	B14	Manufacturing
+B15	-73.973	40.763	8AM-4PM	15	Company Fifteen	789 Peach St	10015		75	0	15	Indianapolis	IN	B15	Transportation
+B16	-73.982	40.744	10AM-8PM	16	Company Sixteen	321 Cherry St	10016	5	80	1	16	Charlotte	NC	B16	Wholesale
+B17	-73.989	40.748	9AM-7PM	17	Company Seventeen	654 Pear St	10017	4	85	0	17	Seattle	WA	B17	Agriculture
+B18	-73.987	40.757	8AM-5PM	18	Company Eighteen	123 Apple St	10018	3	90	1	18	Denver	CO	B18	Pharmaceuticals
+B19	-74.005	40.712	9AM-6PM	19	Company Nineteen	456 Elm St	10019	2	95	0	19	El Paso	TX	B19	Energy
+B2	-74.005	40.712	9AM-6PM	2	Company Two	456 Elm St	10002	4	20	1	2	Los Angeles	CA	B2	Technology
+B20	-73.973	40.763	8AM-4PM	20	Company Twenty	789 Pine St	10020	1	100	1	20	Detroit	MI	B20	Mining
+B3	-73.973	40.763	8AM-4PM	3	Company Three	789 Pine St	10003	3	15	0	3	Chicago	IL	B3	Healthcare
+B4	-73.982	40.744	10AM-8PM	4	Company Four	321 Oak St	10004	2	30	1	4	Houston	TX	B4	Food
+B5	-73.989	40.748	9AM-7PM	5	Company Five	654 Cedar St	10005	1	25	0	5	Philadelphia	PA	B5	Automotive
+B6	-213.22	-3.234	9AM-5PM	6	Company Six	321 Banana St	10006	5	30	1	6	Phoenix	AZ	B6	Fashion
+B7	-73.955	40.717	10AM-9:30PM	7	Company Seven	987 Maple St	10007	4	35	0	7	San Antonio	TX	B7	Real Estate
+B8	-73.987	40.757	8AM-5PM	8	Company Eight	123 Cherry St	10008	3	40	1	8	San Diego	CA	B8	Education
+B9	-74.005	40.712	9AM-6PM	9	Company Nine	456 Oak St	10009	2	45	0	9	Dallas	TX	B9	Hospitality
+// expected output: all entires in database
+B1	-73.987	40.757	8AM-5PM	1	Company One	123 Main St	10001	5	10	1	1	New York	NY	B1	Retail
+B10	-73.973	40.763	8AM-4PM	10	Company Ten	450 Oak St	10010	1	50	1	10	San Jose	CA	B10	Financial Services; Hospitality; Manufacturing; Automotive; Education; Fashion
+B11	-73.982	40.744	10AM-8PM	11	Company Eleven	321 Willow St	10011	5	55	0	11	Austin	TX	B11	Automobile
+B12	-73.989	40.748	9AM-7PM	12	Company Twelve	654 Pine St	CK2F9J	4	60	1	12	Miami	FL	B12	Telecommunications
+B13	-73.987	40.757	8AM-5PM	13	Company Thirteen	123 Apple St	10013	0	65	0	13	Columbus	PK	B13	Construction
+B14	-74.005	40.712	9AM-6PM	14	Company Fourteen	456 Elm St	10014	2	0	1	14	Fort Worth	TX	B14	Manufacturing
+B15	-73.973	40.763	8AM-4PM	15	Company Fifteen	789 Peach St	10015		75	0	15	Indianapolis	IN	B15	Transportation
+B16	-73.982	40.744	10AM-8PM	16	Company Sixteen	321 Cherry St	10016	5	80	1	16	Charlotte	NC	B16	Wholesale
+B17	-73.989	40.748	9AM-7PM	17	Company Seventeen	654 Pear St	10017	4	85	0	17	Seattle	WA	B17	Agriculture
+B18	-73.987	40.757	8AM-5PM	18	Company Eighteen	123 Apple St	10018	3	90	1	18	Denver	CO	B18	Pharmaceuticals
+B19	-74.005	40.712	9AM-6PM	19	Company Nineteen	456 Elm St	10019	2	95	0	19	El Paso	TX	B19	Energy
+B2	-74.005	40.712	9AM-6PM	2	Company Two	456 Elm St	10002	4	20	1	2	Los Angeles	CA	B2	Technology
+B20	-73.973	40.763	8AM-4PM	20	Company Twenty	789 Pine St	10020	1	100	1	20	Detroit	MI	B20	Mining
+B3	-73.973	40.763	8AM-4PM	3	Company Three	789 Pine St	10003	3	15	0	3	Chicago	IL	B3	Healthcare
+B4	-73.982	40.744	10AM-8PM	4	Company Four	321 Oak St	10004	2	30	1	4	Houston	TX	B4	Food
+B5	-73.989	40.748	9AM-7PM	5	Company Five	654 Cedar St	10005	1	25	0	5	Philadelphia	PA	B5	Automotive
+B6	-213.22	-3.234	9AM-5PM	6	Company Six	321 Banana St	10006	5	30	1	6	Phoenix	AZ	B6	Fashion
+B7	-73.955	40.717	10AM-9:30PM	7	Company Seven	987 Maple St	10007	4	35	0	7	San Antonio	TX	B7	Real Estate
+B8	-73.987	40.757	8AM-5PM	8	Company Eight	123 Cherry St	10008	3	40	1	8	San Diego	CA	B8	Education
+B9	-74.005	40.712	9AM-6PM	9	Company Nine	456 Oak St	10009	2	45	0	9	Dallas	TX	B9	Hospitality
+
+
+/* photos */
+// CALL GetPhotoDetails ('B1');
+# pid, caption, label
+zsvj7vloL4L5jhYyPIuVwg, Nice rock artwork everywhere and craploads of taps., inside
+// expected output:
+// # pid, caption, label
+// zsvj7vloL4L5jhYyPIuVwg, Nice rock artwork everywhere and craploads of taps., inside
+
+// CALL GetPhotoDetails ('B3');
+# pid, caption, label
+ZFnOsg5eUciav5ltpxbxPA, Look at the size of this sandwich !, food
+// expected output:
+// # pid, caption, label
+// ZFnOsg5eUciav5ltpxbxPA, Look at the size of this sandwich !, food
+
+// CALL GetPhotoDetails (null);
+null
+expected: null;
+
+// CALL GetPhotoDetails (B4);
+# pid, caption, label
+_1fqxF5C0e5YHk5-CRc8cg, , inside
+// expected output:
+// # pid, caption, label
+// _1fqxF5C0e5YHk5-CRc8cg, , inside

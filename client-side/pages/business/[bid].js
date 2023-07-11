@@ -86,7 +86,7 @@ export default function Business() {
 
                 <div className={styles.rightGrid}>
                   <img className={styles.picture}
-                    src={"/photoes/" + photo.pid + ".jpg"}
+                    src={"/photos/" + photo.pid + ".jpg"}
                     alt={photo.caption} />
                 </div>
               </div>
