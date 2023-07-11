@@ -63,8 +63,7 @@ CREATE TABLE ReviewWith (
     uid VARCHAR(36) NOT NULL,
 	rid VARCHAR(36) NOT NULL,
 	FOREIGN KEY (bid) REFERENCES Business(bid),
-	FOREIGN KEY (uid) REFERENCES UserFile(uid),
-	FOREIGN KEY (rid) REFERENCES Review(rid)
+	FOREIGN KEY (uid) REFERENCES UserFile(uid)
 );
 
 CREATE TABLE Location (
@@ -259,6 +258,28 @@ FOR EACH ROW
 	INSERT INTO UserFile(uid, name, createTime, reviewCount, cools) 
     VALUES(NEW.uid, NEW.email, NOW(), 0, 0);
 
+INSERT INTO ReviewWith VALUES
+('B1', 'U1', 'R1'),
+('B1', 'U2', 'R2'),
+('B2', 'U3', 'R3'),
+('B2', 'U4', 'R4'),
+('B2', 'U5', 'R5'),
+('B3', 'U1', 'R6'),
+('B3', 'U2', 'R7'),
+('B3', 'U3', 'R8'),
+('B4', 'U4', 'R9'),
+('B4', 'U5', 'R10'),
+('B5', 'U1', 'R11'),
+('B5', 'U2', 'R12'),
+('B1', 'U3', 'R13'),
+('B1', 'U4', 'R14'),
+('B2', 'U5', 'R15'),
+('B2', 'U1', 'R16'),
+('B3', 'U2', 'R17'),
+('B3', 'U3', 'R18'),
+('B4', 'U4', 'R19'),
+('B4', 'U5', 'R20');
+
 INSERT INTO Review VALUES
 ('R1', '2023-01-01 12:00:00', 'Great service and friendly staff.', 5, 10),
 ('R2', '2023-01-02 13:00:00', 'Quality product, will buy again.', 4, 8),
@@ -283,27 +304,6 @@ INSERT INTO Review VALUES
 ('R21', '2023-01-18 05:00:00', 'Two reviews made by same user is okay.', 2, 4),
 ('R22', '2023-01-19 06:00:00', '', 2, 4);
 
-INSERT INTO ReviewWith VALUES
-('B1', 'U1', 'R1'),
-('B1', 'U2', 'R2'),
-('B2', 'U3', 'R3'),
-('B2', 'U4', 'R4'),
-('B2', 'U5', 'R5'),
-('B3', 'U1', 'R6'),
-('B3', 'U2', 'R7'),
-('B3', 'U3', 'R8'),
-('B4', 'U4', 'R9'),
-('B4', 'U5', 'R10'),
-('B5', 'U1', 'R11'),
-('B5', 'U2', 'R12'),
-('B1', 'U3', 'R13'),
-('B1', 'U4', 'R14'),
-('B2', 'U5', 'R15'),
-('B2', 'U1', 'R16'),
-('B3', 'U2', 'R17'),
-('B3', 'U3', 'R18'),
-('B4', 'U4', 'R19'),
-('B4', 'U5', 'R20');
 
 INSERT INTO Location VALUES
 (1, 'New York', 'NY'),
