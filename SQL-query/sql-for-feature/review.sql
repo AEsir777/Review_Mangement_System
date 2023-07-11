@@ -100,3 +100,16 @@ BEGIN
 END //
 DELIMITER ;
 
+ALTER TABLE Review
+ADD INDEX idx_rid (rid);
+
+ALTER TABLE ReviewWith
+ADD INDEX idx_reviewwith_rid (rid),
+ADD INDEX idx_reviewwith_bid (bid);
+
+ALTER TABLE CoolHistory
+ADD INDEX idx_coolhistory_rid (rid);
+
+ALTER TABLE UserFile
+ADD INDEX idx_userfile_uid (uid);
+
