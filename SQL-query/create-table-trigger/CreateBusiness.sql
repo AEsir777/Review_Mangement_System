@@ -5,7 +5,7 @@ CREATE TABLE Business (
     hours VARCHAR(255),
     lid INT NOT NULL,
     name VARCHAR(255) NOT NULL,
-    address VARCHAR(255),
+    address VARCHAR(255) NOT NULL,
     postalCode VARCHAR(255) NOT NULL,
     stars INT,
     reviewCount INT NOT NULL,
