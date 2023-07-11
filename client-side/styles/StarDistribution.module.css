@@ -1,0 +1,16 @@
+.starDistribution {
+    margin-top: 10px;
+}
+  
+.star {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #ddd;
+    margin-right: 5px;
+}
+  
+.starFilled {
+    height: 100%;
+    background-color: #ffcc00;
+}

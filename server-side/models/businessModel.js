@@ -146,6 +146,27 @@ class businessModel {
             });
         });
     } 
+
+    static getStarDistribution(bid) {
+        return new Promise((resolve, reject) => {
+            pool.query(`
+            SELECT SUM(CASE WHEN stars = 5 THEN 1 ELSE 0 END) AS fiveStar,
+            SUM(CASE WHEN stars = 4 THEN 1 ELSE 0 END) AS fourStar, 
+            SUM(CASE WHEN stars = 3 THEN 1 ELSE 0 END) AS threeStar, 
+            SUM(CASE WHEN stars = 2 THEN 1 ELSE 0 END) AS twoStar,
+            SUM(CASE WHEN stars = 1 THEN 1 ELSE 0 END) AS oneStar,
+            SUM(CASE WHEN stars = 0 THEN 1 ELSE 0 END) AS zeroStar
+            FROM (SELECT stars, bid FROM ReviewWith as rw JOIN Review as r
+            WHERE r.rid = rw.rid) as t1
+            WHERE t1.bid = ?;`, [bid], (err, results) => {
+                if (err) {
+                    return reject(err);
+                }
+                resolve(results[0]);
+            });
+        });
+
+    }
 }
 
 export default businessModel;

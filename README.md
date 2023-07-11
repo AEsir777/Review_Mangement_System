@@ -70,10 +70,11 @@ POST ```/api/review/:rid/cool```
 - [ ] Implement a profile page
 - [ ] friend list on the profile page
 - [ ] add friend function 
-- [ ] star distribution
-- [ ] filter on own reviews
-- [ ] Integrate recommendation model to backend
+- [ ] star distribution - Kebing
+- [ ] filter on own reviews - Kebing
+- [ ] Integrate recommendation model to backend - Kebing
 - [ ] pagination for reviews
+
 ## feature it currently support
 - authentication  
   ![Screenshot 2023-07-03 212221](https://github.com/AEsir777/Review_Mangement_System/assets/77596290/f33d4520-eb99-484a-970b-8973a0ef9766)
