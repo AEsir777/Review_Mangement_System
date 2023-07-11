@@ -17,3 +17,12 @@ END //
 DELIMITER ;
 
 -- e.g   star 1: 20 reviews   star 2: xx reviews then return review #
+
+
+/* For Production Dataset */
+ALTER TABLE Review
+ADD INDEX idx_stars (stars),
+ADD INDEX idx_review_rid (rid);
+
+ALTER TABLE ReviewWith
+ADD INDEX idx_reviewwith_rid (rid);

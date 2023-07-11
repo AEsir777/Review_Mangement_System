@@ -14,5 +14,8 @@ BEGIN
 END //
 DELIMITER ;
 
-
+/* For Production Dataset */
+ALTER TABLE UserAuth
+ADD INDEX idx_uid (uid),
+ADD INDEX idx_email (email);
 

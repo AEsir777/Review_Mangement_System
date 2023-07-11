@@ -31,3 +31,7 @@ END //
 DELIMITER ;
 
 DELETE FROM CoolHistory where rid = ? AND uid = ?;
+
+/* For Production Dataset */
+ALTER TABLE CoolHistory
+ADD INDEX idx_uid_rid (uid, rid);
