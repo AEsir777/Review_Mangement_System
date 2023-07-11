@@ -52,7 +52,7 @@ const StarDistribution = (props) => {
                   <Typography class={styles.text}>{5 - index} stars</Typography>
                   </Box>
                   <Box width="80%">
-                    <LinearProgress variant="determinate" className={styles.bar} value={30} />
+                    <LinearProgress variant="determinate" className={styles.bar} value={Math.round(count / totalReview * 100)} />
                   </Box>
                   <Box>
                     <Typography class={styles.text}>{Math.round(count / totalReview * 100)}%</Typography>

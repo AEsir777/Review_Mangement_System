@@ -65,7 +65,7 @@ export default function UserProfile() {
               {/* <p className={styles.info}>{business.reviewCount}</p> */}
             </div>
             {self == "false" ? <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <input type="submit" value="Add Friend" className={styles.searchButtonProfile} />
+              <input type="submit" value="Follow" className={styles.searchButtonProfile} />
             </div> : null}
             
             
