@@ -72,4 +72,10 @@ FOR EACH ROW
     UPDATE UserFile
     SET cools = cools - 1
     WHERE UserFile.uid = OLD.uid;
+
+CREATE TRIGGER addUser
+AFTER INSERT ON UserAuth
+FOR EACH ROW
+	INSERT INTO UserFile(uid, name, createTime, reviewCount, cools) 
+    VALUES(NEW.uid, NEW.email, NOW(), 0, 0);
     
