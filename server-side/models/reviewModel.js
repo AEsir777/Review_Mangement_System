@@ -130,6 +130,27 @@ class reviewModel {
             });
         });
     }
+
+    static getbidByrid(rid) {
+        return new Promise((resolve, reject) => {
+            pool.query(`
+            SELECT name,business.bid
+            FROM business,
+            (SELECT bid
+            FROM reviewwith
+            INNER JOIN review ON reviewwith.rid = review.rid
+            WHERE reviewwith.rid = ?) tmp
+            WHERE tmp.bid = business.bid`, [rid], (err, results) => {
+                if (err) {
+                    return reject(err);
+                }
+                if (results.length === 0) {
+                    return resolve(null);
+                }
+                resolve(results);
+            });
+        });
+    }
 }
 
 export default reviewModel;

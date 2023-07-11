@@ -1,13 +1,16 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import styles from '../styles/Navbar.module.css';
 import axios from 'axios';
 
 const Navbar = () => {
+        const router = useRouter();
         const [names, setName] = useState("");
         const [category, setCategory] = useState("");
         const [state, setState] = useState("");
         const [city, setCity] = useState("");
+        const [uid, setUid] = useState(null);
       
         const handleSubmit = (e) => {
             e.preventDefault();
@@ -31,24 +34,29 @@ const Navbar = () => {
             window.location.href = url;
         };
 
+        useEffect(() => {
+            const fetchownuid = async () => {
+                if (router.isReady) {
+                    try {
+                        const response = await axios.get(`http://localhost:3000/api/userProfile/getuseruid`,{ withCredentials: true }); 
+                        setUid(response.data.uid);
+                    } catch (error) {
+                        console.error(error);
+                    }
+                }
+            };
+            fetchownuid();
+        }, [router.isReady]);
+
+        
+
+        const url = "/profile/" + uid + "?self=true";
+        console.log(url);
 
     return (
         <nav className={styles.navbar}>
             <Link href="/main" className={styles.logo}>YEAH</Link>
             <div className={styles.navlinks}>
-                <Link href="/business" className={styles.buslink}>Business</Link>
-                <Link href="/profile" className={styles.profilelink}>Profile</Link>
-                {/* <form onSubmit={handleSearchSubmit} className={styles.search}>
-                    <input 
-                        type="text" 
-                        placeholder="Search By Name" 
-                        value={searchTerm} 
-                        onChange={handleSearchChange} 
-                        className={styles.searchInput} 
-                    />
-                    <button type="submit" className={styles.searchButton}>Go</button>
-                </form> */}
-
 
                 <form onSubmit={handleSubmit} className={styles.search}>
                     <input type="text" placeholder="State" value={state} onChange={(e) => setState(e.target.value)} className={styles.searchInputState}/>
@@ -57,10 +65,9 @@ const Navbar = () => {
                     <input type="text" placeholder="Name" value={names} onChange={(e) => setName(e.target.value)} className={styles.searchInputName}  />
                     <button type="submit" className={styles.searchButton}>Search</button>
                 </form>
+                <Link href= {url} className={styles.logoutlink}>Profile</Link>
+                <Link href="/logout" className={styles.logoutlink}>Logout</Link>
 
-
-
-                
             </div>
         </nav>
     );

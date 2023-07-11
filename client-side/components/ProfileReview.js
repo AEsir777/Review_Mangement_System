@@ -16,6 +16,7 @@ export default function Review(props) {
     const [stars, setStars] = useState(null);
     const [date, setDate] = useState(null);
     const [uid, setUid] = useState(null);
+    const [bid, setBid] = useState(null);
     const [selfUid, setSelfUid] = useState(null);
     const [rid, setRid] = useState(null);
     const [writtenByMe, setWrittenByMe] = useState(false);
@@ -23,10 +24,12 @@ export default function Review(props) {
     useEffect(() => {
         const fetchReview = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/review/${props.rid}`);
+                const response = await axios.get(`http://localhost:3000/api/review/${props.rid}`,{ withCredentials: true });
+                const response2 = await axios.get(`http://localhost:3000/api/review/bid/${props.rid}`,{ withCredentials: true });
                 setIsCooled(response.data.isCooled);
                 setReview(response.data.review);
                 setUid(response.data.review.uid);
+                setBid(response2.data);
                 setRid(response.data.review.rid);
                 const date = new Date(response.data.review.date);
                 setDate(date.toLocaleString());
@@ -107,7 +110,7 @@ export default function Review(props) {
                     ) : (
                         <p></p>
                     )}
-                    <p> Written at {date} by <Link href={`/profile/${uid}?self=${uid==selfUid}`} className={styles.underline}> {review.name}</Link> </p>
+                    <p> Written at {date} to <Link href={`/business/${bid.bid}`} className={styles.underline}> {bid.name}</Link> </p>
                     
                     {/* <span className={styles.underline}>{review.name}</span> */}
                     <h2 className={styles.title}>{review.text}</h2>

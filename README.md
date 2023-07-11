@@ -66,10 +66,11 @@ POST ```/api/review/:rid/cool```
 - [x] Add photo for Business - Kebing
 - [x] star distribution - Kebing
 - [x] add friend sql - Kebing
+- [x] Implement a profile page - Henry
+- [x] Add-friend UI (button) - Henry
 
 ## TODO
 - [ ] Add photo for Search result page - Henry
-- [ ] Implement a profile page
 - [ ] friend list on the profile page
 - [ ] add friend function 
 - [ ] filter on own reviews - Kebing

@@ -9,6 +9,7 @@ import expressMySqlSession from "express-mysql-session";
 import authRouter from './routes/authRouter.js';
 import businessRouter from './routes/businessRouter.js';
 import reviewRouter from './routes/reviewRouter.js';
+import userProfileRouter from './routes/userProfileRouter.js';
 import configPassport from './config/passport.js';
 
 const app = express();
@@ -76,6 +77,7 @@ sessionStore.onReady().then(() => {
 app.use('/api/auth', authRouter);
 app.use('/api/business', businessRouter);
 app.use('/api/review', reviewRouter);
+app.use('/api/userProfile', userProfileRouter);
 
 app.listen(3000 || process.env.port, () => {
     console.log("Server is running on port 3000.");
