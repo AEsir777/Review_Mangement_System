@@ -18,6 +18,34 @@ class UserModel {
         });
     }
 
+    static addFriend(uid1, uid2) {
+        return new Promise(async (resolve, reject) => {
+            pool.query('INSERT INTO Friend (uid1, uid2) VALUES (?, ?);', [uid1, uid2], (err, results) => {
+                if (err) {
+                    return reject(err);
+                }
+                resolve(results.insertId);
+            });
+        });
+    }
+
+    static isFriend(uid1, uid2) {
+        return new Promise((resolve, reject) => {
+            pool.query(`
+                    SELECT * FROM Friend
+                    WHERE (uid1 = ? AND uid2 = ?) OR (uid2 = ? AND uid1 = ?);
+                    `, [uid1, uid2, uid1, uid2], (err, results) => {
+                if (err) {
+                    return reject(err);
+                }
+                if (results.length === 0) {
+                    return resolve(false);
+                }
+                resolve(true);
+            });
+        });
+    }
+
     static getUserByemail(email) {
         return new Promise((resolve, reject) => {
             pool.query('SELECT * FROM UserAuth WHERE email = ?', [email], (err, results) => {

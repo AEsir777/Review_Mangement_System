@@ -1,0 +1,28 @@
+/**** authentication ******/
+/*** Test insert (mostly already tested when inserting into) ******/
+// CALL InsertIntoUserAuth('123e4567-e89b-12d3-a456-426614174000', 'test@example.com', 'password'); */
+1 row(s) affected   
+// expected output: succesfully inserted into the row
+// Follow up sql: SELECT * FROM UserAuth Where uid = '123e4567-e89b-12d3-a456-426614174000';
+123e4567-e89b-12d3-a456-426614174000	test@example.com	password
+// expected output: 123e4567-e89b-12d3-a456-426614174000	test@example.com	password
+
+// CALL GetUserByUid('123e4567-e89b-12d3-a456-426614174000');
+123e4567-e89b-12d3-a456-426614174000	test@example.com	password
+// expected output: 123e4567-e89b-12d3-a456-426614174000	test@example.com	password
+
+// CALL GetUserByUid('U1');
+U1	user1@example.com	HASHED_PASSWORD_1
+// expected output: U1	user1@example.com	HASHED_PASSWORD_1
+
+// CALL GetUserByUid('U9');
+U9	user9@example.com	HASHED_PASSWORD_9
+// expected output: U9	user9@example.com	HASHED_PASSWORD_9
+
+// CALL GetUserByUid('U10');
+U10	user10@example.com	HASHED_PASSWORD_10
+// expected output: U10	user10@example.com	HASHED_PASSWORD_10
+
+// CALL GetUserByUid('U300');
+null
+expected output: not found 

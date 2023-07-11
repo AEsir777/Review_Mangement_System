@@ -72,8 +72,8 @@ getStarDistribution('B3')
 
 /* update review */
 CALL UpdateReviewTextByRid('R1', "update", 1);
-    /* test if stars gets updated in Business*/
-    CALL GetBusinessByBid('B1');
+/* test if stars gets updated in Business*/
+CALL GetBusinessByBid('B1');
 CALL UpdateReviewTextByRid('R900', "3", 1);
 CALL UpdateReviewTextByRid('R1', "update", null);
 
