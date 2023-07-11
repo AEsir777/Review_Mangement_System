@@ -22,6 +22,8 @@ businessRouter.get('/:bid', businessController.getBusinessByBid,
     businessController.renderPhoto,
     businessController.renderBusinessHomePage);
 
+businessRouter.get('/:bid/starDistribution', businessController.renderStarDistribution);
+
 
 // businessRouter.post('/search', businessController.searchBusiness);
 

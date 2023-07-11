@@ -13,10 +13,10 @@ set up ```.env``` file to store mySQL password
 ## START database from localhost:3306
 ```
 cd server-side
-node initialize-datbase.js
+node initialize-database.js
 ```
 which runs all sql script in 
-[intialize.sql](SQL-query/initialize.sql)
+[intialize-test.sql](SQL-query/sample-datasets/initialize-test.sql)
 
 ## START front end on localhost:8000
 ```
@@ -64,16 +64,17 @@ POST ```/api/review/:rid/cool```
 - [x] fix reviews and cool - Kebing
 - [x] Integrate leave-review functionality - Kebing
 - [x] Add photo for Business - Kebing
+- [x] star distribution - Kebing
 
 ## TODO
 - [ ] Add photo for Search result page - Henry
 - [ ] Implement a profile page
 - [ ] friend list on the profile page
 - [ ] add friend function 
-- [ ] star distribution
-- [ ] filter on own reviews
-- [ ] Integrate recommendation model to backend
+- [ ] filter on own reviews - Kebing
+- [ ] Integrate recommendation model to backend - Kebing
 - [ ] pagination for reviews
+
 ## feature it currently support
 - authentication  
   ![Screenshot 2023-07-03 212221](https://github.com/AEsir777/Review_Mangement_System/assets/77596290/f33d4520-eb99-484a-970b-8973a0ef9766)

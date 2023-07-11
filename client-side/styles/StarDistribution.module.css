@@ -1,0 +1,29 @@
+.starDistribution {
+    margin-top: 10px;
+}
+  
+.star {
+    display: block;
+    margin-right: 5px;
+}
+
+
+.bar {
+    display: inline-block;
+    transition: 'none';
+    margin-left: 12px;
+    margin-right: 12px;
+    height: 20px;
+} 
+
+.text {
+    color: #007185;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.total {
+    color: #565959;
+    font-size: 14px;
+}
+

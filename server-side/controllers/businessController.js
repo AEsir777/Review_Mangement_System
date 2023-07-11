@@ -17,6 +17,18 @@ class businessController {
         });
     }
 
+    static renderStarDistribution(req, res, next) {
+        console.log("render star distribution");
+        businessModel.getStarDistribution(req.params.bid).then(star => {
+            res.json({
+                starDistribution: star,
+            });
+        }).catch(err => {
+            console.log(err);  
+            res.status(500).send('An error occurred.');
+        });
+    }
+
     static renderPhoto(req, res, next) {
         console.log("getPhotoByBid");
         businessModel.getPhotoByBid(req.params.bid).then(result => {
