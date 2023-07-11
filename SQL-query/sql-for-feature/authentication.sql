@@ -14,5 +14,7 @@ BEGIN
 END //
 DELIMITER ;
 
-
+ALTER TABLE UserAuth
+ADD INDEX idx_uid (uid),
+ADD INDEX idx_email (email);
 
