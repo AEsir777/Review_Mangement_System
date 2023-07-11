@@ -65,7 +65,7 @@ POST ```/api/review/:rid/cool```
 - [x] Integrate leave-review functionality - Kebing
 - [x] Add photo for Business - Kebing
 - [x] star distribution - Kebing
-- [x] add friend backend - Kebing
+- [x] add friend sql - Kebing
 
 ## TODO
 - [ ] Add photo for Search result page - Henry
