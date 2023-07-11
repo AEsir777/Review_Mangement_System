@@ -31,3 +31,6 @@ END //
 DELIMITER ;
 
 DELETE FROM CoolHistory where rid = ? AND uid = ?;
+
+ALTER TABLE CoolHistory
+ADD INDEX idx_uid_rid (uid, rid);
