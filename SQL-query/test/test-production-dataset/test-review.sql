@@ -26,6 +26,7 @@ CALL GetReviewByBid('"-0epFLgYq2C1Jo_W4FOBKw"');
 CALL GetReviewByBid('B100');
 CALL GetReviewByBid(null);
 
+
 /* update review */
 CALL UpdateReviewTextByRid('"3Ta-cyj4Iu8XBAltOrdj6A"',
  "update1", 1);
