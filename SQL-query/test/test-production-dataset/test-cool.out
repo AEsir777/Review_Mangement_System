@@ -1,0 +1,80 @@
+/****** cool ******/
+// CALL CoolByRid('"jNwGwhrvj85SrR96c-Y8Tw"', 
+// '"uEgYr-Umi76NKTrMeDQq1Q"');
+1 row(s) affected
+// expected output:
+1 row(s) affected
+
+
+// CALL CoolByRid('"7riPtZTh-uIPegJiGkvgzw"', 
+// '"uEgYr-Umi76NKTrMeDQq1Q"');
+1 row(s) affected
+// expected output:
+1 row(s) affected
+
+/* check cools */
+// CALL GetUserByUid('"1xzVJtkjnUUYsFJ8xRMxYg"');
+1 row(s) affected
+// expected output:
+1 row(s) affected
+
+/* test if a review is already cooled  */
+CALL IsCool('"jNwGwhrvj85SrR96c-Y8Tw"', 
+'"uEgYr-Umi76NKTrMeDQq1Q"');
+CALL IsCool('"7riPtZTh-uIPegJiGkvgzw"', 
+'"uEgYr-Umi76NKTrMeDQq1Q"');
+CALL IsCool('test', '"uEgYr-Umi76NKTrMeDQq1Q"');
+CALL IsCool(null, '"uEgYr-Umi76NKTrMeDQq1Q"');
+
+/* test if cools added in user profile */
+CALL GetUserByUid('"1xzVJtkjnUUYsFJ8xRMxYg"');
+# uid, email, pwd
+"1xzVJtkjnUUYsFJ8xRMxYg", hrzqrqfs@gmail.com, Tj5KGvKl
+// expected output:
+// # uid, email, pwd
+// "1xzVJtkjnUUYsFJ8xRMxYg", hrzqrqfs@gmail.com, Tj5KGvKl
+
+
+/* check cools */
+// CALL GetUserByUid('"dQE8Yy6EDujaMJQmke70Vw"');
+# uid, email, pwd
+"dQE8Yy6EDujaMJQmke70Vw", woeseiew@gmail.com, rRYR1MU1
+// expected output:
+// # uid, email, pwd
+// "dQE8Yy6EDujaMJQmke70Vw", woeseiew@gmail.com, rRYR1MU1
+
+
+
+// CALL GetUserByUid('"qJ1--wZxPBCQNOQxdDQttQ"');
+# uid, email, pwd
+"dQE8Yy6EDujaMJQmke70Vw", woeseiew@gmail.com, rRYR1MU1
+// expected output:
+// # uid, email, pwd
+// "dQE8Yy6EDujaMJQmke70Vw", woeseiew@gmail.com, rRYR1MU1
+
+
+// CALL GetUserByUid('"POK5FlWefqHWz8g4KAHH4Q"');
+null
+// expected output:
+// null
+
+/* cancel cool */
+// CALL cancelCool('"N7-45NRKghcDaYqBXnEBiw"', 
+// '"dQE8Yy6EDujaMJQmke70Vw"');
+1 row(s) affected
+// expected output:
+1 row(s) affected
+
+
+CALL cancelCool('"TSPqvlIQGQhVbEwHlCemTA"', 
+'"qJ1--wZxPBCQNOQxdDQttQ"');
+0 row(s) affected
+// expected output:
+0 row(s) affected
+
+
+CALL cancelCool('"POK5FlWefqHWz8g4KAHH4Q"', 
+'"POK5FlWefqHWz8g4KAHH4Q"');
+0 row(s) affected
+// expected output:
+0 row(s) affected

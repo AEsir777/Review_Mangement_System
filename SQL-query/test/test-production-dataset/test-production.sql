@@ -132,9 +132,9 @@ CALL IsCool(null, '"uEgYr-Umi76NKTrMeDQq1Q"');
 CALL GetUserByUid('"1xzVJtkjnUUYsFJ8xRMxYg"');
 
 /* check cools */
-CALL GetUserByUid('"dQE8Yy6EDujaMJQmke70Vw"')
-CALL GetUserByUid('"qJ1--wZxPBCQNOQxdDQttQ"')
-CALL GetUserByUid('"POK5FlWefqHWz8g4KAHH4Q"')
+CALL GetUserByUid('"dQE8Yy6EDujaMJQmke70Vw"');
+CALL GetUserByUid('"qJ1--wZxPBCQNOQxdDQttQ"');
+CALL GetUserByUid('"POK5FlWefqHWz8g4KAHH4Q"');
 
 /* cancel cool */
 CALL cancelCool('"N7-45NRKghcDaYqBXnEBiw"', 
