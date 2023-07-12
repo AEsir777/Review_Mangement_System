@@ -9,5 +9,5 @@ Milestone 2
 Name          Duty
 Kebing Liu    Implement front/backend for leave/delete review/star distribution/like comment, write SQL for follow and test sample datasets
 Henry Tian    Write searchbusiness, leavereview, and business_module(server/client-side)
-Zhongyi Guo   Write database schema and triggers, import production data and test production database 
+Zhongyi Guo   Write SQL code to create and test and triggers, import production data and test production database 
 Steven Ji     Produce production dataset, add indexes for the tables, and write recommendation model
