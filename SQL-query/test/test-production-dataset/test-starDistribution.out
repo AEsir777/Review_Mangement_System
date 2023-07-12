@@ -1,0 +1,55 @@
+/* test star distribution */
+// CALL getStarDistribution('"--7PUidqRWpRSpXebiyxTg"');
+5_star	4_star	3_star	2_star	1_star	0_star
+0	0	1	0	0	0
+// expected:
+// 5_star	4_star	3_star	2_star	1_star	0_star
+// 0	0	1	0	0	0
+
+
+
+
+
+// CALL getStarDistribution('"-7KAng29RoHr87mvOFbK9w"');
+# 5_star, 4_star, 3_star, 2_star, 1_star, 0_star
+'0', '0', '1', '0', '0', '0'
+// expected output:
+// # 5_star, 4_star, 3_star, 2_star, 1_star, 0_star
+// '0', '0', '1', '0', '0', '0'
+
+
+
+
+
+// CALL getStarDistribution('"-7wXZWnKe26iwJY_5z_AAw"');
+# 5_star, 4_star, 3_star, 2_star, 1_star, 0_star
+1, 0, 0, 0, 0, 0
+// expected output:
+// # 5_star, 4_star, 3_star, 2_star, 1_star, 0_star
+// 1, 0, 0, 0, 0, 0
+
+
+
+/* update review */
+// CALL UpdateReviewTextByRid('"3Ta-cyj4Iu8XBAltOrdj6A"', "update", 1);
+// CALL getStarDistribution('"--7PUidqRWpRSpXebiyxTg"');
+# 5_star, 4_star, 3_star, 2_star, 1_star, 0_star
+0, 0, 0, 0, 1, 0
+// expected output:
+// # 5_star, 4_star, 3_star, 2_star, 1_star, 0_star
+// 0, 0, 0, 0, 1, 0
+
+
+
+
+
+/* not exist */
+// CALL getStarDistribution('B100');
+NULL
+// expected:
+// NULL
+
+// CALL getStarDistribution(NULL);
+NULL
+// expected:
+// NULL
