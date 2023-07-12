@@ -19,10 +19,8 @@ CALL SearchBusinessBy('Restaurants; Food; Bubble Tea; Coffee & Tea; Bakeries',
 CALL SearchBusinessBy('Burgers; Fast Food; Sandwiches; Food; Ice Cream & Frozen Yogurt; Restaurants',
  'Sonic Drive-In', 'TN', 'Ashland City');
 CALL SearchBusinessBy(null, null, 'PA', 'Philadelphia');
-CALL SearchBusinessBy(null, null, 'NY', 'New York');
+CALL SearchBusinessBy(null, null, 'IN', NULL);
 CALL SearchBusinessBy(null, null, null, 'New York');
 CALL SearchBusinessBy(null, null, null, null);
 CALL SearchBusinessBy('Korean; Restaurants', null, null, null);
-CALL SearchBusinessBy(NULL, null, 'TX', null);
-CALL SearchBusinessBy('Italian; Restaurants', null, null, 'Tucson');
 CALL SearchBusinessBy('Italian; Restaurants', null, 'AZ', 'Tucson');

@@ -1,0 +1,88 @@
+/****** searchBusiness ******/
+/*** Test insert ******/
+-- Insert a new business record
+// CALL InsertIntoBusiness('"MTSW4McQd7CbVtyjqonnmb"', -73.987, 39.9555052, '8AM-5PM', 1, 'YunShang Noodle', '123 Main St', 'N2L 0E2', NULL, 0, 1);
+1 row(s) affected
+// expected output: 1 row(s) affected
+
+-- Verify the insertion by retrieving the business record
+// CALL GetBusinessByBid('"MTSW4McQd7CbVtyjqonnmb"');
+1 row(s) returned
+"MTSW4McQd7CbVtyjqonnmb"	-73.987	39.9555052	8AM-5PM	YunShang Noodle	Abington Township	PA	123 Main St	N2L 0E2		0	1	
+// expected output: "MTSW4McQd7CbVtyjqonnmb"	-73.987	39.9555052	8AM-5PM	YunShang Noodle	Abington Township	PA	123 Main St	N2L 0E2		0	1
+
+-- Retrieve a business record by bid
+-- Check review count and star
+// CALL GetBusinessByBid('"kfNv-JZpuN6TVNSO6hHdkw"');
+1 row(s) returned
+"kfNv-JZpuN6TVNSO6hHdkw"	-86.0530799	39.90432032	{"Monday":"11:0-21:0","Tuesday":"11:0-21:0","Wednesday":"11:0-21:0","Thursday":"11:0-21:0","Friday":"11:0-21:0","Saturday":"11:0-21:0"}	Hibachi Express	Indianapolis	IN	6625 E 82nd St	46250	4	20	1	Steakhouses; Asian Fusion; Restaurants
+// expected output: "kfNv-JZpuN6TVNSO6hHdkw"	-86.0530799	39.90432032	{"Monday":"11:0-21:0","Tuesday":"11:0-21:0","Wednesday":"11:0-21:0","Thursday":"11:0-21:0","Friday":"11:0-21:0","Saturday":"11:0-21:0"}	Hibachi Express	Indianapolis	IN	6625 E 82nd St	46250	4	20	1	Steakhouses; Asian Fusion; Restaurants
+
+// CALL GetBusinessByBid('"MTSW4McQd7CbVtyjqoe9mw"');
+1 row(s) returned
+"MTSW4McQd7CbVtyjqoe9mw"	-75.1555641	39.9555052	{"Monday":"7:0-20:0","Tuesday":"7:0-20:0","Wednesday":"7:0-20:0","Thursday":"7:0-20:0","Friday":"7:0-21:0","Saturday":"7:0-21:0","Sunday":"7:0-21:0"}	St Honore Pastries	Philadelphia	PA	935 Race St	19107	4	80	1	Restaurants; Food; Bubble Tea; Coffee & Tea; Bakeries
+// expected output: "MTSW4McQd7CbVtyjqoe9mw"	-75.1555641	39.9555052	{"Monday":"7:0-20:0","Tuesday":"7:0-20:0","Wednesday":"7:0-20:0","Thursday":"7:0-20:0","Friday":"7:0-21:0","Saturday":"7:0-21:0","Sunday":"7:0-21:0"}	St Honore Pastries	Philadelphia	PA	935 Race St	19107	4	80	1	Restaurants; Food; Bubble Tea; Coffee & Tea; Bakeries
+
+// CALL GetBusinessByBid(null);
+0 row(s) returned
+// expected output: 0 row(s) returned
+
+-- Search for businesses by category, name, state, and city
+// CALL SearchBusinessBy('Restaurants; Food; Bubble Tea; Coffee & Tea; Bakeries',
+ 'St Honore Pastries', 'PA', 'Philadelphia');
+1 row(s) returned
+"MTSW4McQd7CbVtyjqoe9mw"	-75.1555641	39.9555052	{"Monday":"7:0-20:0","Tuesday":"7:0-20:0","Wednesday":"7:0-20:0","Thursday":"7:0-20:0","Friday":"7:0-21:0","Saturday":"7:0-21:0","Sunday":"7:0-21:0"}	445	St Honore Pastries	935 Race St	19107	4	80	1	445	Philadelphia	PA	"MTSW4McQd7CbVtyjqoe9mw"	Restaurants; Food; Bubble Tea; Coffee & Tea; Bakeries
+// expected output: "MTSW4McQd7CbVtyjqoe9mw"	-75.1555641	39.9555052	{"Monday":"7:0-20:0","Tuesday":"7:0-20:0","Wednesday":"7:0-20:0","Thursday":"7:0-20:0","Friday":"7:0-21:0","Saturday":"7:0-21:0","Sunday":"7:0-21:0"}	445	St Honore Pastries	935 Race St	19107	4	80	1	445	Philadelphia	PA	"MTSW4McQd7CbVtyjqoe9mw"	Restaurants; Food; Bubble Tea; Coffee & Tea; Bakeries
+
+// CALL SearchBusinessBy('Burgers; Fast Food; Sandwiches; Food; Ice Cream & Frozen Yogurt; Restaurants',
+ 'Sonic Drive-In', 'TN', 'Ashland City');
+ 1 row(s) returned
+"CF33F8-E6oudUQ46HnavjQ"	-87.058943	36.269593	{"Monday":"0:0-0:0","Tuesday":"6:0-22:0","Wednesday":"6:0-22:0","Thursday":"6:0-22:0","Friday":"9:0-0:0","Saturday":"9:0-22:0","Sunday":"8:0-22:0"}	12	Sonic Drive-In	615 S Main St	37015	2	6	1	12	Ashland City	TN	"CF33F8-E6oudUQ46HnavjQ"	Burgers; Fast Food; Sandwiches; Food; Ice Cream & Frozen Yogurt; Restaurants
+// expected output: "CF33F8-E6oudUQ46HnavjQ"	-87.058943	36.269593	{"Monday":"0:0-0:0","Tuesday":"6:0-22:0","Wednesday":"6:0-22:0","Thursday":"6:0-22:0","Friday":"9:0-0:0","Saturday":"9:0-22:0","Sunday":"8:0-22:0"}	12	Sonic Drive-In	615 S Main St	37015	2	6	1	12	Ashland City	TN	"CF33F8-E6oudUQ46HnavjQ"	Burgers; Fast Food; Sandwiches; Food; Ice Cream & Frozen Yogurt; Restaurants
+
+// CALL SearchBusinessBy(null, null, 'PA', 'Philadelphia');
+2247 row(s) returned
+\\ top 5 rows:
+'\"_05DcCQmCP5aGnfCnI4r9Q\"', '-75.16891426', '39.9500535', '{\"Monday\":\"7:0-19:0\",\"Tuesday\":\"7:0-19:0\",\"Wednesday\":\"7:0-19:0\",\"Thursday\":\"7:0-19:0\",\"Friday\":\"7:0-19:0\",\"Saturday\":\"8:0-19:0\",\"Sunday\":\"9:0-17:0\"}', '445', 'Capital One Café', '135 S 17th St, Ste A', '19103', '4', '178', '1', '445', 'Philadelphia', 'PA', '\"_05DcCQmCP5aGnfCnI4r9Q\"', 'Desserts; Food; Bakeries; Restaurants\r'
+'\"_0JDs_1DLtLH5XppCbSk_A\"', '-75.14314', '39.948399', '', '445', 'Aromatic House of Kabob', '113 Chestnut St', '19106', '4', '29', '0', '445', 'Philadelphia', 'PA', '\"_0JDs_1DLtLH5XppCbSk_A\"', 'Restaurants; Sports Bars; Bars; Nightlife; American (New); American (Traditional); Event Planning & Services; Caterers\r'
+'\"_3j8rQHUviV55AqsSSzK2w\"', '-75.227645', '39.988611', '{\"Monday\":\"11:0-23:0\",\"Tuesday\":\"11:0-23:0\",\"Wednesday\":\"11:0-23:0\",\"Thursday\":\"11:0-0:0\",\"Friday\":\"11:0-11:15\",\"Saturday\":\"12:0-0:0\",\"Sunday\":\"12:0-22:0\"}', '445', 'Robola Pizza & Grill', '1999 N 52nd St', '19131', '3', '35', '1', '445', 'Philadelphia', 'PA', '\"_3j8rQHUviV55AqsSSzK2w\"', 'Event Planning & Services; Active Life; Golf Lessons; Golf; Barbeque; Fitness & Instruction; Hotels; Restaurants; Hotels & Travel; Golf Cart Rentals\r'
+'\"_4E8aECY-679SxLH4R0Z3g\"', '-75.2332298', '39.945919', '', '445', 'Amoroso\'s', '845 S 55th St', '19143', '3', '5', '0', '445', 'Philadelphia', 'PA', '\"_4E8aECY-679SxLH4R0Z3g\"', 'Pubs; Bars; Nightlife; Cocktail Bars; Restaurants; Sandwiches; American (Traditional); Grill Services; Local Services\r'
+'\"_5j1jqZfayk8QiOdpclF1Q\"', '-75.1249', '40.03851', '{\"Monday\":\"11:0-21:30\",\"Tuesday\":\"11:0-22:30\",\"Wednesday\":\"11:0-22:30\",\"Thursday\":\"11:0-22:30\",\"Friday\":\"11:0-22:30\",\"Saturday\":\"11:0-23:30\",\"Sunday\":\"12:0-23:30\"}', '445', 'Bravo\'s Pizza Seafood House', '5734 N 2nd St', '19120', '2', '12', '1', '445', 'Philadelphia', 'PA', '\"_5j1jqZfayk8QiOdpclF1Q\"', 'Sandwiches; Restaurants; American (New)\r'
+\\ expected top 5 rows:
+'\"_05DcCQmCP5aGnfCnI4r9Q\"', '-75.16891426', '39.9500535', '{\"Monday\":\"7:0-19:0\",\"Tuesday\":\"7:0-19:0\",\"Wednesday\":\"7:0-19:0\",\"Thursday\":\"7:0-19:0\",\"Friday\":\"7:0-19:0\",\"Saturday\":\"8:0-19:0\",\"Sunday\":\"9:0-17:0\"}', '445', 'Capital One Café', '135 S 17th St, Ste A', '19103', '4', '178', '1', '445', 'Philadelphia', 'PA', '\"_05DcCQmCP5aGnfCnI4r9Q\"', 'Desserts; Food; Bakeries; Restaurants\r'
+'\"_0JDs_1DLtLH5XppCbSk_A\"', '-75.14314', '39.948399', '', '445', 'Aromatic House of Kabob', '113 Chestnut St', '19106', '4', '29', '0', '445', 'Philadelphia', 'PA', '\"_0JDs_1DLtLH5XppCbSk_A\"', 'Restaurants; Sports Bars; Bars; Nightlife; American (New); American (Traditional); Event Planning & Services; Caterers\r'
+'\"_3j8rQHUviV55AqsSSzK2w\"', '-75.227645', '39.988611', '{\"Monday\":\"11:0-23:0\",\"Tuesday\":\"11:0-23:0\",\"Wednesday\":\"11:0-23:0\",\"Thursday\":\"11:0-0:0\",\"Friday\":\"11:0-11:15\",\"Saturday\":\"12:0-0:0\",\"Sunday\":\"12:0-22:0\"}', '445', 'Robola Pizza & Grill', '1999 N 52nd St', '19131', '3', '35', '1', '445', 'Philadelphia', 'PA', '\"_3j8rQHUviV55AqsSSzK2w\"', 'Event Planning & Services; Active Life; Golf Lessons; Golf; Barbeque; Fitness & Instruction; Hotels; Restaurants; Hotels & Travel; Golf Cart Rentals\r'
+'\"_4E8aECY-679SxLH4R0Z3g\"', '-75.2332298', '39.945919', '', '445', 'Amoroso\'s', '845 S 55th St', '19143', '3', '5', '0', '445', 'Philadelphia', 'PA', '\"_4E8aECY-679SxLH4R0Z3g\"', 'Pubs; Bars; Nightlife; Cocktail Bars; Restaurants; Sandwiches; American (Traditional); Grill Services; Local Services\r'
+'\"_5j1jqZfayk8QiOdpclF1Q\"', '-75.1249', '40.03851', '{\"Monday\":\"11:0-21:30\",\"Tuesday\":\"11:0-22:30\",\"Wednesday\":\"11:0-22:30\",\"Thursday\":\"11:0-22:30\",\"Friday\":\"11:0-22:30\",\"Saturday\":\"11:0-23:30\",\"Sunday\":\"12:0-23:30\"}', '445', 'Bravo\'s Pizza Seafood House', '5734 N 2nd St', '19120', '2', '12', '1', '445', 'Philadelphia', 'PA', '\"_5j1jqZfayk8QiOdpclF1Q\"', 'Sandwiches; Restaurants; American (New)\r'
+
+
+// CALL SearchBusinessBy(null, null, 'NY', 'New York');
+1569 row(s) returned
+"_-eYjGpe71Y0kJYUJxYV4Q"	-86.11976856	39.65081629	{"Monday":"10:0-23:0","Tuesday":"10:0-23:0","Wednesday":"10:0-23:0","Thursday":"10:0-23:0","Friday":"10:0-23:0","Saturday":"10:0-23:0","Sunday":"10:0-23:0"}	272	Little Caesars Pizza	2364 E Stop 11 Rd	46227	2	8	1	272	Indianapolis	IN	"_-eYjGpe71Y0kJYUJxYV4Q"	Korean; Food; Restaurants; Grocery; Specialty Food; Seafood Markets; Food Court
+"_3m2qyCqx2pnDNyo5vYM3g"	-86.2379999	39.9477453	{"Monday":"0:0-0:0","Tuesday":"11:0-21:0","Wednesday":"11:0-21:0","Thursday":"11:0-21:0","Friday":"11:0-20:0","Saturday":"11:0-22:0","Sunday":"11:0-21:0"}	691	Stone Creek Zionsville	4450 Weston Pointe Dr, Ste 150	46077	4	206	1	691	Zionsville	IN	"_3m2qyCqx2pnDNyo5vYM3g"	Pizza; Breakfast & Brunch; Modern European; Restaurants; Italian
+"_6Jy0ZH6nqh2k2iefGfYBA"	-86.104728	39.781155	{"Monday":"9:0-21:0","Tuesday":"9:0-21:0","Wednesday":"9:0-21:0","Thursday":"9:0-21:0","Friday":"9:0-21:0","Saturday":"9:0-21:0","Sunday":"9:0-21:0"}	272	Panaderia Oaxaquena Bakery	3617 E 10th St	46201	5	10	1	272	Indianapolis	IN	"_6Jy0ZH6nqh2k2iefGfYBA"	Italian; Sandwiches; Pizza; Restaurants
+"_78BRhM7B3sNy8OvCNgBPw"	-86.1452159	39.9284284	{"Monday":"10:30-22:0","Tuesday":"10:30-22:0","Wednesday":"10:30-22:0","Thursday":"10:30-22:0","Friday":"10:30-22:0","Saturday":"10:30-22:30","Sunday":"11:0-22:0"}	272	China Inn	9613 N College Ave	46280	4	37	1	272	Indianapolis	IN	"_78BRhM7B3sNy8OvCNgBPw"	Breakfast & Brunch; Restaurants
+"_8GPLch3GAnhOmymvG947w"	-86.3225604	39.8157028	{"Tuesday":"17:0-21:0","Wednesday":"11:0-21:0","Thursday":"11:0-21:0","Friday":"11:0-22:0","Saturday":"8:0-22:0","Sunday":"10:0-15:0"}	113	Lola's Bowl and Bistro	9045 Crawfordsville Rd	46234	4	28	0	113	Clermont	IN	"_8GPLch3GAnhOmymvG947w"	Seafood; Restaurants; Nightlife; Bars; Asian Fusion; Chinese
+// expected top 5 rows:
+"_-eYjGpe71Y0kJYUJxYV4Q"	-86.11976856	39.65081629	{"Monday":"10:0-23:0","Tuesday":"10:0-23:0","Wednesday":"10:0-23:0","Thursday":"10:0-23:0","Friday":"10:0-23:0","Saturday":"10:0-23:0","Sunday":"10:0-23:0"}	272	Little Caesars Pizza	2364 E Stop 11 Rd	46227	2	8	1	272	Indianapolis	IN	"_-eYjGpe71Y0kJYUJxYV4Q"	Korean; Food; Restaurants; Grocery; Specialty Food; Seafood Markets; Food Court
+"_3m2qyCqx2pnDNyo5vYM3g"	-86.2379999	39.9477453	{"Monday":"0:0-0:0","Tuesday":"11:0-21:0","Wednesday":"11:0-21:0","Thursday":"11:0-21:0","Friday":"11:0-20:0","Saturday":"11:0-22:0","Sunday":"11:0-21:0"}	691	Stone Creek Zionsville	4450 Weston Pointe Dr, Ste 150	46077	4	206	1	691	Zionsville	IN	"_3m2qyCqx2pnDNyo5vYM3g"	Pizza; Breakfast & Brunch; Modern European; Restaurants; Italian
+"_6Jy0ZH6nqh2k2iefGfYBA"	-86.104728	39.781155	{"Monday":"9:0-21:0","Tuesday":"9:0-21:0","Wednesday":"9:0-21:0","Thursday":"9:0-21:0","Friday":"9:0-21:0","Saturday":"9:0-21:0","Sunday":"9:0-21:0"}	272	Panaderia Oaxaquena Bakery	3617 E 10th St	46201	5	10	1	272	Indianapolis	IN	"_6Jy0ZH6nqh2k2iefGfYBA"	Italian; Sandwiches; Pizza; Restaurants
+"_78BRhM7B3sNy8OvCNgBPw"	-86.1452159	39.9284284	{"Monday":"10:30-22:0","Tuesday":"10:30-22:0","Wednesday":"10:30-22:0","Thursday":"10:30-22:0","Friday":"10:30-22:0","Saturday":"10:30-22:30","Sunday":"11:0-22:0"}	272	China Inn	9613 N College Ave	46280	4	37	1	272	Indianapolis	IN	"_78BRhM7B3sNy8OvCNgBPw"	Breakfast & Brunch; Restaurants
+"_8GPLch3GAnhOmymvG947w"	-86.3225604	39.8157028	{"Tuesday":"17:0-21:0","Wednesday":"11:0-21:0","Thursday":"11:0-21:0","Friday":"11:0-22:0","Saturday":"8:0-22:0","Sunday":"10:0-15:0"}	113	Lola's Bowl and Bistro	9045 Crawfordsville Rd	46234	4	28	0	113	Clermont	IN	"_8GPLch3GAnhOmymvG947w"	Seafood; Restaurants; Nightlife; Bars; Asian Fusion; Chinese
+
+
+// CALL SearchBusinessBy(null, null, null, 'New York');
+0 row(s) returned
+// expected output: 0 row(s) returned
+
+// CALL SearchBusinessBy(null, null, null, null);
+19755 row(s) returned
+// expected output: 19755 row(s) returned
+
+// CALL SearchBusinessBy('Korean; Restaurants', null, null, null);
+50 row(s) returned
+// expected output: 50 row(s) returned
+
+// CALL SearchBusinessBy('Italian; Restaurants', null, 'AZ', 'Tucson');
+16 row(s) returned
+// expected output: 16 row(s) returned
