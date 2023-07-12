@@ -9,5 +9,5 @@ Milestone 2
 Name          Duty
 Kebing Liu    Write Authentication, Cool, update review and test cases
 Henry Tian    Write searchbusiness, leavereview, and business_module(server/client-side)
-Zhongyi Guo   Write database schema, assumption and ER diagram
+Zhongyi Guo   Write database schema, import production data and test production database 
 Steven Ji     Produce production dataset, add indexes for the tables, and write recommendation model
