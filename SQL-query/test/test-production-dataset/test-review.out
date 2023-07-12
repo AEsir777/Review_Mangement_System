@@ -1,0 +1,212 @@
+/****** review ******/
+/*** Test the insertion feature ***/
+// CALL LeaveReview('"-0epFLgYq2C1Jo_W4FOBKw"',
+// '"uEgYr-Umi76NKTrMeDQq1Q"', 'This is a great business.');
+# rid
+qDSQceCvmyHNu_usRSpY7f
+// expected output:
+// # rid
+// some id
+
+
+// CALL LeaveReview('"-0TffRSXXIlBYVbb5AwfTg"',
+//  '"uEgYr-Umi76NKTrMeDQq1Q"', 'This is a great business.');
+# rid
+tCFVY8j69AN_QYJjVDN689
+// expected output:
+// # rid
+// some id
+
+// CALL LeaveReview('"-1MhPXk1FglglUAmuPLIGg"',
+//  '"uEgYr-Umi76NKTrMeDQq1Q"', null);
+# rid
+997w_nJ6I7OVADOAVpNJGF
+// expected output:
+// # rid
+// some id
+
+/* fail cases - should not be able to add */
+// CALL LeaveReview(null, '"uEgYr-Umi76NKTrMeDQq1Q"', 'This is a great business x3.');
+Error Code: 1048. Column 'bid' cannot be null
+// expected: 
+// fail
+
+CALL LeaveReview('not exist', 'not exist', 'This is a great business x3.');
+Error Code: 1452. Cannot add or update a child row: a foreign key constraint fails (`cs348`.`reviewwith`, CONSTRAINT `reviewwith_ibfk_1` FOREIGN KEY (`bid`) REFERENCES `business` (`bid`))
+// expected: 
+// fail
+
+/* get review - start with RID */
+// CALL GetReviewByRid('"3Ta-cyj4Iu8XBAltOrdj6A"');
+# rid, date, text, stars, cool
+"3Ta-cyj4Iu8XBAltOrdj6A", 2011-02-17, update, 1, 0
+// expected output:
+// # rid, date, text, stars, cool
+// "3Ta-cyj4Iu8XBAltOrdj6A", 2011-02-17, update, 1, 0
+
+
+// CALL GetReviewByRid('"jNwGwhrvj85SrR96c-Y8Tw"');
+# rid, date, text, stars, cool
+"jNwGwhrvj85SrR96c-Y8Tw", 2014-08-18, We went to IndeBlue due to its great proximity to the Walnut St. theaters and based on other's reviews...and we were not disappointed. The food was delicious! We had the flash fried spinach and naan pizza as appetizers and the tastes were spectacular. Then we had a basil chicken skewer and a lamb rogan josh which were also full of flavor and very filling. The atmosphere, staff and location were all excellent. I have already recommended it to several friends and will definitely go back., 5, 2
+// expected output:
+// # rid, date, text, stars, cool
+// "jNwGwhrvj85SrR96c-Y8Tw", 2014-08-18, We went to IndeBlue due to its great proximity to the Walnut St. theaters and based on other's reviews...and we were not disappointed. The food was delicious! We had the flash fried spinach and naan pizza as appetizers and the tastes were spectacular. Then we had a basil chicken skewer and a lamb rogan josh which were also full of flavor and very filling. The atmosphere, staff and location were all excellent. I have already recommended it to several friends and will definitely go back., 5, 2
+
+
+
+// CALL GetReviewByRid('"XKLhk03jCPnDiRQk1GzOVA"');
+# rid, date, text, stars, cool
+"XKLhk03jCPnDiRQk1GzOVA", 2013-11-08, We were in this town today Geocaching and looking for lunch.  Great chicken salad sandwhich and great service., 5, 0
+// expected:
+// # rid, date, text, stars, cool
+// "XKLhk03jCPnDiRQk1GzOVA", 2013-11-08, We were in this town today Geocaching and looking for lunch.  Great chicken salad sandwhich and great service., 5, 0
+
+
+// CALL GetReviewByRid(null);
+null
+// expected:
+// null
+
+
+/* get review - bid */
+// CALL GetReviewByBid('"--7PUidqRWpRSpXebiyxTg"');
+# text
+update
+// expected output:
+// # text
+// update
+
+
+
+// CALL GetReviewByBid('"-0TffRSXXIlBYVbb5AwfTg"');
+# text
+We went to IndeBlue due to its great proximity to the Walnut St. theaters and based on other's reviews...and we were not disappointed. The food was delicious! We had the flash fried spinach and naan pizza as appetizers and the tastes were spectacular. Then we had a basil chicken skewer and a lamb rogan josh which were also full of flavor and very filling. The atmosphere, staff and location were all excellent. I have already recommended it to several friends and will definitely go back.
+This is a great business.
+// expected output:
+// # text
+// We went to IndeBlue due to its great proximity to the Walnut St. theaters and based on other's reviews...and we were not disappointed. The food was delicious! We had the flash fried spinach and naan pizza as appetizers and the tastes were spectacular. Then we had a basil chicken skewer and a lamb rogan josh which were also full of flavor and very filling. The atmosphere, staff and location were all excellent. I have already recommended it to several friends and will definitely go back.
+// This is a great business.
+
+
+// CALL GetReviewByBid('"-0epFLgYq2C1Jo_W4FOBKw"');
+# text
+We were in this town today Geocaching and looking for lunch.  Great chicken salad sandwhich and great service.
+This is a great business.
+This is a great business.
+// expected:
+// # text
+// We were in this town today Geocaching and looking for lunch.  Great chicken salad sandwhich and great service.
+// This is a great business.
+// This is a great business.
+
+
+CALL GetReviewByBid('B100');
+NULL
+// expected: 
+// NULL
+
+
+CALL GetReviewByBid(null);
+NULL
+// expected: 
+// NULL
+
+
+
+
+/* update review */
+CALL UpdateReviewTextByRid('"3Ta-cyj4Iu8XBAltOrdj6A"',
+ "update1", 1);
+ 1 row(s) affected
+// expected:
+// 1 row(s) affected
+
+
+
+/* test if stars gets updated in Business*/
+CALL GetBusinessByBid('"--7PUidqRWpRSpXebiyxTg"');
+null
+// expected:
+// NULL
+
+CALL UpdateReviewTextByRid('R900', "3", 1);
+0 row(s) affected
+// expected:
+// 0 row(s) affected
+CALL UpdateReviewTextByRid('R1', "update", null);
+ 0 row(s) affected
+// expected:
+// 0 row(s) affected
+
+
+/* render review */
+CALL GetReviewDetails('"3Ta-cyj4Iu8XBAltOrdj6A"');
+
+CALL GetReviewDetails('"jNwGwhrvj85SrR96c-Y8Tw"');
+
+/* not exist case */
+// CALL GetReviewDetails('R300');
+NULL
+// expected: 
+// NULL
+
+
+// CALL GetReviewDetails(null);
+NULL
+// expected: 
+// NULL
+
+/* getRidByBid */
+Call GetRidByBid ('"--7PUidqRWpRSpXebiyxTg"');
+# rid, date, text, stars, cool, name, uid
+"3Ta-cyj4Iu8XBAltOrdj6A", 2011-02-17, update1, 1, 0, Chuck, "uEgYr-Umi76NKTrMeDQq1Q"
+// expected output:
+# rid, date, text, stars, cool, name, uid
+"3Ta-cyj4Iu8XBAltOrdj6A", 2011-02-17, update1, 1, 0, Chuck, "uEgYr-Umi76NKTrMeDQq1Q"
+
+
+Call GetRidByBid ('"-0TffRSXXIlBYVbb5AwfTg"');
+# rid, date, text, stars, cool, name, uid
+"jNwGwhrvj85SrR96c-Y8Tw", 2014-08-18, We went to IndeBlue due to its great proximity to the Walnut St. theaters and based on other's reviews...and we were not disappointed. The food was delicious! We had the flash fried spinach and naan pizza as appetizers and the tastes were spectacular. Then we had a basil chicken skewer and a lamb rogan josh which were also full of flavor and very filling. The atmosphere, staff and location were all excellent. I have already recommended it to several friends and will definitely go back., 5, 2, Steve, "1xzVJtkjnUUYsFJ8xRMxYg"
+// expected output:
+# rid, date, text, stars, cool, name, uid
+"jNwGwhrvj85SrR96c-Y8Tw", 2014-08-18, We went to IndeBlue due to its great proximity to the Walnut St. theaters and based on other's reviews...and we were not disappointed. The food was delicious! We had the flash fried spinach and naan pizza as appetizers and the tastes were spectacular. Then we had a basil chicken skewer and a lamb rogan josh which were also full of flavor and very filling. The atmosphere, staff and location were all excellent. I have already recommended it to several friends and will definitely go back., 5, 2, Steve, "1xzVJtkjnUUYsFJ8xRMxYg"
+
+
+
+
+/* DELETE review */
+/* not exist case */
+CALL DeleteReview ('R@');
+NULL
+// expected:NULL
+
+CALL DeleteReview ('R@');
+NULL
+// expected:NULL
+
+
+CALL GetReviewDetails('"-QGsoLVpuJlduGCcJX6-NQ"');
+# rid, date, text, stars, cool, name, uid
+"-QGsoLVpuJlduGCcJX6-NQ", 2014-06-10, My family and I order from them very often, China Dragon is our go to place for Asian cuisine. They are always pleasant in person and on the phone, and the prices are by far the best around. Their delivery always comes a few minutes before they say it will and most importantly the food is YUMMY! We love their pork fried rice, egg rolls, shrimp toast, and the hot and sour soup is a must try! Tonight we tried their Pad Thai for the first time and it was to die for!! 
+
+I honestly can't believe they don't have more reviews on here! Try them out, you won't be disappointed!!, 4, 0, Kristin, "PcYMJJCbvtu3roNBdPuZxQ"
+
+// expected:
+# rid, date, text, stars, cool, name, uid
+"-QGsoLVpuJlduGCcJX6-NQ", 2014-06-10, My family and I order from them very often, China Dragon is our go to place for Asian cuisine. They are always pleasant in person and on the phone, and the prices are by far the best around. Their delivery always comes a few minutes before they say it will and most importantly the food is YUMMY! We love their pork fried rice, egg rolls, shrimp toast, and the hot and sour soup is a must try! Tonight we tried their Pad Thai for the first time and it was to die for!! 
+
+I honestly can't believe they don't have more reviews on here! Try them out, you won't be disappointed!!, 4, 0, Kristin, "PcYMJJCbvtu3roNBdPuZxQ"
+
+
+
+CALL DeleteReview('"-QGsoLVpuJlduGCcJX6-NQ"');
+1 rows affected
+// expected: 
+// 1 rows affected
+
+
+CALL GetReviewDetails('"-QGsoLVpuJlduGCcJX6-NQ"');
+NULL
+// expected:
+NULL
