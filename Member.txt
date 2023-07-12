@@ -8,6 +8,6 @@ Steven Ji     Produce sample and production dataset and translate relation model
 Milestone 2
 Name          Duty
 Kebing Liu    Implement front/backend for leave/delete review/star distribution/like comment, write SQL for follow and test sample datasets
-Henry Tian    Write searchbusiness, leavereview, and business_module(server/client-side)
+Henry Tian    Write search/search result pages, profile pages, pagination, navbar(server and client-side), test SQL optimization performance
 Zhongyi Guo   Write SQL code to create and test and triggers, import production data and test production database 
 Steven Ji     Produce production dataset, add indexes for the tables, and write recommendation model
