@@ -105,6 +105,10 @@ POST ```/api/review/:rid/cool```
 - [x] Add-friend UI (button) - Henry
 
 ## TODO
+- [ ] Fix the UI of the star distribution - Kebing
+- [ ] Debug the average star - Kebing
+- [ ] Fix the UI of the review in production database - Kebing
+- [ ] Use redis to cache the review written by the user itself - Kebing
 - [ ] Add photo for Search result page - Henry
 - [ ] friend list on the profile page
 - [ ] add friend function 
