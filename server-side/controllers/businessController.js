@@ -7,7 +7,8 @@ class businessController {
             res.json({
                 business: req.business,
                 reviews: reviews,
-                photo: req.photo
+                photo: req.photo,
+                uid: req.user.uid
                 // address .... //
             });
         })
