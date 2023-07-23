@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../styles/main.module.css';
+import Navbar from '../components/Navbar';
 
 function GoogleLikePage() {
     const [names, setName] = useState("");
@@ -30,8 +31,10 @@ function GoogleLikePage() {
     };
 
     return (
-        <div className={styles.container}>
+        <div>
+            <Navbar> </Navbar>
 
+            <div className={styles.container}>
                 <h1 className={styles.title}>{"YEAH Search"}</h1>
                 <form onSubmit={handleSubmit} className={styles.searchForm}>
                     <div className={styles.search}>
@@ -46,7 +49,9 @@ function GoogleLikePage() {
 
             {/* <img src="/google-logo.png" alt="Google Logo" className={styles.logo} /> */}
                 
+            </div>
         </div>
+        
     );
 }
 

@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router';
 import Review from '../../components/Review';
+import Navbar from '../../components/Navbar';
+import styles from '../../styles/Review.module.css';
 
 export default function ViewReviewDetail() {
     const router = useRouter();
@@ -7,11 +9,14 @@ export default function ViewReviewDetail() {
 
     return (
         <div>
-            {router.isReady ? (
-                <Review rid={rid} canEdit={true}> </Review>
-            ) : (
-                <p>Loading...</p>
-            )}
+            <Navbar> </Navbar>
+            <div className={styles.centerReview}>
+                {router.isReady ? (
+                    <Review rid={rid} canEdit={true} showBus={true}> </Review>
+                ) : (
+                    <p>Loading...</p>
+                )}
+            </div>
         </div>
     );
 }

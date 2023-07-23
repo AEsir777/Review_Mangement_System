@@ -48,10 +48,17 @@ const Navbar = () => {
             fetchownuid();
         }, [router.isReady]);
 
+        const handleLogout = async () => {
+            const response = await axios.delete('http://localhost:3000/api/auth/logout', {withCredentials: true});
+
+            alert("You succesfully logged out!")
+            // Handle response or redirect to another page
+            router.push("/login");
+        }
         
 
         const url = "/profile/" + uid + "?self=true";
-        console.log(url);
+        // console.log(url);
 
     return (
         <nav className={styles.navbar}>
@@ -66,7 +73,7 @@ const Navbar = () => {
                     <button type="submit" className={styles.searchButton}>Search</button>
                 </form>
                 <Link href= {url} className={styles.logoutlink}>Profile</Link>
-                <Link href="/logout" className={styles.logoutlink}>Logout</Link>
+                <Link href="\Logout" onClick={handleLogout} className={styles.logoutlink}>Logout</Link>
 
             </div>
         </nav>

@@ -2,12 +2,11 @@ import pool from "../config/db.js";
 
 class businessModel {
     static getAllReviewsByBid(bid) {
-        let catbid = '%' + bid + '%';
         return new Promise((resolve, reject) => {
             pool.query(
                 `SELECT rid
                 FROM reviewwith
-                WHERE bid LIKE ?`, [catbid], (err, results) => {
+                WHERE bid LIKE ?`, [bid], (err, results) => {
                     if (err) {
                         return reject(err);
                     }
@@ -21,12 +20,11 @@ class businessModel {
     }
 
     static getPhotoByBid(bid) {
-        let catbid = '%' + bid + '%';
         return new Promise((resolve, reject) => {
             pool.query(
                 `SELECT pid, caption, label
                 FROM Photo
-                WHERE bid LIKE ?`, [catbid], (err, results) => {
+                WHERE bid LIKE ?`, [bid], (err, results) => {
                     if (err) {
                         return reject(err);
                     }

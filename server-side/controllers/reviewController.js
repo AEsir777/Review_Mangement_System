@@ -2,10 +2,9 @@ import reviewModel from '../models/reviewModel.js';
 
 class reviewController {
     static renderReview(req, res, next) {
-        console.log("rendering review");
         reviewModel.getReviewByRid(req.params.rid).then(review => {
             reviewModel.isCooled(req.params.rid, req.user.uid).then(isCooled => {
-                console.log("iscooled: ", isCooled);
+                console.log("rendering review", review.rid, "of business", review.bid);
                 res.json({
                     isCooled: isCooled,
                     review: review,

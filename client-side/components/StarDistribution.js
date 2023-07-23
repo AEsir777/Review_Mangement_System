@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import LinearProgress from '@mui/material/LinearProgress';
+import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
+import { styled } from '@mui/material/styles';
 import axios from 'axios';
 import styles from '../styles/StarDistribution.module.css';
 import { Box, Rating, Typography } from '@mui/material';
@@ -13,7 +14,6 @@ const StarDistribution = (props) => {
     const fetchDistribution = async () => {
         try {
             const response = await axios.get(`http://localhost:3000/api/business/${props.bid}/starDistribution`);
-            console.log(response.data);
             setStarDistribution([response.data.starDistribution.fiveStar, response.data.starDistribution.fourStar, 
               response.data.starDistribution.threeStar, response.data.starDistribution.twoStar,
               response.data.starDistribution.oneStar, response.data.starDistribution.zeroStar]);
@@ -27,6 +27,17 @@ const StarDistribution = (props) => {
     fetchDistribution();
 }, []);
 
+const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+  height: 10,
+  borderRadius: 5,
+  [`&.${linearProgressClasses.colorPrimary}`]: {
+    backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+  },
+  [`& .${linearProgressClasses.bar}`]: {
+    borderRadius: 5,
+    backgroundColor: theme.palette.mode === 'light' ? '#34cea9' : '#308fe8',
+  },
+}));
 
   return (
     <div>
@@ -49,13 +60,13 @@ const StarDistribution = (props) => {
               <div key={5 - index} className={styles.star}>
                 <Box display="flex" alignItems="center">
                   <Box>
-                  <Typography class={styles.text}>{5 - index} stars</Typography>
+                  <Typography className={styles.text}>{5 - index} stars</Typography>
                   </Box>
                   <Box width="80%">
-                    <LinearProgress variant="determinate" className={styles.bar} value={Math.round(count / totalReview * 100)} />
+                  <BorderLinearProgress variant="determinate" value={Math.round(count / totalReview * 100)} className={styles.bar} />
                   </Box>
                   <Box>
-                    <Typography class={styles.text}>{Math.round(count / totalReview * 100)}%</Typography>
+                    <Typography className={styles.text}>{Math.round(count / totalReview * 100)}%</Typography>
                   </Box>
                 </Box>
              </div>
