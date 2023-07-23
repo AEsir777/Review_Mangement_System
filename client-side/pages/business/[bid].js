@@ -10,6 +10,7 @@ import StarDistribution from '../../components/StarDistribution';
 
 export default function Business() {
   axios.defaults.withCredentials = true;
+  const [showOwnReviews, setShowOwnReviews] = useState(false); // State for checkbox
   const router = useRouter();
   const { bid } = router.query;
   const [business, setBusiness] = useState(null);
@@ -18,6 +19,7 @@ export default function Business() {
   const [newText, setNewText] = useState("");
   const [newStars, setNewStars] = useState(3);
   const [photo, setPhoto] = useState(null);
+  const [uid, setUid] = useState(null);
 
 
   useEffect(() => {
@@ -28,6 +30,7 @@ export default function Business() {
           setBusiness(res.data.business);
           setAllreviews(res.data.reviews);
           setPhoto(res.data.photo);
+          setUid(res.data.uid);
         }
       } catch (error) {
         console.error(error);
@@ -130,13 +133,30 @@ export default function Business() {
                 </div>
               </div>
             </div>
+            
+            <div className={styles.centeredInput} >
+              <input
+                type="checkbox" 
+                checked={showOwnReviews}
+                onChange={(e) => setShowOwnReviews(e.target.checked)}
+              />
+              <label>Show Only My Reviews</label>
+            </div>
+            
 
             <div className={styles.reviews}>
-              {allreviews && allreviews.map((review, index) => (
-                <div key={index} className={styles.review}>
-                  <Review rid={review.rid} canEdit={false} showBus={false}> </Review>
-                </div>
-              ))}
+              {allreviews && allreviews.map((review, index) => {
+                // Add filtering based on showOwnReviews state
+                if ( !showOwnReviews || review.uid === uid) {
+                  return (
+                    <div key={index} className={styles.review}>
+                      <Review rid={review.rid} canEdit={false} showBus={false} />
+                    </div>
+                  );
+                } else {
+                  return null; // Return null for reviews that don't match the filter
+                }
+              })}
             </div>
           </main>
         </div>

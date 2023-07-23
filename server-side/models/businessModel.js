@@ -4,7 +4,7 @@ class businessModel {
     static getAllReviewsByBid(bid) {
         return new Promise((resolve, reject) => {
             pool.query(
-                `SELECT rid
+                `SELECT rid, uid
                 FROM reviewwith
                 WHERE bid LIKE ?`, [bid], (err, results) => {
                     if (err) {
