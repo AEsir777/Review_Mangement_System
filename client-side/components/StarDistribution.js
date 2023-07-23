@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import LinearProgress from '@mui/material/LinearProgress';
+import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
+import { styled } from '@mui/material/styles';
 import axios from 'axios';
 import styles from '../styles/StarDistribution.module.css';
 import { Box, Rating, Typography } from '@mui/material';
@@ -26,6 +27,17 @@ const StarDistribution = (props) => {
     fetchDistribution();
 }, []);
 
+const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+  height: 10,
+  borderRadius: 5,
+  [`&.${linearProgressClasses.colorPrimary}`]: {
+    backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+  },
+  [`& .${linearProgressClasses.bar}`]: {
+    borderRadius: 5,
+    backgroundColor: theme.palette.mode === 'light' ? '#34cea9' : '#308fe8',
+  },
+}));
 
   return (
     <div>
@@ -51,7 +63,7 @@ const StarDistribution = (props) => {
                   <Typography className={styles.text}>{5 - index} stars</Typography>
                   </Box>
                   <Box width="80%">
-                    <LinearProgress variant="determinate" className={styles.bar} value={Math.round(count / totalReview * 100)} />
+                  <BorderLinearProgress variant="determinate" value={Math.round(count / totalReview * 100)} className={styles.bar} />
                   </Box>
                   <Box>
                     <Typography className={styles.text}>{Math.round(count / totalReview * 100)}%</Typography>

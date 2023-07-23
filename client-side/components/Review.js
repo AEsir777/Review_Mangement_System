@@ -145,7 +145,7 @@ export default function Review(props) {
 
                 </div>
             ) : (
-                <p>Loading...</p>
+                <p>Login To check Review...</p>
             )}
         </div>
     );
