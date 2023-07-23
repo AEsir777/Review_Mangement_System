@@ -13,7 +13,6 @@ const StarDistribution = (props) => {
     const fetchDistribution = async () => {
         try {
             const response = await axios.get(`http://localhost:3000/api/business/${props.bid}/starDistribution`);
-            console.log(response.data);
             setStarDistribution([response.data.starDistribution.fiveStar, response.data.starDistribution.fourStar, 
               response.data.starDistribution.threeStar, response.data.starDistribution.twoStar,
               response.data.starDistribution.oneStar, response.data.starDistribution.zeroStar]);
@@ -49,13 +48,13 @@ const StarDistribution = (props) => {
               <div key={5 - index} className={styles.star}>
                 <Box display="flex" alignItems="center">
                   <Box>
-                  <Typography class={styles.text}>{5 - index} stars</Typography>
+                  <Typography className={styles.text}>{5 - index} stars</Typography>
                   </Box>
                   <Box width="80%">
                     <LinearProgress variant="determinate" className={styles.bar} value={Math.round(count / totalReview * 100)} />
                   </Box>
                   <Box>
-                    <Typography class={styles.text}>{Math.round(count / totalReview * 100)}%</Typography>
+                    <Typography className={styles.text}>{Math.round(count / totalReview * 100)}%</Typography>
                   </Box>
                 </Box>
              </div>

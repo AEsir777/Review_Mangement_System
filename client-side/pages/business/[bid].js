@@ -134,7 +134,7 @@ export default function Business() {
             <div className={styles.reviews}>
               {allreviews && allreviews.map((review, index) => (
                 <div key={index} className={styles.review}>
-                  <Review rid={review.rid} canEdit={false}> </Review>
+                  <Review rid={review.rid} canEdit={false} showBus={false}> </Review>
                 </div>
               ))}
             </div>

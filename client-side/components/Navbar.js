@@ -51,7 +51,7 @@ const Navbar = () => {
         
 
         const url = "/profile/" + uid + "?self=true";
-        console.log(url);
+        // console.log(url);
 
     return (
         <nav className={styles.navbar}>

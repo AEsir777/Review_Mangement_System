@@ -86,23 +86,28 @@ export default function Review(props) {
 
     const handleCheckDetails = async (e) => {
         try {
-            router.push(`/review/${review.rid}`);
+            await router.push(`/review/${review.rid}`);
         } catch (error) {
             console.error(error);
         }
     }
 
-    console.log(rid);
-    console.log(uid);
-    console.log(selfUid);
+    const handleCheckBusiness = async(e) => {
+        try {
+            console.log(`${review.bid}`);
+            await router.push(`/business/${review.bid}`);
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} onClick={props.canEdit ? null : handleCheckDetails }>
             {review ? (
                 <div>
-                    { (! props.canEdit) ? (
-                        <button className={styles.buttonCheckDetails} onClick={handleCheckDetails}>
-                            Check Details
+                    { props.showBus ? (
+                        <button className={styles.buttonCheckDetails} onClick={handleCheckBusiness}>
+                            Check Business
                         </button>
                     ) : (
                         <p></p>
@@ -110,7 +115,7 @@ export default function Review(props) {
                     <p> Written at {date} by <Link href={`/profile/${uid}?self=${uid==selfUid}`} className={styles.underline}> {review.name}</Link> </p>
                     
                     {/* <span className={styles.underline}>{review.name}</span> */}
-                    <h2 className={styles.title}>{review.text}</h2>
+                    <span className={styles.title}>{review.text}</span>
                     <div className={styles.stars}>
                     <Rating name="read-only" value={review.stars} readOnly />
                     </div>

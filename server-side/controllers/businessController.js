@@ -38,7 +38,7 @@ class businessController {
         .catch(err => {
             console.log(err);  
             res.status(500).send('An error occurred.');
-        })
+        });
     }
 
     static leaveReview(req, res, next) {

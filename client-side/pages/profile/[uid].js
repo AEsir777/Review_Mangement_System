@@ -35,10 +35,6 @@ export default function UserProfile() {
   }, [router.isReady, uuid]);
 
 
-  console.log(user);
-  console.log(self);
-
-
   if (!user) {
     return 'Loading...';
   }

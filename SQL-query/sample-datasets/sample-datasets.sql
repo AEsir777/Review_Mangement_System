@@ -154,7 +154,7 @@ INSERT INTO ReviewWith VALUES
 ('B1', 'U4', 'R22'),
 ('B2', 'U5', 'R23'),
 ('B2', 'U6', 'R24'),
-('B3', 'U6', 'R25'),;
+('B3', 'U6', 'R25');
 
 INSERT INTO Location VALUES
 (1, 'New York', 'NY'),
@@ -201,7 +201,7 @@ INSERT INTO coolHistory VALUES
 ('U20', 'R20'),
 ('U18', 'R1'),
 ('U19', 'R3'),
-('U20', 'R4');
+('U20', 'R4'),
 ('U14', 'R1'),
 ('U15', 'R1'),
 ('U16', 'R1'),

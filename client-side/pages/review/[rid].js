@@ -8,7 +8,7 @@ export default function ViewReviewDetail() {
     return (
         <div>
             {router.isReady ? (
-                <Review rid={rid} canEdit={true}> </Review>
+                <Review rid={rid} canEdit={true} showBus={true}> </Review>
             ) : (
                 <p>Loading...</p>
             )}
