@@ -29,7 +29,7 @@ export default function Review(props) {
                 setUid(response.data.review.uid);
                 setRid(response.data.review.rid);
                 const date = new Date(response.data.review.date);
-                setDate(date.toLocaleString());
+                setDate(date.toLocaleDateString());
                 setText(response.data.review.text);
                 setStars(response.data.review.stars);
                 setSelfUid(response.data.selfuid);
@@ -59,7 +59,7 @@ export default function Review(props) {
                 stars: stars
             });
 
-            router.reload();
+            router.push(`/business/${review.bid}`);
         } catch (error) {
             console.error(error);
         }

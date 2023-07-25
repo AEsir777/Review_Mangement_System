@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { PaginationContext } from '../../contexts/paginationContext.js';
 import CircularIndeterminate from '../../components/Spinner';
 import { useContext } from 'react';
+import Rating from '@mui/material/Rating';
 
 export default function business() {
   const { Page } = useContext(PaginationContext);
@@ -67,7 +68,6 @@ export default function business() {
           const res1 = await axios.get(url1,{ withCredentials: true });
           setBusiness(res1.data);
           setIsLoading(false);
-          console.log(business);
         } catch (error) {
           console.error(error);
         }
@@ -96,7 +96,6 @@ export default function business() {
         try {
           const res2 = await axios.get(url2,{ withCredentials: true });
           setBusinessCount(res2.data);
-          console.log(businessCount);
         } catch (error) {
           console.error(error);
         }
@@ -131,11 +130,20 @@ export default function business() {
               {typeof single_business.bid === 'string' && single_business.bid.trim() !== "" && (
                 <Link href={`http://localhost:8000/business/${single_business.bid}`} className={styles.linkClass}>
                   <div className={styles.resultBox}>
-                    <h2>{single_business.name}</h2>
-                    <p>{single_business.cate} {" "}</p>
-                    <p>Open Hours: {single_business.hours} {" "}</p>
-                    <p>Stars: {"★".repeat(single_business.stars)}</p>
-                        
+                    <div className={styles.leftGrid}>
+                      <h2>{single_business.name}</h2>
+                      <Rating className={styles.stars} value={single_business.stars} readOnly precision={0.1} />
+                      <p>{single_business.cate} {" "}</p>
+                      <p>Open Hours: {single_business.hours} {" "}</p>
+                    </div>
+
+                    <div className={styles.rightGrid}>
+                    { single_business.pid ? (
+                        <img className={styles.picture}
+                        src={"/photos/" + single_business.pid + ".jpg"}
+                        alt={single_business.caption} />
+                      ) : (<p></p>)}
+                    </div>                    
                   </div>
                 </Link>
               )}

@@ -16,7 +16,7 @@ const StarDistribution = (props) => {
             const response = await axios.get(`http://localhost:3000/api/business/${props.bid}/starDistribution`);
             setStarDistribution([response.data.starDistribution.fiveStar, response.data.starDistribution.fourStar, 
               response.data.starDistribution.threeStar, response.data.starDistribution.twoStar,
-              response.data.starDistribution.oneStar, response.data.starDistribution.zeroStar]);
+              response.data.starDistribution.oneStar]);
             setTotalReview(response.data.starDistribution.zeroStar + response.data.starDistribution.oneStar + response.data.starDistribution.twoStar +
               response.data.starDistribution.threeStar + response.data.starDistribution.fourStar + response.data.starDistribution.fiveStar);
         } catch (error) {
@@ -52,7 +52,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
             }}
           >
             <Rating value={props.avg} readOnly precision={0.1} />
-            <Box sx={{ ml: 1 }}>{Math.round(props.avg, 1)} out of 5</Box>
+            <Box sx={{ ml: 1 }}>{Math.round(props.avg * 10) / 10} out of 5</Box>
           </Box>
           <p className={styles.total}> Total ratings: {totalReview} </p>
           <div className={styles.starDistribution}>

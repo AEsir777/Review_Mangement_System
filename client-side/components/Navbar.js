@@ -73,7 +73,7 @@ const Navbar = () => {
                     <button type="submit" className={styles.searchButton}>Search</button>
                 </form>
                 <Link href= {url} className={styles.logoutlink}>Profile</Link>
-                <Link href="\Logout" onClick={handleLogout} className={styles.logoutlink}>Logout</Link>
+                <Link href="/logout" onClick={handleLogout} className={styles.logoutlink}>Logout</Link>
 
             </div>
         </nav>
