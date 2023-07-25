@@ -44,6 +44,7 @@ class businessController {
 
     static leaveReview(req, res, next) {
         businessModel.leaveReview(req.user.uid, req.params.bid, req.body.text, req.body.stars).then(result => {
+            console.log(result);
             res.send({message: 'Review added successfully'});
         })
         .catch(err => {
@@ -73,6 +74,7 @@ class businessController {
                                         req.query.city ?? null,
                                         req.query.limit,
                                         req.query.startat).then(result => {
+            console.log(result.length);
             res.send(result);
         })
         .catch(err => {

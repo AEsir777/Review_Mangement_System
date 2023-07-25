@@ -107,14 +107,15 @@ POST ```/api/review/:rid/cool```
 - [x] Fix the UI of the review in production database - Kebing
 - [x] Fix the UI of the star distribution - Kebing
 - [x] filter on own reviews - Kebing
+- [x] Add photo for Search result page - Kebing
 
 ## TODO
-- [ ] Debug the average star - Johnson
-- [ ] Add photo for Search result page - Henry
+
 - [ ] friend list on the profile page
 - [ ] add friend function 
 - [ ] Integrate recommendation model to backend - Kebing
 - [ ] pagination for reviews
+- [ ] import production
 
 
 

@@ -45,14 +45,14 @@ class businessModel {
             rid += characters.charAt(Math.floor(Math.random() * characters.length));
         }
         //Insert to database
-        return new Promise((resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
             //insert into Review table
-            pool.query('INSERT INTO review (rid, date, text, stars, cool) VALUES (?, NOW(), ?, ?, 0)', [rid, text, stars], (err, results) => {
+            pool.query('INSERT INTO reviewwith (bid, uid, rid) VALUES (?, ?, ?)', [bid, uid, rid], (err, results) => {
                 if (err) {
                     return reject(err);
                 }
                 //insert into reviewwith table (didn't deal with rollback scenario)
-                pool.query('INSERT INTO reviewwith (bid, uid, rid) VALUES (?, ?, ?)', [bid, uid, rid], (err, results) => {
+                pool.query('INSERT INTO review (rid, date, text, stars, cool) VALUES (?, NOW(), ?, ?, 0)', [rid, text, stars], (err, results) => {
                     if (err) {
                         return reject(err);
                     }
@@ -92,6 +92,7 @@ class businessModel {
             pool.query(
             `SELECT *
             FROM business
+            LEFT JOIN Photo ON business.bid = Photo.bid
             INNER JOIN location ON location.lid = business.lid
             INNER JOIN category ON category.bid = business.bid
             WHERE (name = ? OR ? IS NULL)
