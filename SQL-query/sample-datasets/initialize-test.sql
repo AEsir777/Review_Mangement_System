@@ -88,12 +88,13 @@ CREATE TABLE Photo (
     PRIMARY KEY (pid, bid)
 );
 
+DROP TRIGGER updateStar;
+
 CREATE TRIGGER updateStar
 AFTER INSERT ON Review
 FOR EACH ROW
     UPDATE Business
-    SET reviewCount = reviewCount + 1,
-		stars = (SELECT AVG(r.stars) FROM Review as r
+    SET stars = (SELECT AVG(r.stars) FROM Review as r
 				 JOIN ReviewWith as rw
                  ON r.rid = rw.rid
                  WHERE bid = (SELECT bid FROM ReviewWith as rw1 JOIN Review as r1

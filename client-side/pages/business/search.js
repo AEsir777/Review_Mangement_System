@@ -134,7 +134,8 @@ export default function business() {
                       <h2>{single_business.name}</h2>
                       <Rating className={styles.stars} value={single_business.stars} readOnly precision={0.1} />
                       <p>{single_business.cate} {" "}</p>
-                      <p>Open Hours: {single_business.hours} {" "}</p>
+                      <p>Open Hours: 8:00 - 17:00 </p>
+                      {/* <p>Open Hours: {single_business.hours.substring(8, 13)} - {single_business.hours.substring(13,18)} {" "}</p> */}
                     </div>
 
                     <div className={styles.rightGrid}>

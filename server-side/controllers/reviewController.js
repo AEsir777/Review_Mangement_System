@@ -4,7 +4,7 @@ class reviewController {
     static renderReview(req, res, next) {
         reviewModel.getReviewByRid(req.params.rid).then(review => {
             reviewModel.isCooled(req.params.rid, req.user.uid).then(isCooled => {
-                console.log("rendering review", review.rid, "of business", review.bid);
+                console.log("rendering review of business");
                 res.json({
                     isCooled: isCooled,
                     review: review,
