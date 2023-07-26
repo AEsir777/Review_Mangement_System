@@ -27,53 +27,13 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-CREATE TABLE ReviewWith1 (
-    bid VARCHAR(36) NOT NULL,
-    rowNum INT,
-	FOREIGN KEY (bid) REFERENCES Business(bid)
-);
 
-LOAD DATA INFILE "C:\ReviewWith1.csv"
-INTO TABLE ReviewWith1
+LOAD DATA INFILE "C:\ReviewWith.csv"
+INTO TABLE ReviewWith
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
-
-CREATE TABLE ReviewWith2 (
-    uid VARCHAR(36) NOT NULL,
-    rowNum INT,
-	FOREIGN KEY (uid) REFERENCES UserAuth(uid)
-);
-
-LOAD DATA INFILE "C:\ReviewWith2.csv"
-INTO TABLE ReviewWith2
-FIELDS TERMINATED BY ','
-ENCLOSED BY '"'
-LINES TERMINATED BY '\n' 
-IGNORE 1 LINES; 
-
-CREATE TABLE ReviewWith3 (
-    rid VARCHAR(36) NOT NULL,
-    rowNum INT
-);
-
-LOAD DATA INFILE "C:\ReviewWith3.csv"
-INTO TABLE ReviewWith3
-FIELDS TERMINATED BY ','
-ENCLOSED BY '"'
-LINES TERMINATED BY '\n' 
-IGNORE 1 LINES; 
-
-INSERT INTO ReviewWith (bid, uid, rid)
-SELECT bid, uid, rid FROM ReviewWith1 as rw1
-JOIN ReviewWith2 as rw2
-ON rw1.rowNum = rw2.rowNum
-JOIN ReviewWith3 as rw3
-ON rw2.rowNum = rw3.rowNum;
-DROP TABLE ReviewWith1;
-DROP TABLE ReviewWith2;
-DROP TABLE ReviewWith3;
 
 LOAD DATA INFILE "C:\Review.csv"
 INTO TABLE Review
@@ -83,7 +43,7 @@ LINES TERMINATED BY '\n'
 IGNORE 1 LINES; 
 
 CREATE TABLE coolHistory1 (
-uid VARCHAR(36) REFERENCES UserAuth(uid), 
+uid VARCHAR(36), 
 rowNum int
 );
 
@@ -116,6 +76,7 @@ DROP TABLE coolHistory2;
 LOAD DATA INFILE "C:\Location.csv"
 INTO TABLE Location
 FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
 LINES TERMINATED BY '\n' 
 IGNORE 1 LINES; 
 
@@ -150,4 +111,10 @@ ON f1.rowNum = f2.rowNum;
 DROP TABLE Friend1;
 DROP TABLE Friend2;
 
+LOAD DATA INFILE "C:\Photo.csv"
+INTO TABLE Photo
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n' 
+IGNORE 1 LINES; 
 
