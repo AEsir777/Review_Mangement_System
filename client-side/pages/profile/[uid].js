@@ -6,6 +6,7 @@ import styles from '../../styles/profile.module.css';
 import Navbar from '../../components/Navbar';
 import ProfileReview from '../../components/ProfileReview';
 import Link from 'next/link';
+import { Button } from '@mui/material';
 
 export default function UserProfile() {
   const router = useRouter();
@@ -79,8 +80,12 @@ export default function UserProfile() {
 
           <main className={styles.main}>
 
+            
 
             <div>
+              <a className={styles.greenButton} target='_blank' href={`recommendation/${uuid}`}>
+                Don't know where to go? 
+              </a> 
               <h1 className={styles.title}>{user.name}</h1>
               {user.createTime ? <p className={styles.description}>createTime: {new Date(user.createTime).toLocaleDateString()}</p> : null}
               {user.cools ? <p className={styles.info}>cool: {user.cools}</p> : null}

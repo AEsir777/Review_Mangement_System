@@ -109,13 +109,13 @@ POST ```/api/review/:rid/cool```
 - [x] filter on own reviews - Kebing
 - [x] Add photo for Search result page - Kebing
 - [x] import production
-- [x] friend list on the profile page 
-- [x] add friend function
+- [x] friend list on the profile page - henry 
+- [x] add friend function - henry
+- [x] Integrate recommendation model to backend - Kebing
 
-## TODO
 
 
-- [ ] Integrate recommendation model to backend - Kebing
+
 
 
 

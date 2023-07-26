@@ -271,3 +271,23 @@
     font-size: 1.25rem;
     text-align: center;
   }
+
+.greenButton {
+  display: block;
+  margin: 50px auto;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: #05ca9c;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  align-items: center;
+  width: fit-content;
+  text-decoration: none;
+}
+
+.greenButton:hover {
+  background-color: rgb(1, 150, 80);
+}

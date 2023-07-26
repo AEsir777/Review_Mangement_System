@@ -147,7 +147,9 @@ def recommend():
     uid = request.args.get('uid')
     algo, cos_sim, vectorizer = load_pretrained_model()
     recommendations = recommend_businesses(uid, algo, cos_sim, vectorizer)
-    return jsonify(recommendations)
+    response = jsonify(recommendations)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 if __name__ == '__main__':
     # Train and save the model before running the Flask app

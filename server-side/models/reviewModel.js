@@ -53,14 +53,14 @@ class reviewModel {
                     resolve(null);
                   }
               
-                  connection.query('DELETE FROM Review WHERE rid = ?', rid, (err) => {
+                  connection.query('DELETE FROM CoolHistory WHERE rid = ?', rid, (err) => {
                     if (err) {
                       console.error('Error executing DELETE statement for ReviewWith:', err);
                       connection.rollback(() => connection.release());
                       resolve(null);
                     }
               
-                    connection.query('DELETE FROM CoolHistory WHERE rid = ?', rid, (err) => {
+                    connection.query('DELETE FROM Review WHERE rid = ?', rid, (err) => {
                       if (err) {
                         console.error('Error executing DELETE statement for CoolHistory:', err);
                         connection.rollback(() => connection.release());
