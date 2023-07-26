@@ -84,7 +84,8 @@ export default function Business() {
                   <p className={styles.description}>{business.cate}</p>
                   <p className={styles.info}>{business.city}, {business.state}, {business.address}</p>
                   <p className={styles.info}>Postal: {business.postalCode}</p>
-                  <p className={styles.info}>Open Hours: {business.hours}</p>
+                  <p className={styles.info}>Open Hours: 8:00 - 17:00 </p>
+                  {/* <p className={styles.info}>Open Hours: {business.hours.substring(8, 13)} - {business.hours.substring(13,18)}</p> */}
                 </div>
 
                 <div className={styles.rightGrid}>
