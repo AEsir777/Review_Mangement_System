@@ -122,7 +122,7 @@ def recommend_businesses(uid, algo, cos_sim, vectorizer):
 
     k = 10
     if uid not in joined_df['uid'].values:
-        # Recommend the most popular or highly-rated businesses
+        # If user does not exist in the dataset, recommend the most popular or highly-rated businesses
         recommended_business_ids = joined_df['bid'].value_counts()[:k].index.tolist()
     else:
         # Use the model to predict the rating the user would give to each business
@@ -139,7 +139,7 @@ def recommend_businesses(uid, algo, cos_sim, vectorizer):
         recommended_business_ids = sorted(predicted_ratings, key=lambda x: x[1], reverse=True)[:k]
 
     # Return only the business ids without the ratings
-    recommended_business_ids = [bid for bid in recommended_business_ids[:k]]
+    recommended_business_ids = [bid for bid, _ in recommended_business_ids[:k]]
     return recommended_business_ids
 
 @app.route('/recommend', methods=['GET'])
