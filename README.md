@@ -108,14 +108,15 @@ POST ```/api/review/:rid/cool```
 - [x] Fix the UI of the star distribution - Kebing
 - [x] filter on own reviews - Kebing
 - [x] Add photo for Search result page - Kebing
+- [x] import production
+- [x] friend list on the profile page 
+- [x] add friend function
 
 ## TODO
 
-- [ ] friend list on the profile page
-- [ ] add friend function 
+
 - [ ] Integrate recommendation model to backend - Kebing
-- [ ] pagination for reviews
-- [ ] import production
+
 
 
 

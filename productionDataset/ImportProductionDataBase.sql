@@ -80,6 +80,7 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\n' 
 IGNORE 1 LINES; 
 
+
 CREATE TABLE Friend1 (
 uid1 VARCHAR(36) REFERENCES UserAuth(uid), 
 rowNum int

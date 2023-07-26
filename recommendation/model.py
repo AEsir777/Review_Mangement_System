@@ -111,3 +111,5 @@ def recommend_businesses(uid):
     recommended_business_ids = [bid for bid, _ in recommended_business_ids]
     return recommended_business_ids
 
+recommend_businesses("MGPQVLsODMm9ZtYQW-g_OA")
+
