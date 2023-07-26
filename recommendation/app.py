@@ -49,7 +49,9 @@ def recommend_businesses(uid):
     business_cate_df = pd.merge(joined_df, cate_df, how='inner', on='bid')
 
     # Preprocess categories: create a dict where each business_id is associated with a string of its categories
+    business_cate_df['cate'] = business_cate_df['cate'].fillna('')
     business_to_categories = business_cate_df.groupby('bid')['cate'].apply(lambda x: ', '.join(x)).to_dict()
+
 
     # Create a TfidfVectorizer object
     vectorizer = TfidfVectorizer(token_pattern=r'[^\s]+')
@@ -90,10 +92,10 @@ def recommend_businesses(uid):
     # Get the list of businesses that the user has rated
     user_business_ids = set(joined_df.loc[joined_df['uid'] == uid, 'bid'])
 
-    # Handling Cold Start Problem: Provide default recommendations for new users/businesses
+    k = 10
     if uid not in joined_df['uid'].values:
         # Recommend the most popular or highly-rated businesses
-        recommended_business_ids = joined_df['bid'].value_counts()[:10].index.tolist()
+        recommended_business_ids = joined_df['bid'].value_counts()[:k].index.tolist()
     else:
         # Use the model to predict the rating the user would give to each business
         # and compute a score based on category similarity
@@ -106,11 +108,10 @@ def recommend_businesses(uid):
             predicted_ratings.append((bid, weighted_score))
 
         # Sort the businesses by predicted rating, and select the top k
-        k = 10
         recommended_business_ids = sorted(predicted_ratings, key=lambda x: x[1], reverse=True)[:k]
 
     # Return only the business ids without the ratings
-    recommended_business_ids = [bid for bid, _ in recommended_business_ids]
+    recommended_business_ids = [bid for bid in recommended_business_ids[:k]]
     return recommended_business_ids
 
 @app.route('/recommend', methods=['GET'])
