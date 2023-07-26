@@ -10,6 +10,7 @@ import authRouter from './routes/authRouter.js';
 import businessRouter from './routes/businessRouter.js';
 import reviewRouter from './routes/reviewRouter.js';
 import userProfileRouter from './routes/userProfileRouter.js';
+import friendRouter from './routes/friendRouter.js';
 import configPassport from './config/passport.js';
 
 const app = express();
@@ -78,6 +79,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/business', businessRouter);
 app.use('/api/review', reviewRouter);
 app.use('/api/userProfile', userProfileRouter);
+app.use('/api/friends', friendRouter)
 
 app.listen(3000 || process.env.port, () => {
     console.log("Server is running on port 3000.");

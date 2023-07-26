@@ -2,15 +2,19 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import styles from '../../styles/Business.module.css';
+import styles from '../../styles/profile.module.css';
 import Navbar from '../../components/Navbar';
 import ProfileReview from '../../components/ProfileReview';
+import Link from 'next/link';
 
 export default function UserProfile() {
   const router = useRouter();
   const [user, setUser] = useState(null);
   const [reviews, setReviews] = useState([]);
   const [self, setSelf] = useState(null);
+  const [followers, setFollowers] = useState([])
+  const [followings, setFollowings] = useState([])
+  const [currentuser, setCurrentuser] = useState(null);
   const  uuid  = router.query.uid;
   useEffect(() => {
 
@@ -20,10 +24,18 @@ export default function UserProfile() {
         const  selfBool  = router.query.self;
         try {
           const response = await axios.get(`http://localhost:3000/api/userprofile/${uid}`,{ withCredentials: true });
+          const response2 = await axios.get(`http://localhost:3000/api/friends/followers/${uid}`,{ withCredentials: true });
+          const response3 = await axios.get(`http://localhost:3000/api/friends/followings/${uid}`,{ withCredentials: true });
+          const response4 = await axios.get(`http://localhost:3000/api/userprofile/getuseruid`,{ withCredentials: true });
           setUser(response.data.profile);
           setSelf(selfBool);
           setReviews(response.data.review);
+          setFollowers(response2.data)
+          setFollowings(response3.data)
+          setCurrentuser(response4.data)
           console.log(user);
+          console.log(followers);
+          console.log(followings);
         } catch (error) {
           console.error('Failed to fetch user and reviews:', error);
         }
@@ -33,6 +45,21 @@ export default function UserProfile() {
 
     fetchUserData();
   }, [router.isReady, uuid]);
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();  // Prevent default form submission
+
+    try {
+      const response = await axios.post(`http://localhost:3000/api/friends/follow/${router.query.uid}`);
+      router.reload();
+      // Handle your response here
+      console.log(response.data);
+    } catch (error) {
+      // Handle your error here
+      console.log('Failed to send POST request:', error);
+    }
+  };
 
 
   if (!user) {
@@ -61,10 +88,39 @@ export default function UserProfile() {
               {/* <p className={styles.info}>{business.reviewCount}</p> */}
             </div>
             {self == "false" ? <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <input type="submit" value="Follow" className={styles.searchButtonProfile} />
+              <form onSubmit={handleSubmit}>
+                <input type="submit" value="Follow" className={styles.searchButtonProfile} />
+              </form>
             </div> : null}
             
-            
+            <div className={styles.grid}>
+                <div className={styles.left_panel}>
+                  <h2 className="panel-title" style={{ textAlign: 'center', margin: '10px'}}>Followers</h2>
+                  {followers ? followers.map((follower, index) => (
+                  <div key={index} className={styles.info}>
+                    <Link href= {"/profile/" + follower.uid1 + "?self=" + (follower.uid1 == currentuser.uid ? "true" : "false")} className={styles.info}>
+                      {follower.name}
+                    </Link>
+                  </div>
+                  )) : 
+                  <div className={styles.info}>
+                  <p className={styles.info}>None</p>
+                  </div>}
+                </div>
+                <div className={styles.right_panel}>
+                <h2 className="panel-title" style={{ textAlign: 'center', margin: '10px'}}>Following</h2>
+                {followings ? followings.map((following, index) => (
+                  <div key={index} className={styles.info}>
+                    <Link href= {"/profile/" + following.uid2 + "?self=" + (following.uid2 == currentuser.uid ? "true" : "false")} className={styles.info}>
+                      {following.name}
+                    </Link>
+                  </div>
+                  )) : 
+                  <div className={styles.info}>
+                  <p className={styles.info}>None</p>
+                  </div>}
+                </div>
+            </div>
 
             <div className={styles.reviews}>
               {reviews && reviews.map((review, index) => (

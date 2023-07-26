@@ -7,7 +7,7 @@ CREATE TABLE Business (
     name VARCHAR(255) NOT NULL,
     address VARCHAR(255) NOT NULL,
     postalCode VARCHAR(255) NOT NULL,
-    stars INT,
+    stars DECIMAL(10, 2),
     reviewCount INT NOT NULL,
     isOpen INT NOT NULL
 );

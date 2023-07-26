@@ -29,12 +29,29 @@ class UserModel {
         });
     }
 
-    static isFriend(uid1, uid2) {
+    static getfollowers(userid) {
         return new Promise((resolve, reject) => {
             pool.query(`
-                    SELECT * FROM Friend
-                    WHERE (uid1 = ? AND uid2 = ?) OR (uid2 = ? AND uid1 = ?);
-                    `, [uid1, uid2, uid1, uid2], (err, results) => {
+                    SELECT uid1 FROM Friend
+                    WHERE uid2 = ?;
+                    `, [userid], (err, results) => {
+                if (err) {
+                    return reject(err);
+                }
+                if (results.length === 0) {
+                    return resolve(false);
+                }
+                resolve(true);
+            });
+        });
+    }
+
+    static getfollowings(userid) {
+        return new Promise((resolve, reject) => {
+            pool.query(`
+                    SELECT uid2 FROM Friend
+                    WHERE uid1 = ?;
+                    `, [userid], (err, results) => {
                 if (err) {
                     return reject(err);
                 }
