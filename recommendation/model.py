@@ -108,5 +108,6 @@ def recommend_businesses(uid):
     recommended_business_ids = sorted(predicted_ratings, key=lambda x: x[1], reverse=True)[:k]
 
     # Return the recommended business ids
+    recommended_business_ids = [bid for bid, _ in recommended_business_ids]
     return recommended_business_ids
 
