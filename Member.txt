@@ -11,3 +11,10 @@ Kebing Liu    Implement front/backend for leave/delete review/star distribution/
 Henry Tian    Write search/search result pages, profile pages, pagination, navbar(server and client-side), test SQL optimization performance
 Zhongyi Guo   Write SQL code to create and test and triggers, import production data and test production database 
 Steven Ji     Produce production dataset, add indexes for the tables, SQL optimization and write recommendation model with a hybrid system
+
+Milestone 3
+Name          Duty
+Kebing Liu    Integrate recommendate page, filter review
+Henry Tian    Finish follow feature, page
+Zhongyi Guo   Fix and import production
+Steven Ji     Create production, fix model

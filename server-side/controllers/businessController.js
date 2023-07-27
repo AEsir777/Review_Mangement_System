@@ -74,7 +74,6 @@ class businessController {
                                         req.query.city ?? null,
                                         req.query.limit,
                                         req.query.startat).then(result => {
-            console.log(result.length);
             res.send(result);
         })
         .catch(err => {

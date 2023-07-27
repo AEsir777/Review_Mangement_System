@@ -10,8 +10,10 @@ import pickle
 import nltk
 nltk.download('vader_lexicon')
 from nltk.sentiment import SentimentIntensityAnalyzer
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 def train_and_save_model():
     # Load the data into pandas dataframes
@@ -148,7 +150,6 @@ def recommend():
     algo, cos_sim, vectorizer = load_pretrained_model()
     recommendations = recommend_businesses(uid, algo, cos_sim, vectorizer)
     response = jsonify(recommendations)
-    response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
 if __name__ == '__main__':
