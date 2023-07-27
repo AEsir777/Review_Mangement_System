@@ -1,32 +1,141 @@
 /**** add friend ******/
 /*** Test insert and isFriend ******/
 // -- check
-CALL CheckFriendship('U3', 'U8');
-NULL NULL
-// expected output: no relationship
+CALL GetFollowers('U3');
+output: 
+U1	User One
+U2	User Two
+U5	User Five
+expected output:
+U1	User One
+U2	User Two
+U5	User Five
+// the result shouldn't include U8
 
-// CALL InsertFriend('U3', 'U8');
-1 row(s) affected   
+CALL GetFollowers('U8'); 
+output: 
+U6	User Six
+U7	User Seven
+expected output:
+U6	User Six
+U7	User Seven
+// the result shouldn't include U3
+
+CALL GetFollowings('U3');
+output: 
+U1	User One
+U2	User Two
+U5	User Five
+expected output:
+U1	User One
+U2	User Two
+U5	User Five
+// the result shouldn't include U8
+
+CALL GetFollowings('U8');
+output: 
+U7	User Seven
+expected output:
+U7	User Seven
+// the result shouldn't include U3
+
+
+CALL InsertFriend('U3', 'U8');
+CALL InsertFriend('U8', 'U3');
+2 row(s) affected   
 // expected output: succesfully inserted into the row
 
 // -- check
-// CALL CheckFriendship('U3', 'U8');
-U3	U8
-// expected output: U3	U8
+CALL GetFollowers('U3');
+output: 
+U1	User One
+U2	User Two
+U5	User Five
+U8	User Eight
+expected output:
+U1	User One
+U2	User Two
+U5	User Five
+U8	User Eight
+// the result should include U8
+
+CALL GetFollowers('U8'); 
+output: 
+U3	User Three
+U6	User Six
+U7	User Seven
+expected output:
+U3	User Three
+U6	User Six
+U7	User Seven
+// the result should include U3
+
+CALL GetFollowings('U3');
+output: 
+U1	User One
+U2	User Two
+U5	User Five
+U8	User Eight
+expected output:
+U1	User One
+U2	User Two
+U5	User Five
+U8	User Eight
+// the result should include U8
+
+CALL GetFollowings('U8');
+output: 
+U3	User Three
+U7	User Seven
+expected output:
+U3	User Three
+U7	User Seven
+// the result should include U3
 
 -- check: exist before
-// CALL CheckFriendship('U1', 'U2');
-U2	U1
-U1	U2
-// expected output: U2	U1
-//                  U1	U2
+CALL GetFollowers('U1');
+output: 
+U2	User Two
+U3	User Three
+U4	User Four
+U5	User Five
+expected output:
+U2	User Two
+U3	User Three
+U4	User Four
+U5	User Five
 
--- check: exist before
-// CALL CheckFriendship('U7', 'U8');
-U7	U8
-U8	U7
-// expected output: U7	U8
-//                  U8	U7
+CALL GetFollowers('U2');
+output: 
+U1	User One
+U3	User Three
+U4	User Four
+expected output:
+U1	User One
+U3	User Three
+U4	User Four
+
+CALL GetFollowings('U1');
+output: 
+U2	User Two
+U3	User Three
+U4	User Four
+U5	User Five
+expected output:
+U2	User Two
+U3	User Three
+U4	User Four
+U5	User Five
+
+CALL GetFollowings('U2');
+output: 
+U1	User One
+U3	User Three
+U4	User Four
+expected output:
+U1	User One
+U3	User Three
+U4	User Four
 
 -- check: insert fail
 // CALL InsertFriend('U1', 'U2');
