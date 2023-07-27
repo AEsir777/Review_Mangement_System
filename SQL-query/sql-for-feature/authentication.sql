@@ -14,6 +14,14 @@ BEGIN
 END //
 DELIMITER ;
 
+
+DELIMITER //
+CREATE PROCEDURE GetUserByEmail(IN in_email VARCHAR(36))
+BEGIN
+    SELECT * FROM UserFile WHERE email = in_email;
+END //
+DELIMITER ;
+
 /* For Production Dataset */
 ALTER TABLE UserAuth
 ADD INDEX idx_uid (uid),

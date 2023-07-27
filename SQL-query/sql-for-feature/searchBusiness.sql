@@ -1,6 +1,67 @@
 /* Test the part not associated with js */
 
 DELIMITER //
+
+CREATE PROCEDURE getAllReviewsByBid(IN input_bid INT)
+BEGIN
+    SELECT rid, uid
+    FROM reviewwith
+    WHERE bid = input_bid;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE searchBusinessBy(
+    IN category VARCHAR(255),
+    IN name VARCHAR(255),
+    IN state VARCHAR(255),
+    IN city VARCHAR(255),
+    IN limit_val INT,
+    IN startat_val INT
+)
+BEGIN
+    SELECT *
+    FROM business
+    LEFT JOIN Photo ON business.bid = Photo.bid
+    INNER JOIN location ON location.lid = business.lid
+    INNER JOIN category ON category.bid = business.bid
+    WHERE (name = name OR name IS NULL)
+        AND (state = state OR state IS NULL)
+        AND (city = city OR city IS NULL)
+        AND (cate LIKE category OR category IS NULL)
+    LIMIT limit_val 
+    OFFSET startat_val;
+END //
+
+DELIMITER ;
+
+
+DELIMITER //
+
+CREATE PROCEDURE searchBusinessTotalCountBy(
+    IN category VARCHAR(255),
+    IN name VARCHAR(255),
+    IN state VARCHAR(255),
+    IN city VARCHAR(255)
+)
+BEGIN
+    SELECT COUNT(*) AS count
+    FROM business
+    INNER JOIN location ON location.lid = business.lid
+    INNER JOIN category ON category.bid = business.bid
+    WHERE (name = name OR name IS NULL)
+        AND (state = state OR state IS NULL)
+        AND (city = city OR city IS NULL)
+        AND (cate LIKE category OR category IS NULL);
+END //
+
+DELIMITER ;
+
+
+
+DELIMITER //
 CREATE PROCEDURE InsertIntoBusiness(IN in_bid VARCHAR(36), IN in_longitude DOUBLE, IN in_latitude DOUBLE, 
 IN in_hours VARCHAR(255), IN in_lid INT, IN in_name VARCHAR(255), IN in_address VARCHAR(255), 
 IN in_postalCode VARCHAR(255), IN in_stars INT, IN in_reviewCount INT, IN in_isOpen INT)
@@ -27,32 +88,6 @@ DELIMITER ;
 
 
 
-
-/* CALL GetBusinessByBid('123e4567-e89b-12d3-a456-426614174000'); */
-
-DELIMITER //
-CREATE PROCEDURE `SearchBusinessBy`(IN in_category VARCHAR(255), IN in_name VARCHAR(255), IN in_state VARCHAR(255), IN in_city VARCHAR(255))
-BEGIN
-    DECLARE catcategory VARCHAR(255);
-    
-    IF in_category IS NULL THEN
-        SET catcategory = NULL;
-    ELSE
-        SET catcategory = CONCAT('%', in_category, '%');
-    END IF;
-    
-    SELECT *
-    FROM business
-    INNER JOIN location ON location.lid = business.lid
-    INNER JOIN category ON category.bid = business.bid
-    WHERE (name = in_name OR in_name IS NULL)
-        AND (state = in_state OR in_state IS NULL)
-        AND (city = in_city OR in_city IS NULL)
-        AND (cate LIKE catcategory OR catcategory IS NULL);
-END //
-DELIMITER ;
-
-/*  CALL SearchBusinessBy('category', 'Business Name', 'State', 'City'); */
 
 
 DELIMITER //
