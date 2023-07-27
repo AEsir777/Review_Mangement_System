@@ -1,9 +1,9 @@
 /* photos */
-\\ CALL GetPhotoDetails ('"Nk-SJhPlDBkAZvfsADtccA"');
+\\ CALL GetPhotoDetails ("Nk-SJhPlDBkAZvfsADtccA");
 15 row(s) returned
 // expected output: 15 row(s) returned
 
-\\ CALL GetPhotoDetails ('"jTFl9Cr7RqZqwjH-CI1ZPw"');
+\\ CALL GetPhotoDetails ("jTFl9Cr7RqZqwjH-CI1ZPw");
 6 row(s) returned
 "3UNqjjw-WAnrkHoJZ06pfw"	Now offering fresh baked bagels made on site!	food
 "6wuJ-q6_315h_zHjkYtm7g"	Perfect to enjoy on the way to shore :)	food
@@ -19,16 +19,16 @@
 "IYypRuEddGxOVKcZ7ZvWPA"	Salted Caramel Cupcakes will drive your taste buds crazy!	food
 "pB2PTerPyizq02pogkqLDA"	Raspberry filled butter cookies dipped in chocolate!  This cookie literally melts in your mouth!	food
 
-\\ CALL GetPhotoDetails ('"R32_LaNcLXyS2-dtrcuBGw"');
+\\ CALL GetPhotoDetails ("R32_LaNcLXyS2-dtrcuBGw");
 10 row(s) returned
 \\ expected output: 10 row(s) returned
 
-\\ CALL GetPhotoDetails ('"sr-5EY6bmp4jINhea06MjA"');
+\\ CALL GetPhotoDetails ("sr-5EY6bmp4jINhea06MjA");
 157 row(s) returned
 \\ expected output: 157 row(s) returned
 
 -- fail
-\\ CALL GetPhotoDetails ('"not exist"');
+\\ CALL GetPhotoDetails ("not exist");
 0 row(s) returned
 \\ expected output: 0 row(s) returned
 

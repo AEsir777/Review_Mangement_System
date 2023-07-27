@@ -1,107 +1,107 @@
 /**** add friend ******/
 /*** Test insert and isFriend ******/
 -- check: not exist before
-// CALL CheckFriendship('"rppTTi-kfF8-qyiArNemag"', '"RgDVC3ZUBqpEe6Y1kPhIpw"');
+// CALL CheckFriendship("rppTTi-kfF8-qyiArNemag", "RgDVC3ZUBqpEe6Y1kPhIpw");
 // expected output:
 NULL NULL
 // expected output: no relationship
 
 
 -- success case
-// CALL InsertFriend('"rppTTi-kfF8-qyiArNemag"', '"RgDVC3ZUBqpEe6Y1kPhIpw"');
+// CALL InsertFriend("rppTTi-kfF8-qyiArNemag", "RgDVC3ZUBqpEe6Y1kPhIpw");
 1 row(s) affected
 // expected output: 1 row(s) affected
 
-// CALL CheckFriendship('"rppTTi-kfF8-qyiArNemag"', '"RgDVC3ZUBqpEe6Y1kPhIpw"');
+// CALL CheckFriendship("rppTTi-kfF8-qyiArNemag", "RgDVC3ZUBqpEe6Y1kPhIpw");
 1 row(s) returned
 "rppTTi-kfF8-qyiArNemag"	"RgDVC3ZUBqpEe6Y1kPhIpw"
 // expected output: "rppTTi-kfF8-qyiArNemag"	"RgDVC3ZUBqpEe6Y1kPhIpw"
 
-// CALL CheckFriendship('"rppTTi-kfF8-qyiArNemag"', '"sHozd2pcOKwHtPr8VlZJfg"');
+// CALL CheckFriendship("rppTTi-kfF8-qyiArNemag", "sHozd2pcOKwHtPr8VlZJfg");
 // expected output:
 NULL NULL
 // expected output: no relationship
 
 -- success case
-// CALL InsertFriend('"rppTTi-kfF8-qyiArNemag"', '"sHozd2pcOKwHtPr8VlZJfg"');
+// CALL InsertFriend("rppTTi-kfF8-qyiArNemag", "sHozd2pcOKwHtPr8VlZJfg");
 1 row(s) affected
 // expected output: 1 row(s) affected
 
 -- check
-// CALL CheckFriendship('"rppTTi-kfF8-qyiArNemag"', '"sHozd2pcOKwHtPr8VlZJfg"');
+// CALL CheckFriendship("rppTTi-kfF8-qyiArNemag", "sHozd2pcOKwHtPr8VlZJfg");
 1 row(s) returned
-"rppTTi-kfF8-qyiArNemag"' '"sHozd2pcOKwHtPr8VlZJfg"
-// expected output: "rppTTi-kfF8-qyiArNemag"' '"sHozd2pcOKwHtPr8VlZJfg"
+"rppTTi-kfF8-qyiArNemag" "sHozd2pcOKwHtPr8VlZJfg"
+// expected output: "rppTTi-kfF8-qyiArNemag" "sHozd2pcOKwHtPr8VlZJfg"
 
 -- check: exist before
-// CALL CheckFriendship('"LwZJFLGxQwjjeOgpqTJnfw"', '"RHsmgIvCfnFL7DPNptKY8A"');
+// CALL CheckFriendship("LwZJFLGxQwjjeOgpqTJnfw", "RHsmgIvCfnFL7DPNptKY8A");
 1 row(s) returned
-"LwZJFLGxQwjjeOgpqTJnfw"' '"RHsmgIvCfnFL7DPNptKY8A"
-// expected output: "LwZJFLGxQwjjeOgpqTJnfw"' '"RHsmgIvCfnFL7DPNptKY8A"
+"LwZJFLGxQwjjeOgpqTJnfw" "RHsmgIvCfnFL7DPNptKY8A"
+// expected output: "LwZJFLGxQwjjeOgpqTJnfw" "RHsmgIvCfnFL7DPNptKY8A"
 
-// CALL CheckFriendship('"c7XI431TnC9_AkmC-qrXvQ"', '"RgDVC3ZUBqpEe6Y1kPhIpw"');
+// CALL CheckFriendship("c7XI431TnC9_AkmC-qrXvQ", "RgDVC3ZUBqpEe6Y1kPhIpw");
 1 row(s) returned
-"c7XI431TnC9_AkmC-qrXvQ"' '"RgDVC3ZUBqpEe6Y1kPhIpw"
-// expected output: "c7XI431TnC9_AkmC-qrXvQ"' '"RgDVC3ZUBqpEe6Y1kPhIpw"
+"c7XI431TnC9_AkmC-qrXvQ" "RgDVC3ZUBqpEe6Y1kPhIpw"
+// expected output: "c7XI431TnC9_AkmC-qrXvQ" "RgDVC3ZUBqpEe6Y1kPhIpw"
 
-// CALL CheckFriendship('"w-zD8Ln3XZszM82AfVrspg"', '"RgDVC3ZUBqpEe6Y1kPhIpw"');
+// CALL CheckFriendship("w-zD8Ln3XZszM82AfVrspg", "RgDVC3ZUBqpEe6Y1kPhIpw");
 1 row(s) returned
-"w-zD8Ln3XZszM82AfVrspg"' '"RgDVC3ZUBqpEe6Y1kPhIpw"
-// expected output: "w-zD8Ln3XZszM82AfVrspg"', '"RgDVC3ZUBqpEe6Y1kPhIpw"
+"w-zD8Ln3XZszM82AfVrspg" "RgDVC3ZUBqpEe6Y1kPhIpw"
+// expected output: "w-zD8Ln3XZszM82AfVrspg", "RgDVC3ZUBqpEe6Y1kPhIpw"
 
-// CALL CheckFriendship('"8Akq8sh1LSmJbqa6Jjxxqg"', '"96IKLbNHdK-sOAjuMwoegw"');
+// CALL CheckFriendship("8Akq8sh1LSmJbqa6Jjxxqg", "96IKLbNHdK-sOAjuMwoegw");
 1 row(s) returned
-"8Akq8sh1LSmJbqa6Jjxxqg"' '"96IKLbNHdK-sOAjuMwoegw"
-// expected output: "8Akq8sh1LSmJbqa6Jjxxqg"' '"96IKLbNHdK-sOAjuMwoegw"
+"8Akq8sh1LSmJbqa6Jjxxqg" "96IKLbNHdK-sOAjuMwoegw"
+// expected output: "8Akq8sh1LSmJbqa6Jjxxqg" "96IKLbNHdK-sOAjuMwoegw"
 
-// CALL CheckFriendship('"TDXV6AC5PYOZEyN9eeODfA"', '"7xp_8X8QRAgHFZGs8M7FCw"');
+// CALL CheckFriendship("TDXV6AC5PYOZEyN9eeODfA", "7xp_8X8QRAgHFZGs8M7FCw");
 1 row(s) returned
-"TDXV6AC5PYOZEyN9eeODfA"' '"7xp_8X8QRAgHFZGs8M7FCw"
-// expected output: "TDXV6AC5PYOZEyN9eeODfA"' '"7xp_8X8QRAgHFZGs8M7FCw"
+"TDXV6AC5PYOZEyN9eeODfA" "7xp_8X8QRAgHFZGs8M7FCw"
+// expected output: "TDXV6AC5PYOZEyN9eeODfA" "7xp_8X8QRAgHFZGs8M7FCw"
 
-// CALL CheckFriendship('"UVUIi0q38pAvsfuEEppe0Q"', '"JFIr4bbO2zjQYdA3LwbbsQ"');
+// CALL CheckFriendship("UVUIi0q38pAvsfuEEppe0Q", "JFIr4bbO2zjQYdA3LwbbsQ");
 1 row(s) returned
 "UVUIi0q38pAvsfuEEppe0Q" "JFIr4bbO2zjQYdA3LwbbsQ"
 // expected output: "UVUIi0q38pAvsfuEEppe0Q" "JFIr4bbO2zjQYdA3LwbbsQ"
 
-// CALL CheckFriendship('"aA0WQpDdksKuDafTGzJf_A"', '"qvmL6mp-rpIwVguxb5HuvQ"');
+// CALL CheckFriendship("aA0WQpDdksKuDafTGzJf_A", "qvmL6mp-rpIwVguxb5HuvQ");
 1 row(s) returned
 "aA0WQpDdksKuDafTGzJf_A" "qvmL6mp-rpIwVguxb5HuvQ"
 // expected output: "aA0WQpDdksKuDafTGzJf_A" "qvmL6mp-rpIwVguxb5HuvQ"
 
-// CALL CheckFriendship('"q9xZ_o95MTmBmLLPnZyBwQ"', '"47iiqGmXi6UtE0wd8bRWpQ"');
+// CALL CheckFriendship("q9xZ_o95MTmBmLLPnZyBwQ", "47iiqGmXi6UtE0wd8bRWpQ");
 1 row(s) returned
 "q9xZ_o95MTmBmLLPnZyBwQ" "47iiqGmXi6UtE0wd8bRWpQ"
 // expected output: "q9xZ_o95MTmBmLLPnZyBwQ" "47iiqGmXi6UtE0wd8bRWpQ"
 
-// CALL CheckFriendship('"Js4nQlGRjS1Bd5vsAQQfgA"', '"4YwesZEX8VPPJOKLfPD7lg"');
+// CALL CheckFriendship("Js4nQlGRjS1Bd5vsAQQfgA", "4YwesZEX8VPPJOKLfPD7lg");
 1 row(s) returned
 "Js4nQlGRjS1Bd5vsAQQfgA" "4YwesZEX8VPPJOKLfPD7lg"
 // expected output: "Js4nQlGRjS1Bd5vsAQQfgA" "4YwesZEX8VPPJOKLfPD7lg"
 
 
 -- check: insert fail
-CALL InsertFriend('"LwZJFLGxQwjjeOgpqTJnfw"', '"RHsmgIvCfnFL7DPNptKY8A"');
-Error Code: 1062. Duplicate entry '"LwZJFLGxQwjjeOgpqTJnfw"-"RHsmgIvCfnFL7DPNptKY8A"' for key 'friend.PRIMARY'
+CALL InsertFriend("LwZJFLGxQwjjeOgpqTJnfw", "RHsmgIvCfnFL7DPNptKY8A");
+Error Code: 1062. Duplicate entry "LwZJFLGxQwjjeOgpqTJnfw"-"RHsmgIvCfnFL7DPNptKY8A" for key 'friend.PRIMARY'
 // expected output: fail
 
-CALL InsertFriend('"c7XI431TnC9_AkmC-qrXvQ"', '"RgDVC3ZUBqpEe6Y1kPhIpw"');
-Error Code: 1062. Duplicate entry '"c7XI431TnC9_AkmC-qrXvQ"-"RgDVC3ZUBqpEe6Y1kPhIpw"' for key 'friend.PRIMARY'
+CALL InsertFriend("c7XI431TnC9_AkmC-qrXvQ", "RgDVC3ZUBqpEe6Y1kPhIpw");
+Error Code: 1062. Duplicate entry "c7XI431TnC9_AkmC-qrXvQ"-"RgDVC3ZUBqpEe6Y1kPhIpw" for key 'friend.PRIMARY'
 // expected output: fail
 
-CALL InsertFriend('"w-zD8Ln3XZszM82AfVrspg"', '"RgDVC3ZUBqpEe6Y1kPhIpw"');
-Error Code: 1062. Duplicate entry '"w-zD8Ln3XZszM82AfVrspg"-"RgDVC3ZUBqpEe6Y1kPhIpw"' for key 'friend.PRIMARY'
+CALL InsertFriend("w-zD8Ln3XZszM82AfVrspg", "RgDVC3ZUBqpEe6Y1kPhIpw");
+Error Code: 1062. Duplicate entry "w-zD8Ln3XZszM82AfVrspg"-"RgDVC3ZUBqpEe6Y1kPhIpw" for key 'friend.PRIMARY'
 // expected output: fail
 
-CALL InsertFriend('"8Akq8sh1LSmJbqa6Jjxxqg"', '"96IKLbNHdK-sOAjuMwoegw"');
-Error Code: 1062. Duplicate entry '"8Akq8sh1LSmJbqa6Jjxxqg"-"96IKLbNHdK-sOAjuMwoegw"' for key 'friend.PRIMARY'
+CALL InsertFriend("8Akq8sh1LSmJbqa6Jjxxqg", "96IKLbNHdK-sOAjuMwoegw");
+Error Code: 1062. Duplicate entry "8Akq8sh1LSmJbqa6Jjxxqg"-"96IKLbNHdK-sOAjuMwoegw" for key 'friend.PRIMARY'
 // expected output: fail
 
-CALL InsertFriend('"LwZJFLGxQwjjeOgpqTJnfw"', '"abcd"');
+CALL InsertFriend("LwZJFLGxQwjjeOgpqTJnfw", "abcd");
 Error Code: 1452. Cannot add or update a child row: a foreign key constraint fails (`cs348`.`friend`, CONSTRAINT `friend_ibfk_2` FOREIGN KEY (`uid2`) REFERENCES `userfile` (`uid`))
 // expected output: fail
 
-CALL InsertFriend('"LwZJFLGxQwjjeOgpqTJnfw"', '""');
+CALL InsertFriend("LwZJFLGxQwjjeOgpqTJnfw", "");
 Error Code: 1452. Cannot add or update a child row: a foreign key constraint fails (`cs348`.`friend`, CONSTRAINT `friend_ibfk_2` FOREIGN KEY (`uid2`) REFERENCES `userfile` (`uid`))
 // expected output: fail
 
@@ -142,27 +142,27 @@ Error Code: 1452. Cannot add or update a child row: a foreign key constraint fai
 '123e4567-e89b-12d3-a456-426614171234', 'test2@example.com', 'pwd'
 //expected output: '123e4567-e89b-12d3-a456-426614171234', 'test2@example.com', 'pwd'
 
-// CALL GetUserByUid('"w-zD8Ln3XZszM82AfVrspg"');
+// CALL GetUserByUid("w-zD8Ln3XZszM82AfVrspg");
 1 row(s) returned
 "w-zD8Ln3XZszM82AfVrspg"	jowttpke@gmail.com	LQdk4nrs
 //expected output: "w-zD8Ln3XZszM82AfVrspg"	jowttpke@gmail.com	LQdk4nrs
 
-// CALL GetUserByUid('"qvmL6mp-rpIwVguxb5HuvQ"');
+// CALL GetUserByUid("qvmL6mp-rpIwVguxb5HuvQ");
 1 row(s) returned
 "qvmL6mp-rpIwVguxb5HuvQ"	oBALADF6@gmail.com	Pl9JtQEbpr
 //expected output: "qvmL6mp-rpIwVguxb5HuvQ"	oBALADF6@gmail.com	Pl9JtQEbpr
 
-// CALL GetUserByUid('"eTvp_hYnsrI5-ow_sQ31_g"');
+// CALL GetUserByUid("eTvp_hYnsrI5-ow_sQ31_g");
 1 row(s) returned
 "eTvp_hYnsrI5-ow_sQ31_g"	dwlphaoy@gmail.com	01EpfXrW
 //expected output: "eTvp_hYnsrI5-ow_sQ31_g"	dwlphaoy@gmail.com	01EpfXrW
 
-// CALL GetUserByUid('"GG0mFsEXb-02_dzFPqRV1Q"');
+// CALL GetUserByUid("GG0mFsEXb-02_dzFPqRV1Q");
 1 row(s) returned
 "GG0mFsEXb-02_dzFPqRV1Q"	toqeczld@gmail.com	CKt7l6Wq
 //expected output: "GG0mFsEXb-02_dzFPqRV1Q"	toqeczld@gmail.com	CKt7l6Wq
 
-// CALL GetUserByUid('"not exist"');
+// CALL GetUserByUid("not exist");
 0 row(s) returned
 //expected output: 0 row(s) returned
 
@@ -175,24 +175,24 @@ Error Code: 1452. Cannot add or update a child row: a foreign key constraint fai
 /****** searchBusiness ******/
 /*** Test insert ******/
 -- Insert a new business record
-// CALL InsertIntoBusiness('"MTSW4McQd7CbVtyjqonnmb"', -73.987, 39.9555052, '8AM-5PM', 1, 'YunShang Noodle', '123 Main St', 'N2L 0E2', NULL, 0, 1);
+// CALL InsertIntoBusiness("MTSW4McQd7CbVtyjqonnmb", -73.987, 39.9555052, '8AM-5PM', 1, 'YunShang Noodle', '123 Main St', 'N2L 0E2', NULL, 0, 1);
 1 row(s) affected
 // expected output: 1 row(s) affected
 
 -- Verify the insertion by retrieving the business record
-// CALL GetBusinessByBid('"MTSW4McQd7CbVtyjqonnmb"');
+// CALL GetBusinessByBid("MTSW4McQd7CbVtyjqonnmb");
 1 row(s) returned
 "MTSW4McQd7CbVtyjqonnmb"	-73.987	39.9555052	8AM-5PM	YunShang Noodle	Abington Township	PA	123 Main St	N2L 0E2		0	1	
 // expected output: "MTSW4McQd7CbVtyjqonnmb"	-73.987	39.9555052	8AM-5PM	YunShang Noodle	Abington Township	PA	123 Main St	N2L 0E2		0	1
 
 -- Retrieve a business record by bid
 -- Check review count and star
-// CALL GetBusinessByBid('"kfNv-JZpuN6TVNSO6hHdkw"');
+// CALL GetBusinessByBid("kfNv-JZpuN6TVNSO6hHdkw");
 1 row(s) returned
 "kfNv-JZpuN6TVNSO6hHdkw"	-86.0530799	39.90432032	{"Monday":"11:0-21:0","Tuesday":"11:0-21:0","Wednesday":"11:0-21:0","Thursday":"11:0-21:0","Friday":"11:0-21:0","Saturday":"11:0-21:0"}	Hibachi Express	Indianapolis	IN	6625 E 82nd St	46250	4	20	1	Steakhouses; Asian Fusion; Restaurants
 // expected output: "kfNv-JZpuN6TVNSO6hHdkw"	-86.0530799	39.90432032	{"Monday":"11:0-21:0","Tuesday":"11:0-21:0","Wednesday":"11:0-21:0","Thursday":"11:0-21:0","Friday":"11:0-21:0","Saturday":"11:0-21:0"}	Hibachi Express	Indianapolis	IN	6625 E 82nd St	46250	4	20	1	Steakhouses; Asian Fusion; Restaurants
 
-// CALL GetBusinessByBid('"MTSW4McQd7CbVtyjqoe9mw"');
+// CALL GetBusinessByBid("MTSW4McQd7CbVtyjqoe9mw");
 1 row(s) returned
 "MTSW4McQd7CbVtyjqoe9mw"	-75.1555641	39.9555052	{"Monday":"7:0-20:0","Tuesday":"7:0-20:0","Wednesday":"7:0-20:0","Thursday":"7:0-20:0","Friday":"7:0-21:0","Saturday":"7:0-21:0","Sunday":"7:0-21:0"}	St Honore Pastries	Philadelphia	PA	935 Race St	19107	4	80	1	Restaurants; Food; Bubble Tea; Coffee & Tea; Bakeries
 // expected output: "MTSW4McQd7CbVtyjqoe9mw"	-75.1555641	39.9555052	{"Monday":"7:0-20:0","Tuesday":"7:0-20:0","Wednesday":"7:0-20:0","Thursday":"7:0-20:0","Friday":"7:0-21:0","Saturday":"7:0-21:0","Sunday":"7:0-21:0"}	St Honore Pastries	Philadelphia	PA	935 Race St	19107	4	80	1	Restaurants; Food; Bubble Tea; Coffee & Tea; Bakeries
@@ -217,17 +217,17 @@ Error Code: 1452. Cannot add or update a child row: a foreign key constraint fai
 // CALL SearchBusinessBy(null, null, 'PA', 'Philadelphia');
 2247 row(s) returned
 \\ top 5 rows:
-'\"_05DcCQmCP5aGnfCnI4r9Q\"', '-75.16891426', '39.9500535', '{\"Monday\":\"7:0-19:0\",\"Tuesday\":\"7:0-19:0\",\"Wednesday\":\"7:0-19:0\",\"Thursday\":\"7:0-19:0\",\"Friday\":\"7:0-19:0\",\"Saturday\":\"8:0-19:0\",\"Sunday\":\"9:0-17:0\"}', '445', 'Capital One Café', '135 S 17th St, Ste A', '19103', '4', '178', '1', '445', 'Philadelphia', 'PA', '\"_05DcCQmCP5aGnfCnI4r9Q\"', 'Desserts; Food; Bakeries; Restaurants\r'
-'\"_0JDs_1DLtLH5XppCbSk_A\"', '-75.14314', '39.948399', '', '445', 'Aromatic House of Kabob', '113 Chestnut St', '19106', '4', '29', '0', '445', 'Philadelphia', 'PA', '\"_0JDs_1DLtLH5XppCbSk_A\"', 'Restaurants; Sports Bars; Bars; Nightlife; American (New); American (Traditional); Event Planning & Services; Caterers\r'
-'\"_3j8rQHUviV55AqsSSzK2w\"', '-75.227645', '39.988611', '{\"Monday\":\"11:0-23:0\",\"Tuesday\":\"11:0-23:0\",\"Wednesday\":\"11:0-23:0\",\"Thursday\":\"11:0-0:0\",\"Friday\":\"11:0-11:15\",\"Saturday\":\"12:0-0:0\",\"Sunday\":\"12:0-22:0\"}', '445', 'Robola Pizza & Grill', '1999 N 52nd St', '19131', '3', '35', '1', '445', 'Philadelphia', 'PA', '\"_3j8rQHUviV55AqsSSzK2w\"', 'Event Planning & Services; Active Life; Golf Lessons; Golf; Barbeque; Fitness & Instruction; Hotels; Restaurants; Hotels & Travel; Golf Cart Rentals\r'
-'\"_4E8aECY-679SxLH4R0Z3g\"', '-75.2332298', '39.945919', '', '445', 'Amoroso\'s', '845 S 55th St', '19143', '3', '5', '0', '445', 'Philadelphia', 'PA', '\"_4E8aECY-679SxLH4R0Z3g\"', 'Pubs; Bars; Nightlife; Cocktail Bars; Restaurants; Sandwiches; American (Traditional); Grill Services; Local Services\r'
-'\"_5j1jqZfayk8QiOdpclF1Q\"', '-75.1249', '40.03851', '{\"Monday\":\"11:0-21:30\",\"Tuesday\":\"11:0-22:30\",\"Wednesday\":\"11:0-22:30\",\"Thursday\":\"11:0-22:30\",\"Friday\":\"11:0-22:30\",\"Saturday\":\"11:0-23:30\",\"Sunday\":\"12:0-23:30\"}', '445', 'Bravo\'s Pizza Seafood House', '5734 N 2nd St', '19120', '2', '12', '1', '445', 'Philadelphia', 'PA', '\"_5j1jqZfayk8QiOdpclF1Q\"', 'Sandwiches; Restaurants; American (New)\r'
+'\"_05DcCQmCP5aGnfCnI4r9Q\", '-75.16891426', '39.9500535', '{\"Monday\":\"7:0-19:0\",\"Tuesday\":\"7:0-19:0\",\"Wednesday\":\"7:0-19:0\",\"Thursday\":\"7:0-19:0\",\"Friday\":\"7:0-19:0\",\"Saturday\":\"8:0-19:0\",\"Sunday\":\"9:0-17:0\"}', '445', 'Capital One Café', '135 S 17th St, Ste A', '19103', '4', '178', '1', '445', 'Philadelphia', 'PA', '\"_05DcCQmCP5aGnfCnI4r9Q\", 'Desserts; Food; Bakeries; Restaurants\r'
+'\"_0JDs_1DLtLH5XppCbSk_A\", '-75.14314', '39.948399', '', '445', 'Aromatic House of Kabob', '113 Chestnut St', '19106', '4', '29', '0', '445', 'Philadelphia', 'PA', '\"_0JDs_1DLtLH5XppCbSk_A\", 'Restaurants; Sports Bars; Bars; Nightlife; American (New); American (Traditional); Event Planning & Services; Caterers\r'
+'\"_3j8rQHUviV55AqsSSzK2w\", '-75.227645', '39.988611', '{\"Monday\":\"11:0-23:0\",\"Tuesday\":\"11:0-23:0\",\"Wednesday\":\"11:0-23:0\",\"Thursday\":\"11:0-0:0\",\"Friday\":\"11:0-11:15\",\"Saturday\":\"12:0-0:0\",\"Sunday\":\"12:0-22:0\"}', '445', 'Robola Pizza & Grill', '1999 N 52nd St', '19131', '3', '35', '1', '445', 'Philadelphia', 'PA', '\"_3j8rQHUviV55AqsSSzK2w\", 'Event Planning & Services; Active Life; Golf Lessons; Golf; Barbeque; Fitness & Instruction; Hotels; Restaurants; Hotels & Travel; Golf Cart Rentals\r'
+'\"_4E8aECY-679SxLH4R0Z3g\", '-75.2332298', '39.945919', '', '445', 'Amoroso\'s', '845 S 55th St', '19143', '3', '5', '0', '445', 'Philadelphia', 'PA', '\"_4E8aECY-679SxLH4R0Z3g\", 'Pubs; Bars; Nightlife; Cocktail Bars; Restaurants; Sandwiches; American (Traditional); Grill Services; Local Services\r'
+'\"_5j1jqZfayk8QiOdpclF1Q\", '-75.1249', '40.03851', '{\"Monday\":\"11:0-21:30\",\"Tuesday\":\"11:0-22:30\",\"Wednesday\":\"11:0-22:30\",\"Thursday\":\"11:0-22:30\",\"Friday\":\"11:0-22:30\",\"Saturday\":\"11:0-23:30\",\"Sunday\":\"12:0-23:30\"}', '445', 'Bravo\'s Pizza Seafood House', '5734 N 2nd St', '19120', '2', '12', '1', '445', 'Philadelphia', 'PA', '\"_5j1jqZfayk8QiOdpclF1Q\", 'Sandwiches; Restaurants; American (New)\r'
 \\ expected top 5 rows:
-'\"_05DcCQmCP5aGnfCnI4r9Q\"', '-75.16891426', '39.9500535', '{\"Monday\":\"7:0-19:0\",\"Tuesday\":\"7:0-19:0\",\"Wednesday\":\"7:0-19:0\",\"Thursday\":\"7:0-19:0\",\"Friday\":\"7:0-19:0\",\"Saturday\":\"8:0-19:0\",\"Sunday\":\"9:0-17:0\"}', '445', 'Capital One Café', '135 S 17th St, Ste A', '19103', '4', '178', '1', '445', 'Philadelphia', 'PA', '\"_05DcCQmCP5aGnfCnI4r9Q\"', 'Desserts; Food; Bakeries; Restaurants\r'
-'\"_0JDs_1DLtLH5XppCbSk_A\"', '-75.14314', '39.948399', '', '445', 'Aromatic House of Kabob', '113 Chestnut St', '19106', '4', '29', '0', '445', 'Philadelphia', 'PA', '\"_0JDs_1DLtLH5XppCbSk_A\"', 'Restaurants; Sports Bars; Bars; Nightlife; American (New); American (Traditional); Event Planning & Services; Caterers\r'
-'\"_3j8rQHUviV55AqsSSzK2w\"', '-75.227645', '39.988611', '{\"Monday\":\"11:0-23:0\",\"Tuesday\":\"11:0-23:0\",\"Wednesday\":\"11:0-23:0\",\"Thursday\":\"11:0-0:0\",\"Friday\":\"11:0-11:15\",\"Saturday\":\"12:0-0:0\",\"Sunday\":\"12:0-22:0\"}', '445', 'Robola Pizza & Grill', '1999 N 52nd St', '19131', '3', '35', '1', '445', 'Philadelphia', 'PA', '\"_3j8rQHUviV55AqsSSzK2w\"', 'Event Planning & Services; Active Life; Golf Lessons; Golf; Barbeque; Fitness & Instruction; Hotels; Restaurants; Hotels & Travel; Golf Cart Rentals\r'
-'\"_4E8aECY-679SxLH4R0Z3g\"', '-75.2332298', '39.945919', '', '445', 'Amoroso\'s', '845 S 55th St', '19143', '3', '5', '0', '445', 'Philadelphia', 'PA', '\"_4E8aECY-679SxLH4R0Z3g\"', 'Pubs; Bars; Nightlife; Cocktail Bars; Restaurants; Sandwiches; American (Traditional); Grill Services; Local Services\r'
-'\"_5j1jqZfayk8QiOdpclF1Q\"', '-75.1249', '40.03851', '{\"Monday\":\"11:0-21:30\",\"Tuesday\":\"11:0-22:30\",\"Wednesday\":\"11:0-22:30\",\"Thursday\":\"11:0-22:30\",\"Friday\":\"11:0-22:30\",\"Saturday\":\"11:0-23:30\",\"Sunday\":\"12:0-23:30\"}', '445', 'Bravo\'s Pizza Seafood House', '5734 N 2nd St', '19120', '2', '12', '1', '445', 'Philadelphia', 'PA', '\"_5j1jqZfayk8QiOdpclF1Q\"', 'Sandwiches; Restaurants; American (New)\r'
+'\"_05DcCQmCP5aGnfCnI4r9Q\", '-75.16891426', '39.9500535', '{\"Monday\":\"7:0-19:0\",\"Tuesday\":\"7:0-19:0\",\"Wednesday\":\"7:0-19:0\",\"Thursday\":\"7:0-19:0\",\"Friday\":\"7:0-19:0\",\"Saturday\":\"8:0-19:0\",\"Sunday\":\"9:0-17:0\"}', '445', 'Capital One Café', '135 S 17th St, Ste A', '19103', '4', '178', '1', '445', 'Philadelphia', 'PA', '\"_05DcCQmCP5aGnfCnI4r9Q\", 'Desserts; Food; Bakeries; Restaurants\r'
+'\"_0JDs_1DLtLH5XppCbSk_A\", '-75.14314', '39.948399', '', '445', 'Aromatic House of Kabob', '113 Chestnut St', '19106', '4', '29', '0', '445', 'Philadelphia', 'PA', '\"_0JDs_1DLtLH5XppCbSk_A\", 'Restaurants; Sports Bars; Bars; Nightlife; American (New); American (Traditional); Event Planning & Services; Caterers\r'
+'\"_3j8rQHUviV55AqsSSzK2w\", '-75.227645', '39.988611', '{\"Monday\":\"11:0-23:0\",\"Tuesday\":\"11:0-23:0\",\"Wednesday\":\"11:0-23:0\",\"Thursday\":\"11:0-0:0\",\"Friday\":\"11:0-11:15\",\"Saturday\":\"12:0-0:0\",\"Sunday\":\"12:0-22:0\"}', '445', 'Robola Pizza & Grill', '1999 N 52nd St', '19131', '3', '35', '1', '445', 'Philadelphia', 'PA', '\"_3j8rQHUviV55AqsSSzK2w\", 'Event Planning & Services; Active Life; Golf Lessons; Golf; Barbeque; Fitness & Instruction; Hotels; Restaurants; Hotels & Travel; Golf Cart Rentals\r'
+'\"_4E8aECY-679SxLH4R0Z3g\", '-75.2332298', '39.945919', '', '445', 'Amoroso\'s', '845 S 55th St', '19143', '3', '5', '0', '445', 'Philadelphia', 'PA', '\"_4E8aECY-679SxLH4R0Z3g\", 'Pubs; Bars; Nightlife; Cocktail Bars; Restaurants; Sandwiches; American (Traditional); Grill Services; Local Services\r'
+'\"_5j1jqZfayk8QiOdpclF1Q\", '-75.1249', '40.03851', '{\"Monday\":\"11:0-21:30\",\"Tuesday\":\"11:0-22:30\",\"Wednesday\":\"11:0-22:30\",\"Thursday\":\"11:0-22:30\",\"Friday\":\"11:0-22:30\",\"Saturday\":\"11:0-23:30\",\"Sunday\":\"12:0-23:30\"}', '445', 'Bravo\'s Pizza Seafood House', '5734 N 2nd St', '19120', '2', '12', '1', '445', 'Philadelphia', 'PA', '\"_5j1jqZfayk8QiOdpclF1Q\", 'Sandwiches; Restaurants; American (New)\r'
 
 
 // CALL SearchBusinessBy(null, null, 'NY', 'New York');
@@ -281,35 +281,35 @@ Error Code: 1452. Cannot add or update a child row: a foreign key constraint fai
 
 
 /****** cool ******/
-// CALL CoolByRid('"jNwGwhrvj85SrR96c-Y8Tw"', 
-// '"uEgYr-Umi76NKTrMeDQq1Q"');
+// CALL CoolByRid("jNwGwhrvj85SrR96c-Y8Tw", 
+// "uEgYr-Umi76NKTrMeDQq1Q");
 1 row(s) affected
 // expected output:
 1 row(s) affected
 
 
-// CALL CoolByRid('"7riPtZTh-uIPegJiGkvgzw"', 
-// '"uEgYr-Umi76NKTrMeDQq1Q"');
+// CALL CoolByRid("7riPtZTh-uIPegJiGkvgzw", 
+// "uEgYr-Umi76NKTrMeDQq1Q");
 1 row(s) affected
 // expected output:
 1 row(s) affected
 
 /* check cools */
-// CALL GetUserByUid('"1xzVJtkjnUUYsFJ8xRMxYg"');
+// CALL GetUserByUid("1xzVJtkjnUUYsFJ8xRMxYg");
 1 row(s) affected
 // expected output:
 1 row(s) affected
 
 /* test if a review is already cooled  */
-CALL IsCool('"jNwGwhrvj85SrR96c-Y8Tw"', 
-'"uEgYr-Umi76NKTrMeDQq1Q"');
-CALL IsCool('"7riPtZTh-uIPegJiGkvgzw"', 
-'"uEgYr-Umi76NKTrMeDQq1Q"');
-CALL IsCool('test', '"uEgYr-Umi76NKTrMeDQq1Q"');
-CALL IsCool(null, '"uEgYr-Umi76NKTrMeDQq1Q"');
+CALL IsCool("jNwGwhrvj85SrR96c-Y8Tw", 
+"uEgYr-Umi76NKTrMeDQq1Q");
+CALL IsCool("7riPtZTh-uIPegJiGkvgzw", 
+"uEgYr-Umi76NKTrMeDQq1Q");
+CALL IsCool('test', "uEgYr-Umi76NKTrMeDQq1Q");
+CALL IsCool(null, "uEgYr-Umi76NKTrMeDQq1Q");
 
 /* test if cools added in user profile */
-CALL GetUserByUid('"1xzVJtkjnUUYsFJ8xRMxYg"');
+CALL GetUserByUid("1xzVJtkjnUUYsFJ8xRMxYg");
 # uid, email, pwd
 "1xzVJtkjnUUYsFJ8xRMxYg", hrzqrqfs@gmail.com, Tj5KGvKl
 // expected output:
@@ -318,7 +318,7 @@ CALL GetUserByUid('"1xzVJtkjnUUYsFJ8xRMxYg"');
 
 
 /* check cools */
-// CALL GetUserByUid('"dQE8Yy6EDujaMJQmke70Vw"');
+// CALL GetUserByUid("dQE8Yy6EDujaMJQmke70Vw");
 # uid, email, pwd
 "dQE8Yy6EDujaMJQmke70Vw", woeseiew@gmail.com, rRYR1MU1
 // expected output:
@@ -327,7 +327,7 @@ CALL GetUserByUid('"1xzVJtkjnUUYsFJ8xRMxYg"');
 
 
 
-// CALL GetUserByUid('"qJ1--wZxPBCQNOQxdDQttQ"');
+// CALL GetUserByUid("qJ1--wZxPBCQNOQxdDQttQ");
 # uid, email, pwd
 "dQE8Yy6EDujaMJQmke70Vw", woeseiew@gmail.com, rRYR1MU1
 // expected output:
@@ -335,28 +335,28 @@ CALL GetUserByUid('"1xzVJtkjnUUYsFJ8xRMxYg"');
 // "dQE8Yy6EDujaMJQmke70Vw", woeseiew@gmail.com, rRYR1MU1
 
 
-// CALL GetUserByUid('"POK5FlWefqHWz8g4KAHH4Q"');
+// CALL GetUserByUid("POK5FlWefqHWz8g4KAHH4Q");
 null
 // expected output:
 // null
 
 /* cancel cool */
-// CALL cancelCool('"N7-45NRKghcDaYqBXnEBiw"', 
-// '"dQE8Yy6EDujaMJQmke70Vw"');
+// CALL cancelCool("N7-45NRKghcDaYqBXnEBiw", 
+// "dQE8Yy6EDujaMJQmke70Vw");
 1 row(s) affected
 // expected output:
 1 row(s) affected
 
 
-CALL cancelCool('"TSPqvlIQGQhVbEwHlCemTA"', 
-'"qJ1--wZxPBCQNOQxdDQttQ"');
+CALL cancelCool("TSPqvlIQGQhVbEwHlCemTA", 
+"qJ1--wZxPBCQNOQxdDQttQ");
 0 row(s) affected
 // expected output:
 0 row(s) affected
 
 
-CALL cancelCool('"POK5FlWefqHWz8g4KAHH4Q"', 
-'"POK5FlWefqHWz8g4KAHH4Q"');
+CALL cancelCool("POK5FlWefqHWz8g4KAHH4Q", 
+"POK5FlWefqHWz8g4KAHH4Q");
 0 row(s) affected
 // expected output:
 0 row(s) affected
@@ -371,8 +371,8 @@ CALL cancelCool('"POK5FlWefqHWz8g4KAHH4Q"',
 
 /****** review ******/
 /*** Test the insertion feature ***/
-// CALL LeaveReview('"-0epFLgYq2C1Jo_W4FOBKw"',
-// '"uEgYr-Umi76NKTrMeDQq1Q"', 'This is a great business.');
+// CALL LeaveReview("-0epFLgYq2C1Jo_W4FOBKw",
+// "uEgYr-Umi76NKTrMeDQq1Q", 'This is a great business.');
 # rid
 qDSQceCvmyHNu_usRSpY7f
 // expected output:
@@ -380,16 +380,16 @@ qDSQceCvmyHNu_usRSpY7f
 // some id
 
 
-// CALL LeaveReview('"-0TffRSXXIlBYVbb5AwfTg"',
-//  '"uEgYr-Umi76NKTrMeDQq1Q"', 'This is a great business.');
+// CALL LeaveReview("-0TffRSXXIlBYVbb5AwfTg",
+//  "uEgYr-Umi76NKTrMeDQq1Q", 'This is a great business.');
 # rid
 tCFVY8j69AN_QYJjVDN689
 // expected output:
 // # rid
 // some id
 
-// CALL LeaveReview('"-1MhPXk1FglglUAmuPLIGg"',
-//  '"uEgYr-Umi76NKTrMeDQq1Q"', null);
+// CALL LeaveReview("-1MhPXk1FglglUAmuPLIGg",
+//  "uEgYr-Umi76NKTrMeDQq1Q", null);
 # rid
 997w_nJ6I7OVADOAVpNJGF
 // expected output:
@@ -397,7 +397,7 @@ tCFVY8j69AN_QYJjVDN689
 // some id
 
 /* fail cases - should not be able to add */
-// CALL LeaveReview(null, '"uEgYr-Umi76NKTrMeDQq1Q"', 'This is a great business x3.');
+// CALL LeaveReview(null, "uEgYr-Umi76NKTrMeDQq1Q", 'This is a great business x3.');
 Error Code: 1048. Column 'bid' cannot be null
 // expected: 
 // fail
@@ -408,7 +408,7 @@ Error Code: 1452. Cannot add or update a child row: a foreign key constraint fai
 // fail
 
 /* get review - start with RID */
-// CALL GetReviewByRid('"3Ta-cyj4Iu8XBAltOrdj6A"');
+// CALL GetReviewByRid("3Ta-cyj4Iu8XBAltOrdj6A");
 # rid, date, text, stars, cool
 "3Ta-cyj4Iu8XBAltOrdj6A", 2011-02-17, update, 1, 0
 // expected output:
@@ -416,7 +416,7 @@ Error Code: 1452. Cannot add or update a child row: a foreign key constraint fai
 // "3Ta-cyj4Iu8XBAltOrdj6A", 2011-02-17, update, 1, 0
 
 
-// CALL GetReviewByRid('"jNwGwhrvj85SrR96c-Y8Tw"');
+// CALL GetReviewByRid("jNwGwhrvj85SrR96c-Y8Tw");
 # rid, date, text, stars, cool
 "jNwGwhrvj85SrR96c-Y8Tw", 2014-08-18, We went to IndeBlue due to its great proximity to the Walnut St. theaters and based on other's reviews...and we were not disappointed. The food was delicious! We had the flash fried spinach and naan pizza as appetizers and the tastes were spectacular. Then we had a basil chicken skewer and a lamb rogan josh which were also full of flavor and very filling. The atmosphere, staff and location were all excellent. I have already recommended it to several friends and will definitely go back., 5, 2
 // expected output:
@@ -425,7 +425,7 @@ Error Code: 1452. Cannot add or update a child row: a foreign key constraint fai
 
 
 
-// CALL GetReviewByRid('"XKLhk03jCPnDiRQk1GzOVA"');
+// CALL GetReviewByRid("XKLhk03jCPnDiRQk1GzOVA");
 # rid, date, text, stars, cool
 "XKLhk03jCPnDiRQk1GzOVA", 2013-11-08, We were in this town today Geocaching and looking for lunch.  Great chicken salad sandwhich and great service., 5, 0
 // expected:
@@ -440,7 +440,7 @@ null
 
 
 /* get review - bid */
-// CALL GetReviewByBid('"--7PUidqRWpRSpXebiyxTg"');
+// CALL GetReviewByBid("--7PUidqRWpRSpXebiyxTg");
 # text
 update
 // expected output:
@@ -449,7 +449,7 @@ update
 
 
 
-// CALL GetReviewByBid('"-0TffRSXXIlBYVbb5AwfTg"');
+// CALL GetReviewByBid("-0TffRSXXIlBYVbb5AwfTg");
 # text
 We went to IndeBlue due to its great proximity to the Walnut St. theaters and based on other's reviews...and we were not disappointed. The food was delicious! We had the flash fried spinach and naan pizza as appetizers and the tastes were spectacular. Then we had a basil chicken skewer and a lamb rogan josh which were also full of flavor and very filling. The atmosphere, staff and location were all excellent. I have already recommended it to several friends and will definitely go back.
 This is a great business.
@@ -459,7 +459,7 @@ This is a great business.
 // This is a great business.
 
 
-// CALL GetReviewByBid('"-0epFLgYq2C1Jo_W4FOBKw"');
+// CALL GetReviewByBid("-0epFLgYq2C1Jo_W4FOBKw");
 # text
 We were in this town today Geocaching and looking for lunch.  Great chicken salad sandwhich and great service.
 This is a great business.
@@ -486,7 +486,7 @@ NULL
 
 
 /* update review */
-CALL UpdateReviewTextByRid('"3Ta-cyj4Iu8XBAltOrdj6A"',
+CALL UpdateReviewTextByRid("3Ta-cyj4Iu8XBAltOrdj6A",
  "update1", 1);
  1 row(s) affected
 // expected:
@@ -495,7 +495,7 @@ CALL UpdateReviewTextByRid('"3Ta-cyj4Iu8XBAltOrdj6A"',
 
 
 /* test if stars gets updated in Business*/
-CALL GetBusinessByBid('"--7PUidqRWpRSpXebiyxTg"');
+CALL GetBusinessByBid("--7PUidqRWpRSpXebiyxTg");
 null
 // expected:
 // NULL
@@ -511,9 +511,9 @@ CALL UpdateReviewTextByRid('R1', "update", null);
 
 
 /* render review */
-CALL GetReviewDetails('"3Ta-cyj4Iu8XBAltOrdj6A"');
+CALL GetReviewDetails("3Ta-cyj4Iu8XBAltOrdj6A");
 
-CALL GetReviewDetails('"jNwGwhrvj85SrR96c-Y8Tw"');
+CALL GetReviewDetails("jNwGwhrvj85SrR96c-Y8Tw");
 
 /* not exist case */
 // CALL GetReviewDetails('R300');
@@ -528,7 +528,7 @@ NULL
 // NULL
 
 /* getRidByBid */
-Call GetRidByBid ('"--7PUidqRWpRSpXebiyxTg"');
+Call GetRidByBid ("--7PUidqRWpRSpXebiyxTg");
 # rid, date, text, stars, cool, name, uid
 "3Ta-cyj4Iu8XBAltOrdj6A", 2011-02-17, update1, 1, 0, Chuck, "uEgYr-Umi76NKTrMeDQq1Q"
 // expected output:
@@ -536,7 +536,7 @@ Call GetRidByBid ('"--7PUidqRWpRSpXebiyxTg"');
 "3Ta-cyj4Iu8XBAltOrdj6A", 2011-02-17, update1, 1, 0, Chuck, "uEgYr-Umi76NKTrMeDQq1Q"
 
 
-Call GetRidByBid ('"-0TffRSXXIlBYVbb5AwfTg"');
+Call GetRidByBid ("-0TffRSXXIlBYVbb5AwfTg");
 # rid, date, text, stars, cool, name, uid
 "jNwGwhrvj85SrR96c-Y8Tw", 2014-08-18, We went to IndeBlue due to its great proximity to the Walnut St. theaters and based on other's reviews...and we were not disappointed. The food was delicious! We had the flash fried spinach and naan pizza as appetizers and the tastes were spectacular. Then we had a basil chicken skewer and a lamb rogan josh which were also full of flavor and very filling. The atmosphere, staff and location were all excellent. I have already recommended it to several friends and will definitely go back., 5, 2, Steve, "1xzVJtkjnUUYsFJ8xRMxYg"
 // expected output:
@@ -557,7 +557,7 @@ NULL
 // expected:NULL
 
 
-CALL GetReviewDetails('"-QGsoLVpuJlduGCcJX6-NQ"');
+CALL GetReviewDetails("-QGsoLVpuJlduGCcJX6-NQ");
 # rid, date, text, stars, cool, name, uid
 "-QGsoLVpuJlduGCcJX6-NQ", 2014-06-10, My family and I order from them very often, China Dragon is our go to place for Asian cuisine. They are always pleasant in person and on the phone, and the prices are by far the best around. Their delivery always comes a few minutes before they say it will and most importantly the food is YUMMY! We love their pork fried rice, egg rolls, shrimp toast, and the hot and sour soup is a must try! Tonight we tried their Pad Thai for the first time and it was to die for!! 
 
@@ -571,13 +571,13 @@ I honestly can't believe they don't have more reviews on here! Try them out, you
 
 
 
-CALL DeleteReview('"-QGsoLVpuJlduGCcJX6-NQ"');
+CALL DeleteReview("-QGsoLVpuJlduGCcJX6-NQ");
 1 rows affected
 // expected: 
 // 1 rows affected
 
 
-CALL GetReviewDetails('"-QGsoLVpuJlduGCcJX6-NQ"');
+CALL GetReviewDetails("-QGsoLVpuJlduGCcJX6-NQ");
 NULL
 // expected:
 NULL
@@ -611,7 +611,7 @@ NULL
 
 
 /* test star distribution */
-// CALL getStarDistribution('"--7PUidqRWpRSpXebiyxTg"');
+// CALL getStarDistribution("--7PUidqRWpRSpXebiyxTg");
 5_star	4_star	3_star	2_star	1_star	0_star
 0	0	1	0	0	0
 // expected:
@@ -622,7 +622,7 @@ NULL
 
 
 
-// CALL getStarDistribution('"-7KAng29RoHr87mvOFbK9w"');
+// CALL getStarDistribution("-7KAng29RoHr87mvOFbK9w");
 # 5_star, 4_star, 3_star, 2_star, 1_star, 0_star
 '0', '0', '1', '0', '0', '0'
 // expected output:
@@ -633,7 +633,7 @@ NULL
 
 
 
-// CALL getStarDistribution('"-7wXZWnKe26iwJY_5z_AAw"');
+// CALL getStarDistribution("-7wXZWnKe26iwJY_5z_AAw");
 # 5_star, 4_star, 3_star, 2_star, 1_star, 0_star
 1, 0, 0, 0, 0, 0
 // expected output:
@@ -643,8 +643,8 @@ NULL
 
 
 /* update review */
-// CALL UpdateReviewTextByRid('"3Ta-cyj4Iu8XBAltOrdj6A"', "update", 1);
-// CALL getStarDistribution('"--7PUidqRWpRSpXebiyxTg"');
+// CALL UpdateReviewTextByRid("3Ta-cyj4Iu8XBAltOrdj6A", "update", 1);
+// CALL getStarDistribution("--7PUidqRWpRSpXebiyxTg");
 # 5_star, 4_star, 3_star, 2_star, 1_star, 0_star
 0, 0, 0, 0, 1, 0
 // expected output:
