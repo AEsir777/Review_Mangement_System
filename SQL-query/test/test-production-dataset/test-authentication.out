@@ -19,26 +19,26 @@
 '123e4567-e89b-12d3-a456-426614171234', 'test2@example.com', 'pwd'
 //expected output: '123e4567-e89b-12d3-a456-426614171234', 'test2@example.com', 'pwd'
 
-// CALL GetUserByUid('"w-zD8Ln3XZszM82AfVrspg"');
+// CALL GetUserByUid("w-zD8Ln3XZszM82AfVrspg");
 1 row(s) returned
 "w-zD8Ln3XZszM82AfVrspg"	jowttpke@gmail.com	LQdk4nrs
 //expected output: "w-zD8Ln3XZszM82AfVrspg"	jowttpke@gmail.com	LQdk4nrs
 
-// CALL GetUserByUid('"qvmL6mp-rpIwVguxb5HuvQ"');
+// CALL GetUserByUid("qvmL6mp-rpIwVguxb5HuvQ");
 1 row(s) returned
 "qvmL6mp-rpIwVguxb5HuvQ"	oBALADF6@gmail.com	Pl9JtQEbpr
 //expected output: "qvmL6mp-rpIwVguxb5HuvQ"	oBALADF6@gmail.com	Pl9JtQEbpr
 
-// CALL GetUserByUid('"eTvp_hYnsrI5-ow_sQ31_g"');
+// CALL GetUserByUid("eTvp_hYnsrI5-ow_sQ31_g");
 1 row(s) returned
 "eTvp_hYnsrI5-ow_sQ31_g"	dwlphaoy@gmail.com	01EpfXrW
 //expected output: "eTvp_hYnsrI5-ow_sQ31_g"	dwlphaoy@gmail.com	01EpfXrW
 
-// CALL GetUserByUid('"GG0mFsEXb-02_dzFPqRV1Q"');
+// CALL GetUserByUid("GG0mFsEXb-02_dzFPqRV1Q");
 1 row(s) returned
 "GG0mFsEXb-02_dzFPqRV1Q"	toqeczld@gmail.com	CKt7l6Wq
 //expected output: "GG0mFsEXb-02_dzFPqRV1Q"	toqeczld@gmail.com	CKt7l6Wq
 
-// CALL GetUserByUid('"not exist"');
+// CALL GetUserByUid("not exist");
 0 row(s) returned
 //expected output: 0 row(s) returned

@@ -1,24 +1,24 @@
 /****** searchBusiness ******/
 /*** Test insert ******/
 -- Insert a new business record
-// CALL InsertIntoBusiness('"MTSW4McQd7CbVtyjqonnmb"', -73.987, 39.9555052, '8AM-5PM', 1, 'YunShang Noodle', '123 Main St', 'N2L 0E2', NULL, 0, 1);
+// CALL InsertIntoBusiness('MTSW4McQd7CbVtyjqonnmb', -73.987, 39.9555052, '8AM-5PM', 1, 'YunShang Noodle', '123 Main St', 'N2L 0E2', NULL, 0, 1);
 1 row(s) affected
 // expected output: 1 row(s) affected
 
 -- Verify the insertion by retrieving the business record
-// CALL GetBusinessByBid('"MTSW4McQd7CbVtyjqonnmb"');
+// CALL GetBusinessByBid('MTSW4McQd7CbVtyjqonnmb');
 1 row(s) returned
 "MTSW4McQd7CbVtyjqonnmb"	-73.987	39.9555052	8AM-5PM	YunShang Noodle	Abington Township	PA	123 Main St	N2L 0E2		0	1	
 // expected output: "MTSW4McQd7CbVtyjqonnmb"	-73.987	39.9555052	8AM-5PM	YunShang Noodle	Abington Township	PA	123 Main St	N2L 0E2		0	1
 
 -- Retrieve a business record by bid
 -- Check review count and star
-// CALL GetBusinessByBid('"kfNv-JZpuN6TVNSO6hHdkw"');
+// CALL GetBusinessByBid('kfNv-JZpuN6TVNSO6hHdkw');
 1 row(s) returned
 "kfNv-JZpuN6TVNSO6hHdkw"	-86.0530799	39.90432032	{"Monday":"11:0-21:0","Tuesday":"11:0-21:0","Wednesday":"11:0-21:0","Thursday":"11:0-21:0","Friday":"11:0-21:0","Saturday":"11:0-21:0"}	Hibachi Express	Indianapolis	IN	6625 E 82nd St	46250	4	20	1	Steakhouses; Asian Fusion; Restaurants
 // expected output: "kfNv-JZpuN6TVNSO6hHdkw"	-86.0530799	39.90432032	{"Monday":"11:0-21:0","Tuesday":"11:0-21:0","Wednesday":"11:0-21:0","Thursday":"11:0-21:0","Friday":"11:0-21:0","Saturday":"11:0-21:0"}	Hibachi Express	Indianapolis	IN	6625 E 82nd St	46250	4	20	1	Steakhouses; Asian Fusion; Restaurants
 
-// CALL GetBusinessByBid('"MTSW4McQd7CbVtyjqoe9mw"');
+// CALL GetBusinessByBid('MTSW4McQd7CbVtyjqoe9mw');
 1 row(s) returned
 "MTSW4McQd7CbVtyjqoe9mw"	-75.1555641	39.9555052	{"Monday":"7:0-20:0","Tuesday":"7:0-20:0","Wednesday":"7:0-20:0","Thursday":"7:0-20:0","Friday":"7:0-21:0","Saturday":"7:0-21:0","Sunday":"7:0-21:0"}	St Honore Pastries	Philadelphia	PA	935 Race St	19107	4	80	1	Restaurants; Food; Bubble Tea; Coffee & Tea; Bakeries
 // expected output: "MTSW4McQd7CbVtyjqoe9mw"	-75.1555641	39.9555052	{"Monday":"7:0-20:0","Tuesday":"7:0-20:0","Wednesday":"7:0-20:0","Thursday":"7:0-20:0","Friday":"7:0-21:0","Saturday":"7:0-21:0","Sunday":"7:0-21:0"}	St Honore Pastries	Philadelphia	PA	935 Race St	19107	4	80	1	Restaurants; Food; Bubble Tea; Coffee & Tea; Bakeries
@@ -43,17 +43,17 @@
 // CALL SearchBusinessBy(null, null, 'PA', 'Philadelphia');
 2247 row(s) returned
 \\ top 5 rows:
-'\"_05DcCQmCP5aGnfCnI4r9Q\"', '-75.16891426', '39.9500535', '{\"Monday\":\"7:0-19:0\",\"Tuesday\":\"7:0-19:0\",\"Wednesday\":\"7:0-19:0\",\"Thursday\":\"7:0-19:0\",\"Friday\":\"7:0-19:0\",\"Saturday\":\"8:0-19:0\",\"Sunday\":\"9:0-17:0\"}', '445', 'Capital One Café', '135 S 17th St, Ste A', '19103', '4', '178', '1', '445', 'Philadelphia', 'PA', '\"_05DcCQmCP5aGnfCnI4r9Q\"', 'Desserts; Food; Bakeries; Restaurants\r'
-'\"_0JDs_1DLtLH5XppCbSk_A\"', '-75.14314', '39.948399', '', '445', 'Aromatic House of Kabob', '113 Chestnut St', '19106', '4', '29', '0', '445', 'Philadelphia', 'PA', '\"_0JDs_1DLtLH5XppCbSk_A\"', 'Restaurants; Sports Bars; Bars; Nightlife; American (New); American (Traditional); Event Planning & Services; Caterers\r'
-'\"_3j8rQHUviV55AqsSSzK2w\"', '-75.227645', '39.988611', '{\"Monday\":\"11:0-23:0\",\"Tuesday\":\"11:0-23:0\",\"Wednesday\":\"11:0-23:0\",\"Thursday\":\"11:0-0:0\",\"Friday\":\"11:0-11:15\",\"Saturday\":\"12:0-0:0\",\"Sunday\":\"12:0-22:0\"}', '445', 'Robola Pizza & Grill', '1999 N 52nd St', '19131', '3', '35', '1', '445', 'Philadelphia', 'PA', '\"_3j8rQHUviV55AqsSSzK2w\"', 'Event Planning & Services; Active Life; Golf Lessons; Golf; Barbeque; Fitness & Instruction; Hotels; Restaurants; Hotels & Travel; Golf Cart Rentals\r'
-'\"_4E8aECY-679SxLH4R0Z3g\"', '-75.2332298', '39.945919', '', '445', 'Amoroso\'s', '845 S 55th St', '19143', '3', '5', '0', '445', 'Philadelphia', 'PA', '\"_4E8aECY-679SxLH4R0Z3g\"', 'Pubs; Bars; Nightlife; Cocktail Bars; Restaurants; Sandwiches; American (Traditional); Grill Services; Local Services\r'
-'\"_5j1jqZfayk8QiOdpclF1Q\"', '-75.1249', '40.03851', '{\"Monday\":\"11:0-21:30\",\"Tuesday\":\"11:0-22:30\",\"Wednesday\":\"11:0-22:30\",\"Thursday\":\"11:0-22:30\",\"Friday\":\"11:0-22:30\",\"Saturday\":\"11:0-23:30\",\"Sunday\":\"12:0-23:30\"}', '445', 'Bravo\'s Pizza Seafood House', '5734 N 2nd St', '19120', '2', '12', '1', '445', 'Philadelphia', 'PA', '\"_5j1jqZfayk8QiOdpclF1Q\"', 'Sandwiches; Restaurants; American (New)\r'
+'\"_05DcCQmCP5aGnfCnI4r9Q\", '-75.16891426', '39.9500535', '{\"Monday\":\"7:0-19:0\",\"Tuesday\":\"7:0-19:0\",\"Wednesday\":\"7:0-19:0\",\"Thursday\":\"7:0-19:0\",\"Friday\":\"7:0-19:0\",\"Saturday\":\"8:0-19:0\",\"Sunday\":\"9:0-17:0\"}', '445', 'Capital One Café', '135 S 17th St, Ste A', '19103', '4', '178', '1', '445', 'Philadelphia', 'PA', '\"_05DcCQmCP5aGnfCnI4r9Q\", 'Desserts; Food; Bakeries; Restaurants\r'
+'\"_0JDs_1DLtLH5XppCbSk_A\", '-75.14314', '39.948399', '', '445', 'Aromatic House of Kabob', '113 Chestnut St', '19106', '4', '29', '0', '445', 'Philadelphia', 'PA', '\"_0JDs_1DLtLH5XppCbSk_A\", 'Restaurants; Sports Bars; Bars; Nightlife; American (New); American (Traditional); Event Planning & Services; Caterers\r'
+'\"_3j8rQHUviV55AqsSSzK2w\", '-75.227645', '39.988611', '{\"Monday\":\"11:0-23:0\",\"Tuesday\":\"11:0-23:0\",\"Wednesday\":\"11:0-23:0\",\"Thursday\":\"11:0-0:0\",\"Friday\":\"11:0-11:15\",\"Saturday\":\"12:0-0:0\",\"Sunday\":\"12:0-22:0\"}', '445', 'Robola Pizza & Grill', '1999 N 52nd St', '19131', '3', '35', '1', '445', 'Philadelphia', 'PA', '\"_3j8rQHUviV55AqsSSzK2w\", 'Event Planning & Services; Active Life; Golf Lessons; Golf; Barbeque; Fitness & Instruction; Hotels; Restaurants; Hotels & Travel; Golf Cart Rentals\r'
+'\"_4E8aECY-679SxLH4R0Z3g\", '-75.2332298', '39.945919', '', '445', 'Amoroso\'s', '845 S 55th St', '19143', '3', '5', '0', '445', 'Philadelphia', 'PA', '\"_4E8aECY-679SxLH4R0Z3g\", 'Pubs; Bars; Nightlife; Cocktail Bars; Restaurants; Sandwiches; American (Traditional); Grill Services; Local Services\r'
+'\"_5j1jqZfayk8QiOdpclF1Q\", '-75.1249', '40.03851', '{\"Monday\":\"11:0-21:30\",\"Tuesday\":\"11:0-22:30\",\"Wednesday\":\"11:0-22:30\",\"Thursday\":\"11:0-22:30\",\"Friday\":\"11:0-22:30\",\"Saturday\":\"11:0-23:30\",\"Sunday\":\"12:0-23:30\"}', '445', 'Bravo\'s Pizza Seafood House', '5734 N 2nd St', '19120', '2', '12', '1', '445', 'Philadelphia', 'PA', '\"_5j1jqZfayk8QiOdpclF1Q\", 'Sandwiches; Restaurants; American (New)\r'
 \\ expected top 5 rows:
-'\"_05DcCQmCP5aGnfCnI4r9Q\"', '-75.16891426', '39.9500535', '{\"Monday\":\"7:0-19:0\",\"Tuesday\":\"7:0-19:0\",\"Wednesday\":\"7:0-19:0\",\"Thursday\":\"7:0-19:0\",\"Friday\":\"7:0-19:0\",\"Saturday\":\"8:0-19:0\",\"Sunday\":\"9:0-17:0\"}', '445', 'Capital One Café', '135 S 17th St, Ste A', '19103', '4', '178', '1', '445', 'Philadelphia', 'PA', '\"_05DcCQmCP5aGnfCnI4r9Q\"', 'Desserts; Food; Bakeries; Restaurants\r'
-'\"_0JDs_1DLtLH5XppCbSk_A\"', '-75.14314', '39.948399', '', '445', 'Aromatic House of Kabob', '113 Chestnut St', '19106', '4', '29', '0', '445', 'Philadelphia', 'PA', '\"_0JDs_1DLtLH5XppCbSk_A\"', 'Restaurants; Sports Bars; Bars; Nightlife; American (New); American (Traditional); Event Planning & Services; Caterers\r'
-'\"_3j8rQHUviV55AqsSSzK2w\"', '-75.227645', '39.988611', '{\"Monday\":\"11:0-23:0\",\"Tuesday\":\"11:0-23:0\",\"Wednesday\":\"11:0-23:0\",\"Thursday\":\"11:0-0:0\",\"Friday\":\"11:0-11:15\",\"Saturday\":\"12:0-0:0\",\"Sunday\":\"12:0-22:0\"}', '445', 'Robola Pizza & Grill', '1999 N 52nd St', '19131', '3', '35', '1', '445', 'Philadelphia', 'PA', '\"_3j8rQHUviV55AqsSSzK2w\"', 'Event Planning & Services; Active Life; Golf Lessons; Golf; Barbeque; Fitness & Instruction; Hotels; Restaurants; Hotels & Travel; Golf Cart Rentals\r'
-'\"_4E8aECY-679SxLH4R0Z3g\"', '-75.2332298', '39.945919', '', '445', 'Amoroso\'s', '845 S 55th St', '19143', '3', '5', '0', '445', 'Philadelphia', 'PA', '\"_4E8aECY-679SxLH4R0Z3g\"', 'Pubs; Bars; Nightlife; Cocktail Bars; Restaurants; Sandwiches; American (Traditional); Grill Services; Local Services\r'
-'\"_5j1jqZfayk8QiOdpclF1Q\"', '-75.1249', '40.03851', '{\"Monday\":\"11:0-21:30\",\"Tuesday\":\"11:0-22:30\",\"Wednesday\":\"11:0-22:30\",\"Thursday\":\"11:0-22:30\",\"Friday\":\"11:0-22:30\",\"Saturday\":\"11:0-23:30\",\"Sunday\":\"12:0-23:30\"}', '445', 'Bravo\'s Pizza Seafood House', '5734 N 2nd St', '19120', '2', '12', '1', '445', 'Philadelphia', 'PA', '\"_5j1jqZfayk8QiOdpclF1Q\"', 'Sandwiches; Restaurants; American (New)\r'
+'\"_05DcCQmCP5aGnfCnI4r9Q\", '-75.16891426', '39.9500535', '{\"Monday\":\"7:0-19:0\",\"Tuesday\":\"7:0-19:0\",\"Wednesday\":\"7:0-19:0\",\"Thursday\":\"7:0-19:0\",\"Friday\":\"7:0-19:0\",\"Saturday\":\"8:0-19:0\",\"Sunday\":\"9:0-17:0\"}', '445', 'Capital One Café', '135 S 17th St, Ste A', '19103', '4', '178', '1', '445', 'Philadelphia', 'PA', '\"_05DcCQmCP5aGnfCnI4r9Q\", 'Desserts; Food; Bakeries; Restaurants\r'
+'\"_0JDs_1DLtLH5XppCbSk_A\", '-75.14314', '39.948399', '', '445', 'Aromatic House of Kabob', '113 Chestnut St', '19106', '4', '29', '0', '445', 'Philadelphia', 'PA', '\"_0JDs_1DLtLH5XppCbSk_A\", 'Restaurants; Sports Bars; Bars; Nightlife; American (New); American (Traditional); Event Planning & Services; Caterers\r'
+'\"_3j8rQHUviV55AqsSSzK2w\", '-75.227645', '39.988611', '{\"Monday\":\"11:0-23:0\",\"Tuesday\":\"11:0-23:0\",\"Wednesday\":\"11:0-23:0\",\"Thursday\":\"11:0-0:0\",\"Friday\":\"11:0-11:15\",\"Saturday\":\"12:0-0:0\",\"Sunday\":\"12:0-22:0\"}', '445', 'Robola Pizza & Grill', '1999 N 52nd St', '19131', '3', '35', '1', '445', 'Philadelphia', 'PA', '\"_3j8rQHUviV55AqsSSzK2w\", 'Event Planning & Services; Active Life; Golf Lessons; Golf; Barbeque; Fitness & Instruction; Hotels; Restaurants; Hotels & Travel; Golf Cart Rentals\r'
+'\"_4E8aECY-679SxLH4R0Z3g\", '-75.2332298', '39.945919', '', '445', 'Amoroso\'s', '845 S 55th St', '19143', '3', '5', '0', '445', 'Philadelphia', 'PA', '\"_4E8aECY-679SxLH4R0Z3g\", 'Pubs; Bars; Nightlife; Cocktail Bars; Restaurants; Sandwiches; American (Traditional); Grill Services; Local Services\r'
+'\"_5j1jqZfayk8QiOdpclF1Q\", '-75.1249', '40.03851', '{\"Monday\":\"11:0-21:30\",\"Tuesday\":\"11:0-22:30\",\"Wednesday\":\"11:0-22:30\",\"Thursday\":\"11:0-22:30\",\"Friday\":\"11:0-22:30\",\"Saturday\":\"11:0-23:30\",\"Sunday\":\"12:0-23:30\"}', '445', 'Bravo\'s Pizza Seafood House', '5734 N 2nd St', '19120', '2', '12', '1', '445', 'Philadelphia', 'PA', '\"_5j1jqZfayk8QiOdpclF1Q\", 'Sandwiches; Restaurants; American (New)\r'
 
 
 // CALL SearchBusinessBy(null, null, 'NY', 'New York');

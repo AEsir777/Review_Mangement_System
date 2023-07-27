@@ -1,16 +1,16 @@
 /****** searchBusiness ******/
 /*** Test insert ******/
 -- Insert a new business record
-CALL InsertIntoBusiness('"MTSW4McQd7CbVtyjqonnmb"', -73.987, 39.9555052, '8AM-5PM', 1, 'YunShang Noodle', '123 Main St', 'N2L 0E2', NULL, 0, 1);
+CALL InsertIntoBusiness("MTSW4McQd7CbVtyjqonnmb", -73.987, 39.9555052, '8AM-5PM', 1, 'YunShang Noodle', '123 Main St', 'N2L 0E2', NULL, 0, 1);
 
 -- Verify the insertion by retrieving the business record
-CALL GetBusinessByBid('"MTSW4McQd7CbVtyjqonnmb"');
+CALL GetBusinessByBid("MTSW4McQd7CbVtyjqonnmb");
 
 -- Retrieve a business record by bid
 -- Check review count and star
-CALL GetBusinessByBid('"kfNv-JZpuN6TVNSO6hHdkw"');
-CALL GetBusinessByBid('"MTSW4McQd7CbVtyjqoe9mw"');
-CALL GetBusinessByBid('"MTSW4McQd7CbVtyjqonnmb"');
+CALL GetBusinessByBid("kfNv-JZpuN6TVNSO6hHdkw");
+CALL GetBusinessByBid("MTSW4McQd7CbVtyjqoe9mw");
+CALL GetBusinessByBid("MTSW4McQd7CbVtyjqonnmb");
 CALL GetBusinessByBid(null);
 
 -- Search for businesses by category, name, state, and city
