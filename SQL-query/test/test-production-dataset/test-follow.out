@@ -1,84 +1,200 @@
 /**** add friend ******/
 /*** Test insert and isFriend ******/
 -- check: not exist before
-// CALL CheckFriendship("rppTTi-kfF8-qyiArNemag", "RgDVC3ZUBqpEe6Y1kPhIpw");
-// expected output:
+CALL GetFollowers('_3R2OM6fTkdcc3rPGTZYAQ');
+output: 
 NULL NULL
-// expected output: no relationship
+expected output:
+NULL NULL
+// the result shouldn't include '_4gdJdZFM0EnWr6v1Qr3A'
 
+CALL GetFollowers('_4gdJdZFM0EnWr6v1Qr3A'); 
+output: 
+NULL NULL
+expected output:
+NULL NULL
+// the result shouldn't include '_3R2OM6fTkdcc3rPGTZYAQ'
+
+CALL GetFollowings('_3R2OM6fTkdcc3rPGTZYAQ'); 
+output: 
+NULL NULL
+expected output:
+NULL NULL
+// the result shouldn't include '_4gdJdZFM0EnWr6v1Qr3A'
+
+CALL GetFollowings('_4gdJdZFM0EnWr6v1Qr3A'); 
+output: 
+QngamgrqX9otZ6PUkd10Ig	Brittany
+expected output:
+QngamgrqX9otZ6PUkd10Ig	Brittany
+// the result shouldn't include '_3R2OM6fTkdcc3rPGTZYAQ'
 
 -- success case
-// CALL InsertFriend("rppTTi-kfF8-qyiArNemag", "RgDVC3ZUBqpEe6Y1kPhIpw");
-1 row(s) affected
-// expected output: 1 row(s) affected
-
-// CALL CheckFriendship("rppTTi-kfF8-qyiArNemag", "RgDVC3ZUBqpEe6Y1kPhIpw");
-1 row(s) returned
-"rppTTi-kfF8-qyiArNemag"	"RgDVC3ZUBqpEe6Y1kPhIpw"
-// expected output: "rppTTi-kfF8-qyiArNemag"	"RgDVC3ZUBqpEe6Y1kPhIpw"
-
-// CALL CheckFriendship("rppTTi-kfF8-qyiArNemag", "sHozd2pcOKwHtPr8VlZJfg");
-// expected output:
-NULL NULL
-// expected output: no relationship
-
--- success case
-// CALL InsertFriend("rppTTi-kfF8-qyiArNemag", "sHozd2pcOKwHtPr8VlZJfg");
-1 row(s) affected
-// expected output: 1 row(s) affected
+CALL InsertFriend('_4gdJdZFM0EnWr6v1Qr3A', '_3R2OM6fTkdcc3rPGTZYAQ');
+CALL InsertFriend('_3R2OM6fTkdcc3rPGTZYAQ', '_4gdJdZFM0EnWr6v1Qr3A');
+2 row(s) affected
+// expected output: 2 row(s) affected
 
 -- check
-// CALL CheckFriendship("rppTTi-kfF8-qyiArNemag", "sHozd2pcOKwHtPr8VlZJfg");
-1 row(s) returned
-"rppTTi-kfF8-qyiArNemag" "sHozd2pcOKwHtPr8VlZJfg"
-// expected output: "rppTTi-kfF8-qyiArNemag" "sHozd2pcOKwHtPr8VlZJfg"
+
+CALL GetFollowers('_3R2OM6fTkdcc3rPGTZYAQ');
+output: 
+_4gdJdZFM0EnWr6v1Qr3A	Lauren
+expected output:
+_4gdJdZFM0EnWr6v1Qr3A	Lauren
+
+CALL GetFollowers('_4gdJdZFM0EnWr6v1Qr3A');
+output: 
+_3R2OM6fTkdcc3rPGTZYAQ	Jessica
+expected output:
+_3R2OM6fTkdcc3rPGTZYAQ	Jessica
+
+CALL GetFollowings('_3R2OM6fTkdcc3rPGTZYAQ');
+output: 
+_4gdJdZFM0EnWr6v1Qr3A	Lauren
+expected output:
+_4gdJdZFM0EnWr6v1Qr3A	Lauren
+
+CALL GetFollowings('_4gdJdZFM0EnWr6v1Qr3A');
+output: 
+_3R2OM6fTkdcc3rPGTZYAQ	Jessica
+QngamgrqX9otZ6PUkd10Ig	Brittany
+expected output:
+_3R2OM6fTkdcc3rPGTZYAQ	Jessica
+QngamgrqX9otZ6PUkd10Ig	Brittany
+
+CALL GetFollowers('_3R2OM6fTkdcc3rPGTZYAQ');
+output: 
+_4gdJdZFM0EnWr6v1Qr3A	Lauren
+expected output:
+_4gdJdZFM0EnWr6v1Qr3A	Lauren
+
+CALL GetFollowers('0rb0x3YydlvYdbFUysfsg');
+output: 
+NULL NULL
+expected output:
+NULL NULL
+
+CALL GetFollowings('_3R2OM6fTkdcc3rPGTZYAQ');
+output: 
+_4gdJdZFM0EnWr6v1Qr3A	Lauren
+expected output:
+_4gdJdZFM0EnWr6v1Qr3A	Lauren
+
+CALL GetFollowings('0rb0x3YydlvYdbFUysfsg');
+output: 
+NULL NULL
+expected output:
+NULL NULL
+
+-- success case
+CALL InsertFriend("0rb0x3YydlvYdbFUysfsg", "_3R2OM6fTkdcc3rPGTZYAQ");
+CALL InsertFriend("_3R2OM6fTkdcc3rPGTZYAQ", "0rb0x3YydlvYdbFUysfsg");
+2 row(s) affected
+// expected output: 2 row(s) affected
+
+-- check
+CALL GetFollowers('_3R2OM6fTkdcc3rPGTZYAQ'); 
+output:
+_4gdJdZFM0EnWr6v1Qr3A	Lauren
+0rb0x3YydlvYdbFUysfsg	Lindsey
+expected output:
+_4gdJdZFM0EnWr6v1Qr3A	Lauren
+0rb0x3YydlvYdbFUysfsg	Lindsey
+
+CALL GetFollowers('0rb0x3YydlvYdbFUysfsg');
+output:
+_3R2OM6fTkdcc3rPGTZYAQ	Jessica
+expected output:
+_3R2OM6fTkdcc3rPGTZYAQ	Jessica
+
+CALL GetFollowings('_3R2OM6fTkdcc3rPGTZYAQ');
+output:
+_4gdJdZFM0EnWr6v1Qr3A	Lauren
+0rb0x3YydlvYdbFUysfsg	Lindsey
+expected output:
+_4gdJdZFM0EnWr6v1Qr3A	Lauren
+0rb0x3YydlvYdbFUysfsg	Lindsey
+
+CALL GetFollowings('0rb0x3YydlvYdbFUysfsg');
+output:
+_3R2OM6fTkdcc3rPGTZYAQ	Jessica
+expected output:
+_3R2OM6fTkdcc3rPGTZYAQ	Jessica
+
 
 -- check: exist before
-// CALL CheckFriendship("LwZJFLGxQwjjeOgpqTJnfw", "RHsmgIvCfnFL7DPNptKY8A");
-1 row(s) returned
-"LwZJFLGxQwjjeOgpqTJnfw" "RHsmgIvCfnFL7DPNptKY8A"
-// expected output: "LwZJFLGxQwjjeOgpqTJnfw" "RHsmgIvCfnFL7DPNptKY8A"
+CALL GetFollowers("_GvKig8yKIp_WtFtWpntkg");
+output:
+7zbVroyptTaZUikxw6_dBw	Treva
+expected output:
+7zbVroyptTaZUikxw6_dBw	Treva
 
-// CALL CheckFriendship("c7XI431TnC9_AkmC-qrXvQ", "RgDVC3ZUBqpEe6Y1kPhIpw");
-1 row(s) returned
-"c7XI431TnC9_AkmC-qrXvQ" "RgDVC3ZUBqpEe6Y1kPhIpw"
-// expected output: "c7XI431TnC9_AkmC-qrXvQ" "RgDVC3ZUBqpEe6Y1kPhIpw"
+CALL GetFollowings("qms0w0pmjjjaeNojF3qxQ");
+output:
+_gXgA3Z3HXdXb9hq64iM3g	Diana
+expected output:
+_gXgA3Z3HXdXb9hq64iM3g	Diana
 
-// CALL CheckFriendship("w-zD8Ln3XZszM82AfVrspg", "RgDVC3ZUBqpEe6Y1kPhIpw");
-1 row(s) returned
-"w-zD8Ln3XZszM82AfVrspg" "RgDVC3ZUBqpEe6Y1kPhIpw"
-// expected output: "w-zD8Ln3XZszM82AfVrspg", "RgDVC3ZUBqpEe6Y1kPhIpw"
+CALL GetFollowers("_H6E5kheFYwu52kCZlF8qg"); 
+output:
+t1BoPNoTINq2MhQo9pwYoQ	Matt
+expected output:
+t1BoPNoTINq2MhQo9pwYoQ	Matt
 
-// CALL CheckFriendship("8Akq8sh1LSmJbqa6Jjxxqg", "96IKLbNHdK-sOAjuMwoegw");
-1 row(s) returned
-"8Akq8sh1LSmJbqa6Jjxxqg" "96IKLbNHdK-sOAjuMwoegw"
-// expected output: "8Akq8sh1LSmJbqa6Jjxxqg" "96IKLbNHdK-sOAjuMwoegw"
+CALL GetFollowings("1lmyWoPFb_eJvG5Zw3UA");
+output:
+_hMI9tPsb2xmREGeLhDsIA	John
+expected output:
+_hMI9tPsb2xmREGeLhDsIA	John
 
-// CALL CheckFriendship("TDXV6AC5PYOZEyN9eeODfA", "7xp_8X8QRAgHFZGs8M7FCw");
-1 row(s) returned
-"TDXV6AC5PYOZEyN9eeODfA" "7xp_8X8QRAgHFZGs8M7FCw"
-// expected output: "TDXV6AC5PYOZEyN9eeODfA" "7xp_8X8QRAgHFZGs8M7FCw"
+CALL GetFollowers("_iYyZtuWMmEMFCOKRLYgg"); 
+output:
+pQrWjL22uvSWMwS9yZ_Yg	Sir Dennis
+expected output:
+pQrWjL22uvSWMwS9yZ_Yg	Sir Dennis
 
-// CALL CheckFriendship("UVUIi0q38pAvsfuEEppe0Q", "JFIr4bbO2zjQYdA3LwbbsQ");
-1 row(s) returned
-"UVUIi0q38pAvsfuEEppe0Q" "JFIr4bbO2zjQYdA3LwbbsQ"
-// expected output: "UVUIi0q38pAvsfuEEppe0Q" "JFIr4bbO2zjQYdA3LwbbsQ"
+CALL GetFollowings("pQrWjL22uvSWMwS9yZ_Yg");
+output:
+_iYyZtuWMmEMFCOKRLYgg	Karen
+expected output:
+_iYyZtuWMmEMFCOKRLYgg	Karen
 
-// CALL CheckFriendship("aA0WQpDdksKuDafTGzJf_A", "qvmL6mp-rpIwVguxb5HuvQ");
-1 row(s) returned
-"aA0WQpDdksKuDafTGzJf_A" "qvmL6mp-rpIwVguxb5HuvQ"
-// expected output: "aA0WQpDdksKuDafTGzJf_A" "qvmL6mp-rpIwVguxb5HuvQ"
+CALL GetFollowers("_KeuaQCbJsZ7cipYpBPxDQ"); 
+output:
+Xl5_VNVExSKmiv4uDY_DAA	Jonathan
+expected output:
+Xl5_VNVExSKmiv4uDY_DAA	Jonathan
 
-// CALL CheckFriendship("q9xZ_o95MTmBmLLPnZyBwQ", "47iiqGmXi6UtE0wd8bRWpQ");
-1 row(s) returned
-"q9xZ_o95MTmBmLLPnZyBwQ" "47iiqGmXi6UtE0wd8bRWpQ"
-// expected output: "q9xZ_o95MTmBmLLPnZyBwQ" "47iiqGmXi6UtE0wd8bRWpQ"
+CALL GetFollowings("coWYR6JBcD9Qa55ibyqr9Q");
+output:
+_JBQYhcgN16e3NK0l1Z5AQ	Leah
+expected output:
+_JBQYhcgN16e3NK0l1Z5AQ	Leah
 
-// CALL CheckFriendship("Js4nQlGRjS1Bd5vsAQQfgA", "4YwesZEX8VPPJOKLfPD7lg");
-1 row(s) returned
-"Js4nQlGRjS1Bd5vsAQQfgA" "4YwesZEX8VPPJOKLfPD7lg"
-// expected output: "Js4nQlGRjS1Bd5vsAQQfgA" "4YwesZEX8VPPJOKLfPD7lg"
-
+CALL GetFollowers("V3XYG1zKuW8VUBNtjacoxA");
+output:
+2KyAPAsnGlmQbN1J8Eug	Amy
+6QisM8Z_09QPEe__NIcNUw	Sara
+7RZIOzLKugDvFjdJFwkHYw	Richard
+AEsiF7xY6fL37pZgCAHLQ	Brian
+aHxYkJqD7sHH6c0IflwLzA	Dave
+IENZbosAEMTuD1Ob8mSIMg	Kristin
+JJDTefsXi9n3nBj42heb_Q	Devon
+Jqi2O_6tC8RpCg53zWeNw	Tom
+KaL2ZkT6ppmuZnLR1yGAIw	Bill
+oxigaAgicvvSwOLfd28zg	Danielle
+expected output:
+2KyAPAsnGlmQbN1J8Eug	Amy
+6QisM8Z_09QPEe__NIcNUw	Sara
+7RZIOzLKugDvFjdJFwkHYw	Richard
+AEsiF7xY6fL37pZgCAHLQ	Brian
+aHxYkJqD7sHH6c0IflwLzA	Dave
+IENZbosAEMTuD1Ob8mSIMg	Kristin
+JJDTefsXi9n3nBj42heb_Q	Devon
+Jqi2O_6tC8RpCg53zWeNw	Tom
+KaL2ZkT6ppmuZnLR1yGAIw	Bill
+oxigaAgicvvSwOLfd28zg	Danielle
 
 -- check: insert fail
 CALL InsertFriend("LwZJFLGxQwjjeOgpqTJnfw", "RHsmgIvCfnFL7DPNptKY8A");
@@ -86,15 +202,15 @@ Error Code: 1062. Duplicate entry "LwZJFLGxQwjjeOgpqTJnfw"-"RHsmgIvCfnFL7DPNptKY
 // expected output: fail
 
 CALL InsertFriend("c7XI431TnC9_AkmC-qrXvQ", "RgDVC3ZUBqpEe6Y1kPhIpw");
-Error Code: 1062. Duplicate entry "c7XI431TnC9_AkmC-qrXvQ"-"RgDVC3ZUBqpEe6Y1kPhIpw" for key 'friend.PRIMARY'
+Error Code: 1452. Cannot add or update a child row: a foreign key constraint fails 
 // expected output: fail
 
 CALL InsertFriend("w-zD8Ln3XZszM82AfVrspg", "RgDVC3ZUBqpEe6Y1kPhIpw");
-Error Code: 1062. Duplicate entry "w-zD8Ln3XZszM82AfVrspg"-"RgDVC3ZUBqpEe6Y1kPhIpw" for key 'friend.PRIMARY'
+Error Code: 1452. Cannot add or update a child row: a foreign key constraint fails 
 // expected output: fail
 
 CALL InsertFriend("8Akq8sh1LSmJbqa6Jjxxqg", "96IKLbNHdK-sOAjuMwoegw");
-Error Code: 1062. Duplicate entry "8Akq8sh1LSmJbqa6Jjxxqg"-"96IKLbNHdK-sOAjuMwoegw" for key 'friend.PRIMARY'
+Error Code: 1452. Cannot add or update a child row: a foreign key constraint fails 
 // expected output: fail
 
 CALL InsertFriend("LwZJFLGxQwjjeOgpqTJnfw", "abcd");
