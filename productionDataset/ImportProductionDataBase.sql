@@ -1,3 +1,5 @@
+-- Create tables using code in SQL-query\create-table-trigger, don't create triggers here
+
 use cs348;
 LOAD DATA INFILE "C:\Business.csv"
 INTO TABLE Business
@@ -120,3 +122,4 @@ ENCLOSED BY "
 LINES TERMINATED BY '\n' 
 IGNORE 1 LINES; 
 
+-- Create triggers using code in SQL-query\create-table-trigger
